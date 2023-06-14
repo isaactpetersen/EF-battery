@@ -11,11 +11,13 @@ jsPsych code for executive functioning battery
     - subject ID: `subid`
     - SONA ID: `sonaid`
 1. Export data from each task, separately, as csv, with filename as: `task_subid.csv`
-1. End Spatial Recall task when get two wrong in a row
+1. End [Spatial Recall](https://github.com/isaactpetersen/spatial-recall) task when get two wrong in a row
 1. Have each task run in [fullscreen mode](https://www.jspsych.org/7.0/plugins/fullscreen/) (like the [Go/No-Go](https://github.com/isaactpetersen/go-nogo) task)
 1. On finish, redirect to external URL, but only if `sonaid` != 0
 - Maybe:
     - Combined Progress Bar
+    - For [Go/No-Go](https://github.com/isaactpetersen/go-nogo) and [Hearts and Flowers](https://github.com/isaactpetersen/jspsych-hearts-flowers) tasks, set anticipatory responses (RT < 200 ms) to missing for both accuracy and RT
+        - but, can do this later in post-processing
 
 # Instructions:
 
