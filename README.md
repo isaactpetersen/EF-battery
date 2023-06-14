@@ -16,7 +16,6 @@ jsPsych code for executive functioning battery
 1. On finish, redirect to external URL, but only if `sonaid` != 0
 - Maybe:
     - Combined Progress Bar
-    - For [Go/No-Go](https://github.com/isaactpetersen/go-nogo) and [Hearts and Flowers](https://github.com/isaactpetersen/jspsych-hearts-flowers) tasks, set anticipatory responses (RT < 200 ms) to missing for both accuracy and RT
         - but, can do this later in post-processing (so don't lose raw data)
 
 # Instructions:
@@ -71,3 +70,17 @@ I'm not sure what the "filter" is for, and we are using a different task.
         },
     }
 ```
+
+# Post-Processing
+
+## Spatial Recall
+
+## Go/No-Go
+
+- set anticipatory responses (RT < 200 ms) to missing for both accuracy and RT
+- examine RT in correct go trials only
+
+## Hearts and Flowers
+
+- set anticipatory responses (RT < 200 ms) to missing for both accuracy and RT
+- examine RT in correct trials only
