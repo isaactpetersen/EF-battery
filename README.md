@@ -3,15 +3,16 @@ jsPsych code for executive functioning battery
 
 # To-Do:
 
-1. Combine the three tasks ([Spatial Recall](https://github.com/isaactpetersen/spatial-recall), [Go/No-Go](https://github.com/isaactpetersen/go-nogo), [Cued Task Switching](https://github.com/isaactpetersen/cued-task-switching)), ideally using the latest version of jsPsych; present them to the subject in the following order:
+1. Combine the three tasks ([Spatial Recall](https://github.com/isaactpetersen/spatial-recall), [Go/No-Go](https://github.com/isaactpetersen/go-nogo), [Hearts and Flowers](https://github.com/isaactpetersen/jspsych-hearts-flowers)), ideally using the latest version of jsPsych; present them to the subject in the following order:
     1. [Spatial Recall](https://github.com/isaactpetersen/spatial-recall)
     1. [Go/No-Go](https://github.com/isaactpetersen/go-nogo)
-    1. [Cued Task Switching](https://github.com/isaactpetersen/cued-task-switching)
+    1. [Hearts and Flowers](https://github.com/isaactpetersen/jspsych-hearts-flowers)
 1. [Extract variables from URL](https://www.jspsych.org/7.3/reference/jspsych-data/#jspsychdataurlvariables), and save to exported data: 
     - subject ID: `subid`
     - SONA ID: `sonaid`
 1. Export data from each task, separately, as csv, with filename as: `task_subid.csv`
 1. End Spatial Recall task when get two wrong in a row
+1. Have each task run in [fullscreen mode](https://www.jspsych.org/7.0/plugins/fullscreen/) (like the [Go/No-Go](https://github.com/isaactpetersen/go-nogo) task)
 1. On finish, redirect to external URL, but only if `sonaid` != 0
 - Maybe:
     - Combined Progress Bar
@@ -23,6 +24,13 @@ jsPsych code for executive functioning battery
     - combine tasks
     - extract `subid` and `sonaid` from URL
     - export data from each task, separately, as csv, with filename as: `task_subid.csv`
+        - export data from all trials:
+            - for [Hearts and Flowers](https://github.com/isaactpetersen/jspsych-hearts-flowers) task, include at least the following:
+                - condition: congruent (`heart_practice_trials`), incongruent (`flower_practice_trials`), mixed (`trials`)
+                - trial type: `heart`, `flower`
+                - whether it was a switch trial: 1 (yes), 0 (no)
+                - accuracy: 1 (correct), 0 (incorrect)
+                - reaction time: time (in milliseconds); `-1` if no response
     - end spatial recall task when get two wrong in a row
     - on finish, redirect to external URL, but only if `sonaid` != 0
 - Use these lines to extract the subject ID and SONA ID from the URL, so they can be saved in the filename and datafile, and can be used to assign credit.
