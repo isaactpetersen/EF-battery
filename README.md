@@ -17,7 +17,7 @@ jsPsych code for executive functioning battery
 - Maybe:
     - Combined Progress Bar
     - For [Go/No-Go](https://github.com/isaactpetersen/go-nogo) and [Hearts and Flowers](https://github.com/isaactpetersen/jspsych-hearts-flowers) tasks, set anticipatory responses (RT < 200 ms) to missing for both accuracy and RT
-        - but, can do this later in post-processing
+        - but, can do this later in post-processing (so don't lose raw data)
 
 # Instructions:
 
