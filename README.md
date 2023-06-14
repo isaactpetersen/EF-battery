@@ -28,7 +28,7 @@ jsPsych code for executive functioning battery
 - Use these lines to extract the subject ID and SONA ID from the URL, so they can be saved in the filename and datafile, and can be used to assign credit.
     - `var subid = jsPsych.data.getURLVariable("subid")`
     - `var sonaid = jsPsych.data.getURLVariable("sonaid")`
-- At the end of the task, with the `on_finish` function, include the [code to redirect SONA participants to an external URL](#redirect-to-url), but only if their `sonaid` != 0.
+- At the end of the final task, with the `on_finish` function, include the [code to redirect SONA participants to an external URL](#redirect-to-url), but only if their `sonaid` != 0.
 - To save the data on the server, use the [`write_data_new.php`](https://github.com/isaactpetersen/EF-battery/blob/main/write_data_new.php) PHP file
 - Use/adapt this the [code to save the data](#save-data):
 
