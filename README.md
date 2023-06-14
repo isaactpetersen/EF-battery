@@ -3,8 +3,11 @@ jsPsych code for executive functioning battery
 
 # To-Do:
 
-1. Combine the three tasks, ideally using the latest version of jsPsych
-1. [Input variable from URL](https://www.jspsych.org/7.3/reference/jspsych-data/#jspsychdataurlvariables), and save to exported data: 
+1. Combine the three tasks ([Spatial Recall](https://github.com/isaactpetersen/spatial-recall), [Go/No-Go](https://github.com/isaactpetersen/go-nogo), [Cued Task Switching](https://github.com/isaactpetersen/cued-task-switching)), ideally using the latest version of jsPsych; present them to the subject in the following order:
+    1. [Spatial Recall](https://github.com/isaactpetersen/spatial-recall)
+    1. [Go/No-Go](https://github.com/isaactpetersen/go-nogo)
+    1. [Cued Task Switching](https://github.com/isaactpetersen/cued-task-switching)
+1. [Extract variables from URL](https://www.jspsych.org/7.3/reference/jspsych-data/#jspsychdataurlvariables), and save to exported data: 
     - subject ID: `subid`
     - SONA ID: `sonaid`
 1. Export data from each task, separately, as csv, with filename as: `task_subid.csv`
@@ -22,7 +25,7 @@ jsPsych code for executive functioning battery
     - export data from each task, separately, as csv, with filename as: `task_subid.csv`
     - end spatial recall task when get two wrong in a row
     - on finish, redirect to external URL, but only if `sonaid` != 0
-- Use these lines to extract the subject ID and SONA ID from the URL, so it can be saved in the filename and datafile, and will be used to assign credit.
+- Use these lines to extract the subject ID and SONA ID from the URL, so they can be saved in the filename and datafile, and can be used to assign credit.
     - `var subid = jsPsych.data.getURLVariable("subid")`
     - `var sonaid = jsPsych.data.getURLVariable("sonaid")`
 - At the end of the task, with the `on_finish` function, include the [code to redirect SONA participants to an external URL](#redirect-to-url), but only if their `sonaid` != 0.
