@@ -21,7 +21,7 @@ jsPsych code for executive functioning battery
 # Instructions:
 
 - Place code in this github repo
-- Commit each change separately so I can see and learn how to do each step, e.g.:
+- Comment code clearly, and commit each change separately so I can see and learn how to do each step, e.g.:
     - combine tasks
     - extract `subid` and `sonaid` from URL
     - export data from each task, separately, as csv, with filename as: `task_subid.csv`
@@ -33,6 +33,7 @@ jsPsych code for executive functioning battery
                 - accuracy: 1 (correct), 0 (incorrect)
                 - reaction time: time (in milliseconds); `-1` if no response
     - end spatial recall task when get two wrong in a row
+    - have each task run in fullscreen mode
     - on finish, redirect to external URL, but only if `sonaid` != 0
 - Use these lines to extract the subject ID and SONA ID from the URL, so they can be saved in the filename and datafile, and can be used to assign credit.
     - `var subid = jsPsych.data.getURLVariable("subid")`
