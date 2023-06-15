@@ -28,10 +28,11 @@ jsPsych code for executive functioning battery
         - export data from all trials:
             - for [Hearts and Flowers](https://github.com/isaactpetersen/jspsych-hearts-flowers) task, include at least the following:
                 - condition: congruent (`heart_practice_trials`), incongruent (`flower_practice_trials`), mixed (`trials`)
-                - trial type: `heart`, `flower`
-                - whether it was a switch trial: 1 (yes), 0 (no)
+                - trialType: `heart`, `flower`
+                - switchTrial (whether it was a switch trial): 1 (yes), 0 (no)
                 - accuracy: 1 (correct), 0 (incorrect)
                 - reaction time: time (in milliseconds); `-1` if no response
+                - fullScreen (whether the screen was in fullscreen mode the whole time): 1 (yes), 0 (no)
     - end spatial recall task when get two wrong in a row
     - have each task run in fullscreen mode
     - on finish, redirect to external URL, but only if `sonaid` != 0
