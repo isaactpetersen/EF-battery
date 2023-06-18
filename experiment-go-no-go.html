@@ -12,19 +12,23 @@ to. -->
   <!-- Importation of jsPsych components -->
   <script src="jspsych/dist/jspsych.js"></script> <!-- The jsPsych "core", containing all the functions for the script
                                                        to work properly -->
-  <link rel="stylesheet" href="jspsych/jspsych.css"> <!-- The jsPsych css, which contains the jsPsych "style" info,
+  <link rel="stylesheet" href="jspsych/dist/jspsych.css"> <!-- The jsPsych css, which contains the jsPsych "style" info,
                                                           i.e. how to display elements -->
 
   <!-- Here we will also import our custom styles if we need to -->
 
-  <!-- Finally, here we will import all the jsPsych or custom plugins for the experiment to run -->
+  <!-- Here we import all the jsPsych or custom plugins for the experiment to run -->
+  <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+
+  <!-- Finally, here we import our experiment scripts -->
+  <script src="tasks/go-no-go/init.js"></script>
+  <script src="tasks/go-no-go/instructions.js"></script>
+  <script src="tasks/go-no-go/main.js"></script>
 </head>
 
-<body> <!-- The body of the page, which will remain empty, for now just showing "experiment in construction" in
-order to test if the page shows up without any error -->
-Experiment in construction
+<body> <!-- The body of the page, which will remain empty -->
 </body>
 
 <!-- Here we can insert our jsPsych script containing the experiment -->
-<script src="tasks/go-no-go.js"></script>
+<script></script>
 </html>
