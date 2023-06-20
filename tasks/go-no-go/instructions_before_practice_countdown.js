@@ -16,9 +16,6 @@ var instructionsWelcome = {
 //We add this first screen to the timeline
 timelineInstructionsBeforePractice.push(instructionsWelcome);
 
-//We randomly define if the user should focus on orange or blue squares, to counterbalance
-var stims = jsPsych.randomization.shuffle([["orange", "stim1"],["blue", "stim2"]])
-
 //We define a new block for the instructions of the task
 var timeInstructions = 10; //Write here how long you want before the user can continue after reading the instructions
 

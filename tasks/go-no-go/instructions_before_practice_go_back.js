@@ -8,16 +8,14 @@ var instructionsWelcome = {
 
 	//What will be shown on screen
 	stimulus: "Welcome to the experiment. This task will take around 10 minutes.</p>"+
-	          "Press <strong>Enter</strong> to begin.",
+	          "Press <strong>Enter</strong> to begin."+
+	          "<div class = centerbox><div id='example'></div></div>",
 
 	choices: ["Enter"] //Enter key, we will only move forwards on the timeline if the user presses it
 };
 
 //We add this first screen to the timeline
 timelineInstructionsBeforePractice.push(instructionsWelcome);
-
-//We randomly define if the user should focus on orange or blue squares, to counterbalance
-var stims = jsPsych.randomization.shuffle([["orange", "stim1"],["blue", "stim2"]])
 
 //We define a new block for the instructions of the task
 var instructionsTask = {
@@ -39,7 +37,7 @@ timelineInstructionsBeforePractice.push(instructionsTask);
 //We define a condition: if the time spent reading the instructions is too short, we put a message at the top
 var timeSpentReadingInstructions = 0;//This is the time the participants spent reading the instructions, we define it
                                      //to get it later
-var timeMinimum = 5000; //Here write, in ms, how long you want your participants to spend at minimum on the instructions
+var timeMinimum = 1000; //Here write, in ms, how long you want your participants to spend at minimum on the instructions
 
 //Function to get the time spent reading instructions from the data
 var getTimeSpentReadingInstructions = function() {
@@ -68,7 +66,6 @@ var instructionsLoopNode = {
     timeline: [instructionsTaskTooShort],
     loop_function: function(data) {
         timeSpentReadingInstructions = timeSpentReadingInstructions + getTimeSpentReadingInstructions();
-        console.log(timeSpentReadingInstructions);
         if (timeSpentReadingInstructions < timeMinimum){
             return true;
         } else {
@@ -83,7 +80,6 @@ var instructionsIfNode = {
     timeline: [instructionsLoopNode],
     conditional_function: function() {
         timeSpentReadingInstructions = timeSpentReadingInstructions + getTimeSpentReadingInstructions();
-        console.log(timeSpentReadingInstructions);
         if (timeSpentReadingInstructions < timeMinimum){
             return true;
         } else {
