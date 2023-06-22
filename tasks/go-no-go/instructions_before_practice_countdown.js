@@ -19,19 +19,21 @@ timelineInstructionsBeforePractice.push(instructionsWelcome);
 //We define a new block for the instructions of the task
 var timeInstructions = 10; //Write here how long you want before the user can continue after reading the instructions
 
+var instructions_text = "In this experiment blue and orange squares will appear on the screen.</p>"+
+                        "You will be told to respond to one of the colored squares by pressing the spacebar.</p>"+
+                        "You should only respond to this color and withhold any response to the other color.</p>"+
+                        "If you see the <b><font color=" + stims[0][0] + ">" + stims[0][0] + "</font></b> square you "+
+                        "should respond by pressing the spacebar as quickly as possible</strong>.</p>If you see "+
+                        "the <b><font color=" + stims[1][0] + ">" + stims[1][0] + "</font></b> square you should <b> "+
+                        "not respond</b>.</p>We will begin with practice. You will get feedback telling "+
+                        "you if you were correct.</p></p>";
+
 //We define a loop that will count down until the user can press ENTER.
 var i;
 for (i = timeInstructions; i > 0; i--) {
 	var instructionsTask = {
 	    type: jsPsychHtmlKeyboardResponse,
-        stimulus: "In this experiment blue and orange squares will appear on the screen.</p>"+
-                  "You will be told to respond to one of the colored squares by pressing the spacebar.</p>"+
-                  "You should only respond to this color and withhold any response to the other color.</p>"+
-                  "If you see the <font color=" + stims[0][0] + ">" + stims[0][0] + "</font> square you should "+
-                  "<strong>respond by pressing the spacebar as quickly as possible</strong>.</p>If you see "+
-                  "the <font color=" + stims[1][0] + ">" + stims[1][0] + "</font> square you should <strong> not "+
-                  "respond</strong>.</p>We will begin with practice. You will get feedback telling "+
-                  "you if you were correct.</p></p>"+
+        stimulus: instructions_text+
                   "<p style='color:#888888'>Press Enter to continue</p>"+ //We show this in grey, hinting that the user
                                                                           //can't press Enter yet
 		          "<p><b>"+i.toString()+"</b></p>", //We show the amount of seconds left
@@ -44,14 +46,7 @@ for (i = timeInstructions; i > 0; i--) {
 //Finally, once the loop is over, we show "Press Enter" in red and remove the countdown.
 var instructionsTask = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: "In this experiment blue and orange squares will appear on the screen.</p>"+
-              "You will be told to respond to one of the colored squares by pressing the spacebar.</p>"+
-              "You should only respond to this color and withhold any response to the other color.</p>"+
-              "If you see the <font color=" + stims[0][0] + ">" + stims[0][0] + "</font> square you should "+
-              "<strong>respond by pressing the spacebar as quickly as possible</strong>.</p>If you see "+
-              "the <font color=" + stims[1][0] + ">" + stims[1][0] + "</font> square you should <strong> not "+
-              "respond</strong>.</p>We will begin with practice. You will get feedback telling "+
-              "you if you were correct.</p></p>"+
+    stimulus: instructions_text+
               "<p style='color:#ff0000'><b>Press Enter to continue</b></p><p>&nbsp;</p>",
     choices: ["Enter"] //Enter key
 };
@@ -59,6 +54,6 @@ var instructionsTask = {
 timelineInstructionsBeforePractice.push(instructionsTask);
 
 //We create a variable instructions containing this whole block, that we can then add to the timeline
-var instructions = {
+var instructionsBeforePractice = {
   timeline: timelineInstructionsBeforePractice,
 };

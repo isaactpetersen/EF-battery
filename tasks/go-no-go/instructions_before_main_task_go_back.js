@@ -1,39 +1,24 @@
 //We create an empty timeline
-var timelineInstructionsBeforePractice = [];
+var timelineInstructionsBeforeMainTask = [];
 
-//We define a block for the welcome screen
-var instructionsWelcome = {
-    //We use one of jsPsych plugins, that allow to display something on screen and wait for a user keyboard response.
-	type: jsPsychHtmlKeyboardResponse,
+//We define a new block for the instructions of the task
+var timeInstructions = 10; //Write here how long you want before the user can continue after reading the instructions
 
-	//What will be shown on screen
-	stimulus: "Welcome to the experiment. This task will take around 10 minutes.</p>"+
-	          "Press <strong>Enter</strong> to begin."+
-	          "<div class = centerbox><div id='example'></div></div>",
-
-	choices: ["Enter"] //Enter key, we will only move forwards on the timeline if the user presses it
-};
-
-//We add this first screen to the timeline
-timelineInstructionsBeforePractice.push(instructionsWelcome);
-
-var instructions_text = "In this experiment blue and orange squares will appear on the screen.</p>"+
-                        "You will be told to respond to one of the colored squares by pressing the spacebar.</p>"+
-                        "You should only respond to this color and withhold any response to the other color.</p>"+
-                        "If you see the <b><font color=" + stims[0][0] + ">" + stims[0][0] + "</font></b> square you "+
-                        "should respond by pressing the spacebar as quickly as possible</strong>.</p>If you see "+
-                        "the <b><font color=" + stims[1][0] + ">" + stims[1][0] + "</font></b> square you should <b> "+
-                        "not respond</b>.</p>We will begin with practice. You will get feedback telling "+
-                        "you if you were correct.</p></p>";
+var instructions_text = "Practice is over, we will now begin the experiment.</p>"+
+                        "You will no longer get feedback about your responses.</p>"+
+                        "Remember, if you see the <b><font color='" + stims[0][0] + "'>" + stims[0][0] + "</font></b> "+
+                        "square, you should <b>respond by pressing the spacebar as quickly as possible</b>.</p>"+
+                        "If you see the <b><font color='" + stims[1][0] + "'>" + stims[1][0] + "</font></b> square, "+
+                        "you should <b>not respond</b>.</p>";
 
 //We define a new block for the instructions of the task
 var instructionsTask = {
     type: jsPsychHtmlKeyboardResponse,
-        stimulus: instructions_text + "<b>Press Enter to continue</b>",
+        stimulus: instructions_text + "<b>Press Enter to begin</b>",
     choices: ["Enter"] //Enter key
 };
 
-timelineInstructionsBeforePractice.push(instructionsTask);
+timelineInstructionsBeforeMainTask.push(instructionsTask);
 
 //We define a condition: if the time spent reading the instructions is too short, we put a message at the top
 var timeSpentReadingInstructions = 0;//This is the time the participants spent reading the instructions, we define it
@@ -50,7 +35,7 @@ var getTimeSpentReadingInstructions = function() {
 var instructionsTaskTooShort = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: "<p style='color:#ff0000'><b>Please take the time to read the instructions thoroughly.</b></p>"+
-              instructions_text + "<b>Press Enter to continue</b>",
+              instructions_text + "<b>Press Enter to begin</b>",
     choices: ["Enter"] //Enter key
 };
 
@@ -81,9 +66,9 @@ var instructionsIfNode = {
     },
 };
 
-timelineInstructionsBeforePractice.push(instructionsIfNode);
+timelineInstructionsBeforeMainTask.push(instructionsTask);
 
 //We create a variable instructions containing this whole block, that we can then add to the timeline
-var instructionsBeforePractice = {
-  timeline: timelineInstructionsBeforePractice,
+var instructionsBeforeMainTask = {
+  timeline: timelineInstructionsBeforeMainTask,
 };

@@ -2,10 +2,13 @@
 var timeline = [];
 
 //We add the instructions sub-timeline
-timeline.push(instructions);
+timeline.push(instructionsBeforePractice);
 
 //We add the practice sub-timeline
 timeline.push(practice_loop);
+
+//We add the instructions before the main test
+timeline.push(instructionsBeforeMainTask);
 
 //We run the experiment
 jsPsych.run(timeline);
