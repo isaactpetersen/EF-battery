@@ -32,3 +32,6 @@ var practice_stimuli = [{
   condition: "No-Go",
   key_answer: "NO_KEYS"
 }];
+
+var practice_trials = jsPsych.randomization.repeat(practice_stimuli, 5); //Put here how many pairs of trials you want in
+                                                                         //the practice trials

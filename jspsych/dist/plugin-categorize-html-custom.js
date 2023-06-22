@@ -117,9 +117,11 @@ var jsPsychCategorizeHtmlCustom = (function (jspsych) {
               this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
 
               // We show the modified stimulus after a key press.
-              display_element.innerHTML =
-                  '<div id="jspsych-categorize-html-custom-stimulus" class="jspsych-categorize-html-custom-stimulus">' +
-                      trial.stimulus_after_key_press + "</div>";
+              if (info.key !== null){
+                  display_element.innerHTML =
+                      '<div id="jspsych-categorize-html-custom-stimulus" class="jspsych-categorize-html-custom-stimulus">' +
+                          trial.stimulus_after_key_press + "</div>";
+              }
 
               //If the key pressed was the expected one (space in go, NO_KEYS in no go), we set correct on true
               var correct = false;

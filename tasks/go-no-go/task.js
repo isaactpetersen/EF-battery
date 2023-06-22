@@ -20,6 +20,6 @@ var practice_block = {
 
 var practice_loop = {
 	timeline: [practice_block],
-	timeline_variables: practice_stimuli,
+	timeline_variables: practice_trials,
 	randomize_order: true
 };
