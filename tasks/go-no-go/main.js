@@ -1,6 +1,9 @@
 //We define the global timeline for this experiment
 var timeline = [];
 
+//Fullscreen on
+timeline.push(fullscreen_on);
+
 //We add the instructions sub-timeline
 timeline.push(instructionsBeforePractice);
 
@@ -15,6 +18,9 @@ timeline.push(main_task_loop);
 
 //We add the goodbye message
 timeline.push(goodbye);
+
+//Fullscreen off
+timeline.push(fullscreen_off);
 
 //We run the experiment
 jsPsych.run(timeline);
