@@ -4,18 +4,18 @@ var getLastTrialKeyPressed = function() {
 }
 
 var practice_block = {
-  type: jsPsychCategorizeHtml,
+  type: jsPsychCategorizeHtmlCustom,
   stimulus: jsPsych.timelineVariable("stimulus"),
+  stimulus_after_key_press: jsPsych.timelineVariable("stimulus_after_key_press"),
   choices: [" "],
   key_answer: jsPsych.timelineVariable("key_answer"),
-  correct_text: "<div style='color:green'>Correct!</div>",
-  incorrect_text: "<div style='color:red'>Incorrect</div>",
+  correct_text: message_correct,
+  incorrect_text: message_incorrect,
   timeout_message: jsPsych.timelineVariable("timeout_message"),
   show_feedback_on_timeout: false,
-  stimulus_duration: 3000,
-  trial_duration: 3000,
+  stimulus_duration: 1500,
+  trial_duration: 1500,
   feedback_duration: 1000,
-  show_stim_with_feedback: false,
 }
 
 var practice_loop = {
