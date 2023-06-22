@@ -13,5 +13,8 @@ timeline.push(instructionsBeforeMainTask);
 //We add the main task
 timeline.push(main_task_loop);
 
+//We add the goodbye message
+timeline.push(goodbye);
+
 //We run the experiment
 jsPsych.run(timeline);
