@@ -10,5 +10,8 @@ timeline.push(practice_loop);
 //We add the instructions before the main test
 timeline.push(instructionsBeforeMainTask);
 
+//We add the main task
+timeline.push(main_task_loop);
+
 //We run the experiment
 jsPsych.run(timeline);

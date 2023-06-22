@@ -38,11 +38,11 @@ timelineInstructionsBeforePractice.push(instructionsTask);
 //We define a condition: if the time spent reading the instructions is too short, we put a message at the top
 var timeSpentReadingInstructions = 0;//This is the time the participants spent reading the instructions, we define it
                                      //to get it later
-var timeMinimum = 1000; //Here write, in ms, how long you want your participants to spend at minimum on the instructions
+var timeMinimum = 5000; //Here write, in ms, how long you want your participants to spend at minimum on the instructions
 
 //Function to get the time spent reading instructions from the data
 var getTimeSpentReadingInstructions = function() {
-    return jsPsych.data.getLastTrialData().select('rt').values[0];
+    return jsPsych.data.getLastTrialData().select('rt').values[jsPsych.data.getLastTrialData().select('rt').values.length - 1];
 }
 
 //Message if the user pressed Enter too fast: we add "please take the time to read the instructions thoroughly" at the

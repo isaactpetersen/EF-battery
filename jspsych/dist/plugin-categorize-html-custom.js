@@ -46,17 +46,11 @@ var jsPsychCategorizeHtmlCustom = (function (jspsych) {
               pretty_name: "Incorrect text",
               default: "<p class='feedback'>Incorrect</p>",
           },
-          /** Whether or not to show feedback following a response timeout. */
-          show_feedback_on_timeout: {
+          /** Show any type of feedback at all. */
+          show_feedback: {
               type: jspsych.ParameterType.BOOL,
-              pretty_name: "Show feedback on timeout",
-              default: false,
-          },
-          /** The message displayed on a timeout non-response. */
-          timeout_message: {
-              type: jspsych.ParameterType.HTML_STRING,
-              pretty_name: "Timeout message",
-              default: "<p>Please respond faster.</p>",
+              pretty_name: "Show feedback",
+              default: true,
           },
           /** How long to show the stimulus. */
           stimulus_duration: {
@@ -117,7 +111,7 @@ var jsPsychCategorizeHtmlCustom = (function (jspsych) {
               this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
 
               // We show the modified stimulus after a key press.
-              if (info.key !== null){
+              if (info.key !== "NO_KEYS"){
                   display_element.innerHTML =
                       '<div id="jspsych-categorize-html-custom-stimulus" class="jspsych-categorize-html-custom-stimulus">' +
                           trial.stimulus_after_key_press + "</div>";
@@ -152,28 +146,25 @@ var jsPsychCategorizeHtmlCustom = (function (jspsych) {
               this.jsPsych.pluginAPI.clearAllTimeouts();
               display_element.innerHTML = ""; //We empty the display
               var timeout = info.rt == null;
-              doFeedback(correct, timeout); //We show the feedback
+              if (trial.show_feedback){
+                  doFeedback(correct, timeout); //We show the feedback
+              }
+              else {
+                  endTrial();
+              }
           }
 
           //Showing the feedback
           const doFeedback = (correct, timeout) => {
-              //If timeout without having pressed any key, show the timeout message
-              if (timeout && !trial.show_feedback_on_timeout) {
-                  display_element.innerHTML += trial.timeout_message;
+              // Feedback
+              var atext = "";
+              if (correct) {
+                  atext = trial.correct_text.replace("%ANS%", trial.text_answer);
               }
-              //Else, show the correct or incorrect answer
               else {
-                  // Feedback
-                  var atext = "";
-                  if (correct) {
-                      atext = trial.correct_text.replace("%ANS%", trial.text_answer);
-                  }
-                  else {
-                      atext = trial.incorrect_text.replace("%ANS%", trial.text_answer);
-                  }
-                  // show the feedback
-                  display_element.innerHTML += atext;
+                  atext = trial.incorrect_text.replace("%ANS%", trial.text_answer);
               }
+              display_element.innerHTML += atext;
               this.jsPsych.pluginAPI.setTimeout(endTrial, trial.feedback_duration);
           };
 
@@ -196,7 +187,7 @@ var jsPsychCategorizeHtmlCustom = (function (jspsych) {
           if (trial.trial_duration !== null) {
               this.jsPsych.pluginAPI.setTimeout(() => {
                   after_response({
-                      key: null,
+                      key: "NO_KEYS",
                       rt: null,
                   });
               }, trial.trial_duration);

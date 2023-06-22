@@ -15,7 +15,6 @@ var practice_stimuli_block = [{
     correct_response: " "
     },
     timeout_message: message_incorrect,
-    condition: "Go",
     key_answer: " "
 },
 //No-Go condition
@@ -26,10 +25,9 @@ var practice_stimuli_block = [{
     data: {
     trial_id: "Practice",
     condition: "No-Go",
-    correct_response: undefined
+    correct_response: "NO_KEYS"
     },
     timeout_message: message_correct,
-    condition: "No-Go",
     key_answer: "NO_KEYS"
 }];
 
@@ -46,11 +44,10 @@ for (var i = 0; i < number_of_go_stimuli_per_block; i++){
         stimulus: "<div class = centerbox><div id=" + stims[0][1] + "></div></div>",
         stimulus_after_key_press: "<div class = centerbox><div id=" + stims[0][1] + "-responded></div></div>",
         data: {
-            trial_id: "Practice",
+            trial_id: "Task",
             condition: "Go",
             correct_response: " "
         },
-        condition: "Go",
         key_answer: " "
     });
 };
@@ -61,11 +58,10 @@ for (var i = 0; i < number_of_no_go_stimuli_per_block; i++){
         stimulus: "<div class = centerbox><div id=" + stims[1][1] + "></div></div>",
         stimulus_after_key_press: "<div class = centerbox><div id=" + stims[1][1] + "-responded></div></div>",
         data: {
-            trial_id: "Practice",
+            trial_id: "Task",
             condition: "No-Go",
-            correct_response: undefined
+            correct_response: "NO_KEYS"
         },
-        condition: "No-Go",
         key_answer: "NO_KEYS"
     });
 };
