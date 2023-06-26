@@ -35,8 +35,8 @@ var practice_trials = jsPsych.randomization.repeat(practice_stimuli_block, 5); /
                                                                                //want in the practice trials
 
 var main_stimuli_block = [];
-var number_of_go_stimuli_per_block = 5;
-var number_of_no_go_stimuli_per_block = 1;
+var number_of_go_stimuli_per_block = 5; //number of go trials per block
+var number_of_no_go_stimuli_per_block = 1; //number of no-go trials per block
 
 //Go stimuli
 for (var i = 0; i < number_of_go_stimuli_per_block; i++){
@@ -66,5 +66,5 @@ for (var i = 0; i < number_of_no_go_stimuli_per_block; i++){
     });
 };
 
-var main_trials = jsPsych.randomization.repeat(main_stimuli_block, 1); //Put here how many blocks you want in the
-                                                                        //whole task
+var main_trials = jsPsych.randomization.repeat(main_stimuli_block, 50); //number of times the test trial blocks are shown
+                                                                        //5 go + 1 no-go x 50 = 300 test trials
