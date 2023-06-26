@@ -5,26 +5,3 @@ var jsPsych = initJsPsych({
         jsPsych.data.get().localSave("csv", "go_no_go.csv") ; //Saves data in csv
     }
 });
-
-//Add fullscreen
-var fullscreen_on = {
-    type: jsPsychFullscreen,
-    message: "This experiment must be passed in fullscreen mode.</br>"+
-             "Please, do not press the ESC key during the experiment, and avoid all distractions.</br></br>"+
-             "If you quit the fullscreen mode during the experiment, please press <b>F11</b> on Windows </br>"+
-             "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br>",
-    button_label: 'Continue',
-    fullscreen_mode: true,
-};
-
-//Remove fullscreen
-var fullscreen_off = {
-    type: jsPsychFullscreen,
-    message: "This experiment must be passed in fullscreen mode.</br>"+
-             "Please, do not press the ESC key during the experiment, and avoid all distractions.</br></br>"+
-             "If you quit the fullscreen mode during the experiment, please press <b>F11</b> on Windows </br>"+
-             "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br>",
-    button_label: 'Continue',
-    fullscreen_mode: false,
-};
-
