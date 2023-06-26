@@ -18,8 +18,8 @@ var instructionsTask = {
 timelineInstructionsBeforeMainTask.push(instructionsTask);
 
 //We define a condition: if the time spent reading the instructions is too short, we put a message at the top
-var timeSpentReadingInstructions = 0;//This is the time the participants spent reading the instructions, we define it
-                                     //to get it later
+var timeSpentReadingInstructionsTask = 0;//This is the time the participants spent reading the instructions, we define
+                                         //it to get it later
 var timeMinimum = 5000; //Here write, in ms, how long you want your participants to spend at minimum on the instructions
 
 //Function to get the time spent reading instructions from the data
@@ -40,10 +40,12 @@ var instructionsTaskTooShort = {
 var instructionsLoopNode = {
     timeline: [instructionsTaskTooShort],
     loop_function: function(data) {
-        timeSpentReadingInstructions = timeSpentReadingInstructions + getTimeSpentReadingInstructions();
-        if (timeSpentReadingInstructions < timeMinimum){
+        timeSpentReadingInstructionsTask = timeSpentReadingInstructionsTask + getTimeSpentReadingInstructions();
+        if (timeSpentReadingInstructionsTask < timeMinimum){
+            console.log(timeSpentReadingInstructionsTask);
             return true;
         } else {
+            console.log(timeSpentReadingInstructionsTask);
             return false;
         }
     },
@@ -54,10 +56,12 @@ var instructionsLoopNode = {
 var instructionsIfNode = {
     timeline: [instructionsLoopNode],
     conditional_function: function() {
-        timeSpentReadingInstructions = timeSpentReadingInstructions + getTimeSpentReadingInstructions();
-        if (timeSpentReadingInstructions < timeMinimum){
+        timeSpentReadingInstructionsTask = timeSpentReadingInstructionsTask + getTimeSpentReadingInstructions();
+        if (timeSpentReadingInstructionsTask < timeMinimum){
+            console.log(timeSpentReadingInstructionsTask);
             return true;
         } else {
+            console.log(timeSpentReadingInstructionsTask);
             return false;
         }
     },

@@ -15,8 +15,8 @@ var practice_trial = {
     correct_text: message_correct, // Feedback message to show if it's a correct answer
     incorrect_text: message_incorrect, // Feedback message to show if it's an incorrect answer
     timeout_message: jsPsych.timelineVariable("timeout_message"), // Feedback message to show if the trial duration has passed without any key press
-    stimulus_duration: 1500, // Duration of the stimulus inside the trial
-    trial_duration: 1500, // Duration of the trial
+    stimulus_duration: 750, // Duration of the stimulus inside the trial
+    trial_duration: 750, // Duration of the trial
     feedback_duration: 1000, // Duration of the feedback
 }
 
@@ -37,8 +37,8 @@ var main_task_trial = {
     choices: [" "],
     key_answer: jsPsych.timelineVariable("key_answer"),
     show_feedback: false,
-    stimulus_duration: 1500,
-    trial_duration: 1500,
+    stimulus_duration: 750,
+    trial_duration: 750,
     feedback_duration: 1000,
 }
 
@@ -47,7 +47,7 @@ var post_trial = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: "",
     choices: "NO_KEYS",
-    trial_duration: 500,
+    trial_duration: 250,
 }
 
 //Experiment loop
