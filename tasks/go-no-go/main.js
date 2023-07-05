@@ -4,6 +4,9 @@ var timeline = [];
 //Fullscreen on
 timeline.push(fullscreen_on);
 
+//Cursor off
+timeline.push(cursor_off);
+
 //We add the instructions sub-timeline
 timeline.push(instructionsBeforePractice);
 
@@ -18,6 +21,9 @@ timeline.push(instructionsBeforeMainTask);
 
 //We add the main task
 timeline.push(main_task_loop);
+
+//Cursor off
+timeline.push(cursor_on);
 
 //We add the goodbye message
 timeline.push(goodbye);

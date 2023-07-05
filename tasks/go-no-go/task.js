@@ -15,7 +15,12 @@ var reset_block = {
 }
 
 var appendData = function(data) {
-  var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY)
+  //var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY)
+  var isAtMaxWidth = (screen.width - window.innerWidth) === 0;
+  var isAtMaxHeight = (screen.height - window.innerHeight) === 0;
+  var isFullScreen = (isAtMaxWidth && isAtMaxHeight);
+  console.log(screen.width, window.innerWidth, isAtMaxWidth, screen.height, window.innerHeight, isAtMaxHeight, isFullScreen);
+
   jsPsych.data.addDataToLastTrial({
     trial_num: current_trial,
     full_screen: isFullScreen,

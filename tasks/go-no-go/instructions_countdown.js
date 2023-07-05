@@ -10,6 +10,15 @@ var fullscreen_on = {
     fullscreen_mode: true,
 };
 
+//CURSOR OFF
+
+var cursor_off = {
+    type: jsPsychCallFunction,
+    func: function() {
+        document.body.style.cursor= "none";
+    }
+}
+
 //WELCOME MESSAGE
 
 //We create an empty timeline
@@ -116,6 +125,15 @@ timelineInstructionsBeforeMainTask.push(instructionsTask);
 var instructionsBeforeMainTask = {
   timeline: timelineInstructionsBeforeMainTask,
 };
+
+// CURSOR ON
+
+var cursor_on = {
+    type: jsPsychCallFunction,
+    func: function() {
+        document.body.style.cursor= "auto";
+    }
+}
 
 //GOODBYE MESSAGE
 
