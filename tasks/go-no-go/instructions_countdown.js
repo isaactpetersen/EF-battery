@@ -33,7 +33,6 @@ timelineInstructionsBeforePractice.push(instructionsWelcome);
 //INSTRUCTIONS BEFORE PRACTICE
 
 //We define a new block for the instructions of the task
-var timeInstructions = 10; //Write here how long you want before the user can continue after reading the instructions
 
 var instructions_text = "In this experiment blue and orange squares will appear on the screen.</p>"+
                         "You will be told to respond to one of the colored squares by pressing the spacebar.</p>"+
@@ -80,7 +79,6 @@ var instructionsBeforePractice = {
 var timelineInstructionsBeforeMainTask = [];
 
 //We define a new block for the instructions of the task
-var timeInstructions = 10; //Write here how long you want before the user can continue after reading the instructions
 
 var instructions_text = "Practice is over, we will now begin the experiment.</p>"+
                         "You will no longer get feedback about your responses.</p>"+
