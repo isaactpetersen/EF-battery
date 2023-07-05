@@ -27,7 +27,7 @@ var timelineInstructionsBeforePractice = [];
 //We define a block for the welcome screen
 var instructionsWelcome = {
     //We use one of jsPsych plugins, that allow to display something on screen and wait for a user keyboard response.
-	type: jsPsychHtmlKeyboardResponse,
+	type: jsPsychHtmlKeyboardResponseCustom,
 
 	//What will be shown on screen
 	stimulus: "Welcome to the experiment. This task will take around 10 minutes.</p>"+
@@ -56,7 +56,7 @@ var instructions_text = "In this experiment blue and orange squares will appear 
 var i;
 for (i = time_instructions; i > 0; i--) {
 	var instructionsTask = {
-	    type: jsPsychHtmlKeyboardResponse,
+	    type: jsPsychHtmlKeyboardResponseCustom,
         stimulus: instructions_text+
                   "<p style='color:#888888'>Press Enter to continue</p>"+ //We show this in grey, hinting that the user
                                                                           //can't press Enter yet
@@ -69,7 +69,7 @@ for (i = time_instructions; i > 0; i--) {
 
 //Finally, once the loop is over, we show "Press Enter" in red and remove the countdown.
 var instructionsTask = {
-    type: jsPsychHtmlKeyboardResponse,
+    type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: instructions_text+
               "<p style='color:#ff0000'><b>Press Enter to continue</b></p><p>&nbsp;</p>",
     choices: ["Enter"] //Enter key
@@ -100,7 +100,7 @@ var instructions_text = "Practice is over, we will now begin the experiment.</p>
 var i;
 for (i = time_instructions; i > 0; i--) {
 	var instructionsTask = {
-	    type: jsPsychHtmlKeyboardResponse,
+	    type: jsPsychHtmlKeyboardResponseCustom,
         stimulus: instructions_text+
                   "<p style='color:#888888'>Press Enter to begin</p>"+ //We show this in grey, hinting that the user
                                                                           //can't press Enter yet
@@ -113,7 +113,7 @@ for (i = time_instructions; i > 0; i--) {
 
 //Finally, once the loop is over, we show "Press Enter" in red and remove the countdown.
 var instructionsTask = {
-    type: jsPsychHtmlKeyboardResponse,
+    type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: instructions_text+
               "<p style='color:#ff0000'><b>Press Enter to begin</b></p><p>&nbsp;</p>",
     choices: ["Enter"] //Enter key
@@ -142,7 +142,7 @@ var timeline_instructions_goodbye = [];
 //We define a block for the welcome screen
 var instructionsGoodbye = {
     //We use one of jsPsych plugins, that allow to display something on screen and wait for a user keyboard response.
-	type: jsPsychHtmlKeyboardResponse,
+	type: jsPsychHtmlKeyboardResponseCustom,
 
 	//What will be shown on screen
 	stimulus: "The experiment is over. Thanks for participating!</p></p>"+
