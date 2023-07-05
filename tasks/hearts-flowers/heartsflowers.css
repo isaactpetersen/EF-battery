@@ -1,0 +1,138 @@
+html, body { 
+  background-color: white;
+  color: black;
+}
+.instructions {
+  width: 80vw;
+  max-width: 500px;
+}
+.instructions-float {
+  position: absolute;
+  top: 5vh;
+  width: 80vw;
+  max-width: 500px;
+}
+.instructions-btn {
+  width: 30vw;
+  max-width: 200px;
+  padding: 20px;
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: #444;
+  color: white;
+  font-size: 18px;
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#jspsych-html-button-response-btngroup {
+  height: 0px;
+  max-width: 500px;
+  position: absolute;
+  bottom: 4vh;
+  width: 80vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.touch-btn {
+  width: 30vw;
+  max-width: 100px;
+  height: 30vw;
+  max-height: 100px;
+  border: 3px solid white;
+  border-radius: 50%;
+  background-color: #444;
+}
+.touch-btn:disabled {
+  background-color: #444;
+  border: 3px solid white;
+}
+.touch-btn-left {
+  position: absolute;
+  left: 0;
+  bottom: 5vh;
+}
+.touch-btn-right {
+  position: absolute;
+  right: 0;
+  bottom: 5vh;
+}
+.touch-btn-left-fake {
+  position: absolute;
+  left: max(10vw, calc(50vw - 250px));
+  bottom: 9vh;
+}
+.touch-btn-right-fake {
+  position: absolute;
+  right: max(10vw, calc(50vw - 250px));
+  bottom: 9vh;
+}
+
+.spinner {
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+}
+  
+.spinner .path {
+  stroke: rgb(255, 255, 255);
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+.heart-flower-stim {
+  width: 80vw;
+  max-width: 500px;
+  height: 80px;
+  border: 3px solid white;
+  border-radius: 5px;
+  position: relative;
+}
+.heart-flower-stim img {
+  width: 60px;
+  padding: 10px 0px;
+}
+.heart-flower-left img {
+  position: absolute;
+  left: 20px;
+}
+.heart-flower-right img {
+  position: absolute;
+  right: 20px;
+}
+.heart-flower-fixation p {
+  margin: 0;
+  line-height: 80px;
+  font-size: 36px;
+}
+.heart-flower-feedback p {
+  margin: 0;
+  line-height: 80px;
+  font-size: 18px;
+}

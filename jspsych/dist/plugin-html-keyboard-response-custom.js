@@ -1,4 +1,4 @@
-var jsPsychHtmlKeyboardResponse = (function (jspsych) {
+var jsPsychHtmlKeyboardResponseCustom = (function (jspsych) {
   'use strict';
 
   const info = {
@@ -62,12 +62,12 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
    * @author Josh de Leeuw
    * @see {@link https://www.jspsych.org/plugins/jspsych-html-keyboard-response/ html-keyboard-response plugin documentation on jspsych.org}
    */
-  class HtmlKeyboardResponsePlugin {
+  class HtmlKeyboardResponseCustomPlugin {
       constructor(jsPsych) {
           this.jsPsych = jsPsych;
       }
       trial(display_element, trial) {
-          var new_html = '<div id="jspsych-html-keyboard-response-stimulus">' + trial.stimulus + "</div>";
+          var new_html = '<div id="jspsych-html-keyboard-response-custom-stimulus">' + trial.stimulus + "</div>";
           // add prompt
           if (trial.prompt !== null) {
               new_html += trial.prompt;
@@ -105,7 +105,7 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
           var after_response = (info) => {
               // after a valid response, the stimulus will have the CSS class 'responded'
               // which can be used to provide visual feedback that a response was recorded
-              display_element.querySelector("#jspsych-html-keyboard-response-stimulus").className +=
+              display_element.querySelector("#jspsych-html-keyboard-response-custom-stimulus").className +=
                   " responded";
               // only record the first response
               if (response.key == null) {
@@ -128,7 +128,7 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
           // hide stimulus if stimulus_duration is set
           if (trial.stimulus_duration !== null) {
               this.jsPsych.pluginAPI.setTimeout(() => {
-                  display_element.querySelector("#jspsych-html-keyboard-response-stimulus").style.visibility = "hidden";
+                  display_element.querySelector("#jspsych-html-keyboard-response-custom-stimulus").style.visibility = "hidden";
               }, trial.stimulus_duration);
           }
           // end trial if trial_duration is set
@@ -169,8 +169,8 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
           }
       }
   }
-  HtmlKeyboardResponsePlugin.info = info;
+  HtmlKeyboardResponseCustomPlugin.info = info;
 
-  return HtmlKeyboardResponsePlugin;
+  return HtmlKeyboardResponseCustomPlugin;
 
 })(jsPsychModule);
