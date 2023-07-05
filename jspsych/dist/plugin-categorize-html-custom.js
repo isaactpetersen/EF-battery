@@ -58,7 +58,7 @@ var jsPsychCategorizeHtmlCustom = (function (jspsych) {
               pretty_name: "Stimulus duration",
               default: null,
           },
-          /** How long to show trial */
+          /** How long to show trial. */
           trial_duration: {
               type: jspsych.ParameterType.INT,
               pretty_name: "Trial duration",
@@ -69,6 +69,12 @@ var jsPsychCategorizeHtmlCustom = (function (jspsych) {
               type: jspsych.ParameterType.INT,
               pretty_name: "Feedback duration",
               default: 2000,
+          },
+          /** How long to wait before moving on to the next trial. */
+          post_trial_duration: {
+              type: jspsych.ParameterType.INT,
+              pretty_name: "Post-trial duration",
+              default: null,
           },
       },
   };
@@ -106,6 +112,8 @@ var jsPsychCategorizeHtmlCustom = (function (jspsych) {
 
           //Create response function
           const after_response = (info) => {
+
+              this.jsPsych.pluginAPI.clearAllTimeouts();
 
               //Clear keyboard listener
               this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
@@ -150,8 +158,14 @@ var jsPsychCategorizeHtmlCustom = (function (jspsych) {
                   doFeedback(correct, timeout); //We show the feedback
               }
               else {
-                  endTrial();
+                  postTrial();
               }
+          }
+
+          //Timing post-trial
+          const postTrial = () => {
+              this.jsPsych.pluginAPI.clearAllTimeouts();
+              this.jsPsych.pluginAPI.setTimeout(endTrial, trial.post_trial_duration);
           }
 
           //Showing the feedback
@@ -165,7 +179,7 @@ var jsPsychCategorizeHtmlCustom = (function (jspsych) {
                   atext = trial.incorrect_text.replace("%ANS%", trial.text_answer);
               }
               display_element.innerHTML += atext;
-              this.jsPsych.pluginAPI.setTimeout(endTrial, trial.feedback_duration);
+              this.jsPsych.pluginAPI.setTimeout(postTrial, trial.feedback_duration);
           };
 
           //What happens at the end of the trial: we save the data
@@ -188,7 +202,7 @@ var jsPsychCategorizeHtmlCustom = (function (jspsych) {
               this.jsPsych.pluginAPI.setTimeout(() => {
                   after_response({
                       key: "NO_KEYS",
-                      rt: null,
+                      rt: -1,
                   });
               }, trial.trial_duration);
           }

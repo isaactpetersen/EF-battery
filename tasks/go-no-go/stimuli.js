@@ -12,9 +12,12 @@ for (var i = 0; i < go_stimuli_block_practice; i++){
         stimulus: "<div class = centerbox><div id=" + stims[0][1] + "></div></div>",
         stimulus_after_key_press: "<div class = centerbox><div id=" + stims[0][1] + "-responded></div></div>",
         data: {
-            trial_id: "Practice",
-            condition: "Go",
-            correct_response: " "
+            exp_stage: "practice",
+            exp_id: "go-nogo",
+            condition: "go",
+            correct_response: " ",
+            square_color: stims[0][0],
+            stim_number: stims[0][1],
         },
         timeout_message: message_incorrect,
         key_answer: " "
@@ -27,9 +30,12 @@ for (var i = 0; i < go_stimuli_block_practice; i++){
         stimulus: "<div class = centerbox><div id=" + stims[1][1] + "></div></div>",
         stimulus_after_key_press: "<div class = centerbox><div id=" + stims[1][1] + "-responded></div></div>",
         data: {
-            trial_id: "Practice",
-            condition: "No-Go",
-            correct_response: "NO_KEYS"
+            exp_stage: "practice",
+            exp_id: "go-nogo",
+            condition: "nogo",
+            correct_response: "NO_KEYS",
+            square_color: stims[1][0],
+            stim_number: stims[1][1],
         },
         timeout_message: message_correct,
         key_answer: "NO_KEYS"
@@ -46,9 +52,12 @@ for (var i = 0; i < go_stimuli_block_main; i++){
         stimulus: "<div class = centerbox><div id=" + stims[0][1] + "></div></div>",
         stimulus_after_key_press: "<div class = centerbox><div id=" + stims[0][1] + "-responded></div></div>",
         data: {
-            trial_id: "Task",
-            condition: "Go",
-            correct_response: " "
+            exp_stage: "test",
+            exp_id: "go-nogo",
+            condition: "go",
+            correct_response: " ",
+            square_color: stims[0][0],
+            stim_number: stims[0][1],
         },
         key_answer: " "
     });
@@ -60,9 +69,12 @@ for (var i = 0; i < no_go_stimuli_block_main; i++){
         stimulus: "<div class = centerbox><div id=" + stims[1][1] + "></div></div>",
         stimulus_after_key_press: "<div class = centerbox><div id=" + stims[1][1] + "-responded></div></div>",
         data: {
-            trial_id: "Task",
-            condition: "No-Go",
-            correct_response: "NO_KEYS"
+            exp_stage: "test",
+            exp_id: "go-nogo",
+            condition: "nogo",
+            correct_response: "NO_KEYS",
+            square_color: stims[1][0],
+            stim_number: stims[1][1],
         },
         key_answer: "NO_KEYS"
     });

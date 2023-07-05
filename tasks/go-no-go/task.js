@@ -5,6 +5,27 @@ var getLastTrialKeyPressed = function() {
 
 // PRACTICE TRIALS
 
+var current_trial = 1
+
+var reset_block = {
+  type: jsPsychCallFunction,
+  data: {
+    trial_id: "reset_trial"
+  },
+  func: function() {
+    current_trial = 1
+  },
+}
+
+var appendData = function(data) {
+  var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY)
+  jsPsych.data.addDataToLastTrial({
+    trial_num: current_trial,
+    full_screen: isFullScreen,
+  })
+  current_trial = current_trial + 1
+}
+
 //Trial
 var practice_trial = {
     type: jsPsychCategorizeHtmlCustom, // Plugin to use
@@ -18,6 +39,8 @@ var practice_trial = {
     stimulus_duration: 750, // Duration of the stimulus inside the trial
     trial_duration: 750, // Duration of the trial
     feedback_duration: 1000, // Duration of the feedback
+    data: jsPsych.timelineVariable('data'), // Data defined in the stimulus
+    on_finish: appendData
 }
 
 //Practice loop
@@ -40,19 +63,14 @@ var main_task_trial = {
     stimulus_duration: 750,
     trial_duration: 750,
     feedback_duration: 1000,
-}
-
-//Time between two trials
-var post_trial = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: "",
-    choices: "NO_KEYS",
-    trial_duration: 250,
+    post_trial_duration: 250,
+    data: jsPsych.timelineVariable('data'),
+    on_finish: appendData
 }
 
 //Experiment loop
 var main_task_loop = {
-	timeline: [main_task_trial, post_trial], //The timeline of one trial: trial + post trial
+	timeline: [main_task_trial], //The timeline of one trial
 	timeline_variables: main_trials,
 	randomize_order: false
 };

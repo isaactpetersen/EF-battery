@@ -10,6 +10,9 @@ timeline.push(instructionsBeforePractice);
 //We add the practice sub-timeline
 timeline.push(practice_loop);
 
+//We reset the trial counter
+timeline.push(reset_block);
+
 //We add the instructions before the main test
 timeline.push(instructionsBeforeMainTask);
 
