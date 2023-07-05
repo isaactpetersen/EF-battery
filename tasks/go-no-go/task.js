@@ -9,9 +9,6 @@ var current_trial = 1
 
 var reset_block = {
   type: jsPsychCallFunction,
-  data: {
-    trial_id: "reset_trial"
-  },
   func: function() {
     current_trial = 1
   },
