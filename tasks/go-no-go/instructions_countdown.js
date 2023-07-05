@@ -45,7 +45,7 @@ var instructions_text = "In this experiment blue and orange squares will appear 
 
 //We define a loop that will count down until the user can press ENTER.
 var i;
-for (i = timeInstructions; i > 0; i--) {
+for (i = time_instructions; i > 0; i--) {
 	var instructionsTask = {
 	    type: jsPsychHtmlKeyboardResponse,
         stimulus: instructions_text+
@@ -89,7 +89,7 @@ var instructions_text = "Practice is over, we will now begin the experiment.</p>
 
 //We define a loop that will count down until the user can press ENTER.
 var i;
-for (i = timeInstructions; i > 0; i--) {
+for (i = time_instructions; i > 0; i--) {
 	var instructionsTask = {
 	    type: jsPsychHtmlKeyboardResponse,
         stimulus: instructions_text+
