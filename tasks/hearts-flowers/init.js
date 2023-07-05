@@ -5,6 +5,13 @@ const fixation_duration = 500;
 const blank_duration = 500;
 const response_window = 1000;
 const too_slow_duration = 1500;
+const time_heart_instructions_2 = 5;
+const time_heart_instructions_3 = 5;
+const time_heart_instructions_4 = 3;
+const time_heart_instructions_6 = 5;
+const time_flower_instructions_2 = 5;
+const time_flower_instructions_4 = 5;
+const time_mixed_instructions = 10;
 
 const jsPsych = initJsPsych({
     override_safe_mode: true, //We keep this here for test purposes, as we're running the code locally for now. If we remove it, we get a warning that some jsPsych functions only work online.
