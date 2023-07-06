@@ -41,13 +41,12 @@ timeline_recall.push(spatial_recall);
 var stopping_function = {
   type: jsPsychCallFunction,
   func: function() {
-    console.log(jsPsych.data.getLastTrialData().values()[0].correct);
-    if (!jsPsych.data.getLastTrialData().values()[0].correct){
-      false_in_a_row += 1;
+    if (!jsPsych.data.getLastTrialData().values()[0].correct){ //We check if the last trial was correct
+      false_in_a_row += 1; // If it wasn't, we add 1 to "false_in_a_row"
     } else {
-      false_in_a_row = 0;
+      false_in_a_row = 0; // If it was, we reset "false_in_a_row"
     };
-    if (false_in_a_row == limit_error_to_end_task){
+    if (false_in_a_row == limit_error_to_end_task){ // If we reach the limit (2 false in a row), we end the timeline
       jsPsych.endCurrentTimeline();
     };
   },
