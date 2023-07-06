@@ -38,7 +38,7 @@ const heart_practice_trial = {
   },
   data: {
     task: "response",
-    exp_stage: "practice",
+    exp_stage: "practice_hearts",
     exp_id: "hearts-flowers",
     icon: jsPsych.timelineVariable("icon"),
     side: jsPsych.timelineVariable("side"),
@@ -74,7 +74,7 @@ const flower_practice_trial = {
   },
   data: {
     task: "response",
-    exp_stage: "practice",
+    exp_stage: "practice_flowers",
     exp_id: "hearts-flowers",
     icon: jsPsych.timelineVariable("icon"),
     side: jsPsych.timelineVariable("side"),
