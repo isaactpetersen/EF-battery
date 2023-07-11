@@ -15,12 +15,12 @@ var appendData = function(data) {
 
 timeline_recall = [];
 
-var screen_check = {
-    type: jsPsychScreenCheck,
-    min_width: 258,
-    min_height: 364
-  };
-timeline_recall.push(screen_check);
+// var screen_check = {
+//     type: jsPsychScreenCheck,
+//     min_width: 258,
+//     min_height: 364
+//   };
+// timeline_recall.push(screen_check);
 
 var fixation_cross = {
   type: jsPsychHtmlKeyboardResponseCustom,
