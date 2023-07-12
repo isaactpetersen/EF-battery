@@ -34,7 +34,11 @@ var spatial_recall = {
   type: jsPsychSpatialRecall,
   grid_size: 4,
   sequence: jsPsych.timelineVariable('sequence'),
-  backwards: false
+  backwards: false,
+  data: {
+    exp_id: "spatial-recall",
+    exp_stage: "test",
+  },
 };
 timeline_recall.push(spatial_recall);
 

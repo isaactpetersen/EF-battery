@@ -1,5 +1,5 @@
 limit_error_to_end_task = 2;
-time_instructions = 2;
+time_instructions = 10;
 
 //We initialize jsPsych
 var jsPsych = initJsPsych({
