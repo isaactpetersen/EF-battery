@@ -106,8 +106,8 @@ const instructions = {
 const end_screen = {
   type: jsPsychHtmlKeyboardResponseCustom,
   stimulus: "<div class='instructions'>"+
-  "<p>This task is complete.</p>"+
-  "<p>Press Enter to end the experiment.</p></div>",
+  "<p>This first task is complete.</p>"+
+  "<p>Press <b>Enter</b> to access the <b>second task</b>.</p></div>",
   choices: ["Enter"],
   save_trial_parameters: {
     stimulus: false,

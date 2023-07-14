@@ -178,8 +178,8 @@ var instructionsGoodbye = {
 	type: jsPsychHtmlKeyboardResponseCustom,
 
 	//What will be shown on screen
-	stimulus: "The experiment is over. Thanks for participating!</p></p>"+
-	          "Press <b>Enter</b> to quit.",
+	stimulus: "<p>This second task is over.</p>"+
+	          "<p>Press <b>Enter</b> to access the <b>third and final task</b>.</p>",
 
 	choices: ["Enter"] //Enter key, we will only move forwards on the timeline if the user presses it
 };
