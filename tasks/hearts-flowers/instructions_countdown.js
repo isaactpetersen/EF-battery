@@ -2,9 +2,9 @@
 
 var fullscreen_on = {
   type: jsPsychFullscreen,
-  message: "This experiment must be completed in fullscreen mode.</br>"+
-  "Please, do not press the ESC key during the experiment, and avoid all distractions.</br></br>"+
-  "If you quit the fullscreen mode during the experiment, please press <b>F11</b> on Windows </br>"+
+  message: "This task must be completed in fullscreen mode.</br>"+
+  "Please, do not press the ESC key during the task, and avoid all distractions.</br></br>"+
+  "If you quit the fullscreen mode during the task, please press <b>F11</b> on Windows </br>"+
   "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br>",
   button_label: 'Continue',
   fullscreen_mode: true,
@@ -58,7 +58,7 @@ timeline_heart_instructions = [];
 
 const heart_instructions_1 = {
   type: jsPsychHtmlKeyboardResponseCustom,
-  stimulus: "<div class='instructions'>Welcome to the experiment. This task will take around 5 minutes.</p>"+
+  stimulus: "<div class='instructions'>Welcome to this task. It will take around 5 minutes.</p>"+
   "Press <strong>Enter</strong> to begin.</div>",
   choices: ["Enter"],
 };
@@ -352,9 +352,9 @@ var cursor_on = {
 
 var fullscreen_off = {
   type: jsPsychFullscreen,
-  message: "This experiment must be completed in fullscreen mode.</br>"+
-  "Please, do not press the ESC key during the experiment, and avoid all distractions.</br></br>"+
-  "If you quit the fullscreen mode during the experiment, please press <b>F11</b> on Windows </br>"+
+  message: "This task must be completed in fullscreen mode.</br>"+
+  "Please, do not press the ESC key during the task, and avoid all distractions.</br></br>"+
+  "If you quit the fullscreen mode during the task, please press <b>F11</b> on Windows </br>"+
   "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br>",
   button_label: 'Continue',
   fullscreen_mode: false,

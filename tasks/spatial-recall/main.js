@@ -1,5 +1,6 @@
 const timeline = [];
 
+timeline.push(welcome);
 timeline.push(fullscreen_on);
 timeline.push(get_browser_and_url_info);
 timeline.push(instructions);
