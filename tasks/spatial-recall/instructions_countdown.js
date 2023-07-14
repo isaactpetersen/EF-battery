@@ -2,7 +2,7 @@
 
 var fullscreen_on = {
   type: jsPsychFullscreen,
-  message: "This experiment must be passed in fullscreen mode.</br>"+
+  message: "This experiment must be completed in fullscreen mode.</br>"+
   "Please, do not press the ESC key during the experiment, and avoid all distractions.</br></br>"+
   "If you quit the fullscreen mode during the experiment, please press <b>F11</b> on Windows </br>"+
   "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br>",
@@ -118,7 +118,7 @@ const end_screen = {
 
 var fullscreen_off = {
   type: jsPsychFullscreen,
-  message: "This experiment must be passed in fullscreen mode.</br>"+
+  message: "This experiment must be completed in fullscreen mode.</br>"+
   "Please, do not press the ESC key during the experiment, and avoid all distractions.</br></br>"+
   "If you quit the fullscreen mode during the experiment, please press <b>F11</b> on Windows </br>"+
   "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br>",
