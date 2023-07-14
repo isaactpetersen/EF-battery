@@ -4,6 +4,9 @@ var timeline = [];
 //Fullscreen on
 timeline.push(fullscreen_on);
 
+//Get browser and URL info
+timeline.push(get_browser_and_url_info);
+
 //Cursor off
 timeline.push(cursor_off);
 

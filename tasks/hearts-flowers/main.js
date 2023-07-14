@@ -2,6 +2,7 @@ const timeline = [];
 
 timeline.push(preload);
 timeline.push(fullscreen_on);
+timeline.push(get_browser_and_url_info);
 timeline.push(heart_instructions);
 timeline.push(heart_practice_timeline);
 timeline.push(reset_block);

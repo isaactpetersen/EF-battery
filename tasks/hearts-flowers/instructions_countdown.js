@@ -10,6 +10,39 @@ var fullscreen_on = {
   fullscreen_mode: true,
 };
 
+// GET BROWSER INFO AND URL VALUES
+var get_browser_and_url_info = {
+  type: jsPsychCallFunction,
+
+  func: function(){
+
+    var data = {browser_info: navigator.userAgent};
+
+    //If the URL has a question mark in it
+    if((window.location.href).indexOf('?') != -1) {
+
+      // We get the part of the URL containing the variables (everything after the question mark)
+      var queryString = window.location.href.split('?')[1]; 
+
+      // We split this string by ampersand "&" symbol
+      var variables = queryString.split("&");
+
+      // For every variable
+      for (i = 0; i < variables.length; i++) {
+        
+        var key = variables[i].split("=")[0]; // We get what is before the "=" symbol
+        var value = variables[i].split("=")[1]; // We get what is after the "=" symbol
+        value = decodeURIComponent(value); // We remove special characters if there are
+        eval("data." + key + " = value"); // We assign it to data
+      };
+    
+    jsPsych.data.addProperties(data);
+
+    };
+    
+  },
+};
+
 // CURSOR OFF
 
 var cursor_off = {
