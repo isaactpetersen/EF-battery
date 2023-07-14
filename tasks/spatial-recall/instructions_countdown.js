@@ -45,10 +45,10 @@ var get_browser_and_url_info = {
         value = decodeURIComponent(value); // We remove special characters if there are
         eval("data." + key + " = value"); // We assign it to data
       };
-    
-    jsPsych.data.addProperties(data);
 
     };
+    
+    jsPsych.data.addProperties(data);
     
   },
 };

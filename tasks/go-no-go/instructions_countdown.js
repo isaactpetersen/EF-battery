@@ -36,9 +36,9 @@ var get_browser_and_url_info = {
         eval("data." + key + " = value"); // We assign it to data
       };
     
-    jsPsych.data.addProperties(data);
-
     };
+
+    jsPsych.data.addProperties(data);
     
   },
 };
