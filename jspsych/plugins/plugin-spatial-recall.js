@@ -502,18 +502,22 @@ var jsPsychSpatialRecall = (function (jspsych) {
       function longest_subsequence(observed, target) {
 
         // define n x m sized array filled with 0's
-        let matrix = [...Array(observed.length+1)].map(e => Array(target.length+1).fill(0))
+        const matrix = Array(observed.length+1).fill().map(() => Array(target.length+1).fill(0))
 
         // fill the matrix
         for(let i = 1; i <= observed.length; i++) {
           for(let j = 1; j <= target.length; j++) {
-            if(observed[i-1] == target[j-1]) { matrix[i][j] = matrix[i-1][j] + 1}
-            else matrix[i][j] = Math.max(matrix[i-1][j], matrix[i][j-1])
+            if(observed[i-1] === target[j-1]) { 
+              matrix[i][j] = 1 + matrix[i-1][j-1];
+            }
+            else {
+              matrix[i][j] = Math.max(matrix[i-1][j], matrix[i][j-1]);
+            }
           }
         }
 
         // return the max which is at the right bottom corner of the matrix
-        return matrix[matrix.length-1][matrix[0].length-1]
+        return matrix[observed.length][target.length]
       }
 
     }
