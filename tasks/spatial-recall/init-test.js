@@ -21,30 +21,17 @@ var jsPsych = initJsPsych({
             redirect_html += current_html[i] + "/"
         };
 
+        // We add the task to the URL
         redirect_html += "experiment-go-no-go-test.html";
 
-        add_ampersand = false;
-        if ("src" in last_trial_data){
-            redirect_html += "?" + last_trial_data["src"];
-            add_ampersand = true;
-        };
-        if ("subid" in last_trial_data){
-            if (add_ampersand){
-                redirect_html += "&" + last_trial_data["subid"];
-            } else {
-                redirect_html += "?" + last_trial_data["subid"];
-                add_ampersand = true;
-            };
-        };
-        if ("sonaid" in last_trial_data){
-            if (add_ampersand){
-                redirect_html += "&" + last_trial_data["sonaid"];
-            } else {
-                redirect_html += "?" + last_trial_data["sonaid"];
-                add_ampersand = true;
-            };
+        // We add the variables that we have in the URL
+        if((window.location.href).indexOf('?') != -1) {
+
+          var variables = window.location.href.split('?')[1]; 
+          redirect_html += "?" + variables;
+
         };
 
-        window.location = redirect_html;
-    }
+        // We redirect to the next task
+        window.location = redirect_html;    }
 });
