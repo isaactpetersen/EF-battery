@@ -7,10 +7,15 @@ var appendData = function(data) {
   var isAtMaxHeight = (screen.height - window.innerHeight) === 0;
   var isFullScreen = (isAtMaxWidth && isAtMaxHeight);
   jsPsych.data.addDataToLastTrial({
-    trial_num: current_trial,
     full_screen: isFullScreen,
-  })
-  current_trial = current_trial + 1
+  });
+  if ("sequence" in jsPsych.data.getLastTrialData().trials[0]){
+    jsPsych.data.addDataToLastTrial({
+      trial_num: current_trial,
+    })
+    current_trial = current_trial + 1
+  };
+  
 }
 
 timeline_recall = [];
