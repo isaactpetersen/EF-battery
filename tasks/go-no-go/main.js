@@ -25,7 +25,7 @@ timeline.push(instructionsBeforeMainTask);
 //We add the main task
 timeline.push(main_task_loop);
 
-//Cursor off
+//Cursor on
 timeline.push(cursor_on);
 
 //We add the goodbye message
