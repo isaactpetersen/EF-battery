@@ -35,7 +35,7 @@ var jsPsych = initJsPsych({
         if((window.location.href).indexOf('?') != -1) {
 
           var variables = window.location.href.split('?')[1]; 
-          redirect_html += variables;
+          redirect_html += "?" + variables;
 
         };
 
