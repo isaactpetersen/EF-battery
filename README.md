@@ -16,7 +16,6 @@ jsPsych code for executive functioning battery
 1. On finish, redirect to external URL, but only if `sonaid` != 0
 - Maybe:
     - Combined Progress Bar
-        - but, can do this later in post-processing (so don't lose raw data)
 
 # Instructions:
 
@@ -41,7 +40,7 @@ jsPsych code for executive functioning battery
     - `var sonaid = jsPsych.data.getURLVariable("sonaid")`
 - At the end of the final task, with the `on_finish` function, include the [code to redirect SONA participants to an external URL](#redirect-to-url), but only if their `sonaid` != 0.
 - To save the data on the server, use the [`write_data_new.php`](https://github.com/isaactpetersen/EF-battery/blob/main/write_data_new.php) PHP file
-- Use/adapt this the [code to save the data](#save-data):
+- Use/adapt this [code to save the data](#save-data)
 
 ## Redirect to URL
 
