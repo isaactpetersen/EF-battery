@@ -26,12 +26,13 @@ const jsPsych = initJsPsych({
 
         jsPsych.data.get().localSave("csv", file_name);
 
-        experiment_id = "476";
-        credit_token = "78a4b09dd29b421cb92b7ffa6db933d8";
-        survey_code = "+subid";
-
         if ("sonaid" in last_trial_data){
             sonaid += "-" + last_trial_data["sonaid"];
+
+            experiment_id = "579";
+            credit_token = "0a0055b5997d4eaea38f2ad1aeaa0c60";
+            survey_code = sonaid;
+
             if (sonaid != "0") {
                 window.location = "https://uiowa-psych.sona-systems.com/webstudy_credit.aspx?experiment_id=" + experiment_id + "&credit_token=" + credit_token + "&survey_code=" + survey_code;
             };

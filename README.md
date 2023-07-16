@@ -47,12 +47,12 @@ jsPsych code for executive functioning battery
 
 This is code to redirect participants to an external URL.
 Use/adapt this code to redirect participants to a URL, but only if their `sonaid` != 0.
-We need to replace the https text before `+subid` with my SONA project completion URL and remove the XXXX and put `subid`.
+We need to replace the https text before `+sonaid` with my SONA project completion URL and remove the XXXX and put `sonaid`.
 I will supply a revised `experiment_id` and `credit_token` (the ones in the link above are for another study)
 
 ```js
 on_finish: function(){
-                window.location = https://uiowa-psych.sona-systems.com/webstudy_credit.aspx?experiment_id=476&credit_token=78a4b09dd29b421cb92b7ffa6db933d8&survey_code=+subid }
+                window.location = https://uiowa-psych.sona-systems.com/webstudy_credit.aspx?experiment_id=579&credit_token=0a0055b5997d4eaea38f2ad1aeaa0c60&survey_code=+sonaid }
 ```
 
 ## Save Data
