@@ -1,52 +1,50 @@
 
 <?php
 
-// this path should point to your configuration file.
-include('database_config.php');
-
+// Fetching the data and putting it in "output"
 $query_string = file_get_contents('php://input');
 $output = array();
 parse_str($query_string, $output);
 
-
+// Saving the different data elements in different variables
 $data_array = json_decode($output['data'], true);
-//echo var_dump($data_array);
-$table = $output['table'];
-$expName = $output['expname'];
-$subjId = $output['subjid'];
+$data_dir = $output['data_dir'];
+$file_name = $output['file_name'];
+
+// Showing them in the console
+echo var_dump($data_array);
+echo var_dump($data_dir);
+echo var_dump($file_name);
 
 try {
+  // Making the results folder if it doesn't exist
+  if (false == is_dir($data_dir)) {
+    mkdir($data_dir);
+  }
 
-$dirName = "../../OnlineData/".$expName;
-if (false == is_dir($dirName)) {
- mkdir($dirName);
-}
-
-$fileName = $subjId."_".$table;
-
-//save the original query_string just in case
-$fid1 = fopen($dirName."/".$fileName.".txt", 'a');
+//Save the original query_string just in case
+$fid1 = fopen($data_dir."/".$file_name.".txt", 'a');
 fwrite($fid1, $query_string."\r\n");
 fclose($fid1);
 
+//Save the csv files
 $col_names = array_keys($data_array[0]);
-//echo $col_names[0].$col_names[1];
 
-$fid1 = fopen($dirName."/".$fileName.".csv", 'a');
+$fid1 = fopen($data_dir."/".$file_name.".csv", 'a');
 //save column names
 for($j = 0; $j < count($col_names); $j++){
-$colname = $col_names[$j];
-fwrite($fid1, $colname.",");
+$col_name = $col_names[$j];
+fwrite($fid1, $col_name.",");
 }
 fwrite($fid1, "\r\n");
 
 for($i=0; $i < count($data_array); $i++){
  for($j = 0; $j < count($col_names); $j++){
-   $colname = $col_names[$j];
-   if(!isset($data_array[$i][$colname])){
+   $col_name = $col_names[$j];
+   if(!isset($data_array[$i][$col_name])){
      fwrite($fid1, ",");
    } else {
-     fwrite($fid1, $data_array[$i][$colname]." ,");
+     fwrite($fid1, $data_array[$i][$col_name]." ,");
  }
  }
  fwrite($fid1, "\r\n");
