@@ -49,7 +49,7 @@ var jsPsych = initJsPsych({
 function saveData(save_url, data_dir, file_name) {
     console.log("Opening an XML request...");
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', save_url); // 'write_data.php' is the path to the php file described above.
+    xhr.open('POST', save_url); // 'write_data_new.php' is the path to the php file described above.
     xhr.setRequestHeader('Content-Type', 'application/json');
     console.log("Sending to the PHP function...");
     xhr.send(JSON.stringify({file_name: file_name, data_dir: data_dir, data: jsPsych.data.get()}));
