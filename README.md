@@ -90,15 +90,15 @@ Here are the links to the individual tasks:
 
 ### Spatial Recall
 
-https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-spatial-recall.html?src=sona&subid=9999&sonaid=99999
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-spatial-recall.html?src=sona&subid=9999&sonaid=99999&chain=1
 
 ### Go/No-Go
 
-https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-go-no-go.html?src=sona&subid=9999&sonaid=99999
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-go-no-go.html?src=sona&subid=9999&sonaid=99999&chain=1
 
 ### Hearts and Flowers
 
-https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-hearts-flowers.html?src=sona&subid=9999&sonaid=99999
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-hearts-flowers.html?src=sona&subid=9999&sonaid=99999&chain=1
 
 ## Test Versions
 
