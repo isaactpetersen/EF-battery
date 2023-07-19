@@ -3,12 +3,12 @@ time_instructions = 1;
 
 //We initialize jsPsych
 var jsPsych = initJsPsych({
-    override_safe_mode: true, //We keep this here for test purposes, as we're running the code locally for now. If we remove it, we get a warning that some jsPsych functions only work online.
+    //override_safe_mode: true, //We keep this here for test purposes, as we're running the code locally for now. If we remove it, we get a warning that some jsPsych functions only work online.
     on_finish: function() {
         last_trial_data = jsPsych.data.getLastTrialData().trials[0];
         file_name = "spatial-recall";
         if ("subid" in last_trial_data){
-            file_name += "-" + last_trial_data["subid"];
+            file_name += "-" + last_trial_data["subid"] + "_test";
         };
         file_name += ".csv";
 
@@ -20,7 +20,6 @@ var jsPsych = initJsPsych({
         };
 
         if (current_html[0].startsWith("http")) {
-            console.log("Detecting HTTP, loading the saving data function...");
             save_url = "write_data_new.php"
             data_dir = "results/spatial-recall/"
             saveData(save_url, data_dir, file_name);
@@ -29,7 +28,7 @@ var jsPsych = initJsPsych({
             save_url = redirect_html + "write_data_new.php"
             data_dir = redirect_html + "results/spatial-recall/"
             jsPsych.data.get().localSave("csv", file_name);
-        }
+        };
 
         // We add the task to the URL
         redirect_html += "experiment-go-no-go-test.html";
@@ -43,25 +42,13 @@ var jsPsych = initJsPsych({
         };
 
         // We redirect to the next task
-        // window.location = redirect_html;    
+        window.location = redirect_html;    
     }
 });
 
 function saveData(save_url, data_dir, file_name) {
-    console.log("Opening an XML request...");
     var xhr = new XMLHttpRequest();
     xhr.open('POST', save_url); // 'write_data_new.php' is the path to the php file described above.
     xhr.setRequestHeader('Content-Type', 'application/json');
-    console.log("Sending to the PHP function...");
-    xhr.onload = function() {
-        console.log("Response from PHP:");
-        console.log(xhr.responseText);
-        if(xhr.status == 200){
-            var response = JSON.parse(xhr.responseText);
-            console.log("Success:", response.success);
-        }
-    };
-    console.log("Sending data to PHP...");
-    console.log(JSON.stringify({file_name: file_name, data_dir: data_dir, data: jsPsych.data.get().csv()}));
     xhr.send(JSON.stringify({file_name: file_name, data_dir: data_dir, data: jsPsych.data.get().csv()}));
 }

@@ -17,16 +17,26 @@ var jsPsych = initJsPsych({
         console.log(last_trial_data);
         file_name = "go-no-go";
         if ("subid" in last_trial_data){
-            file_name += "-" + last_trial_data["subid"];
+            file_name += "-" + last_trial_data["subid"] + "_test";
         };
         file_name += ".csv";
 
-        jsPsych.data.get().localSave("csv", file_name);
-
-        current_html = window.location.href.split("/");
+        current_html = window.location.href.split("/"); //We get the current URL, and separate all the elements by the "/" symbol
         redirect_html = ""
+        // We create a new URL by adding all the elements from the current URL apart from the last one (the task)
         for (i = 0; i < current_html.length - 1; i++) {
             redirect_html += current_html[i] + "/"
+        };
+
+        if (current_html[0].startsWith("http")) {
+            save_url = "write_data_new.php"
+            data_dir = "results/go-no-go/"
+            saveData(save_url, data_dir, file_name);
+
+        } else if (current_html[0].startsWith("file")) {
+            save_url = redirect_html + "write_data_new.php"
+            data_dir = redirect_html + "results/go-no-go/"
+            jsPsych.data.get().localSave("csv", file_name);
         };
 
         redirect_html += "experiment-hearts-flowers-test.html";
@@ -43,3 +53,10 @@ var jsPsych = initJsPsych({
         window.location = redirect_html;
     }
 });
+
+function saveData(save_url, data_dir, file_name) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', save_url); // 'write_data_new.php' is the path to the php file described above.
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({file_name: file_name, data_dir: data_dir, data: jsPsych.data.get().csv()}));
+}

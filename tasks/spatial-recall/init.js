@@ -3,7 +3,7 @@ time_instructions = 10;
 
 //We initialize jsPsych
 var jsPsych = initJsPsych({
-    override_safe_mode: true, //We keep this here for test purposes, as we're running the code locally for now. If we remove it, we get a warning that some jsPsych functions only work online.
+    //override_safe_mode: true, //We keep this here for test purposes, as we're running the code locally for now. If we remove it, we get a warning that some jsPsych functions only work online.
     on_finish: function() {
         last_trial_data = jsPsych.data.getLastTrialData().trials[0];
         file_name = "spatial-recall";
@@ -19,14 +19,16 @@ var jsPsych = initJsPsych({
             redirect_html += current_html[i] + "/"
         };
 
-        save_url = redirect_html + "results/save_data.php"
-        data_dir = redirect_html + "results/spatial-recall/"
-
         if (current_html[0].startsWith("http")) {
+            save_url = "write_data_new.php"
+            data_dir = "results/spatial-recall/"
             saveData(save_url, data_dir, file_name);
+
         } else if (current_html[0].startsWith("file")) {
+            save_url = redirect_html + "write_data_new.php"
+            data_dir = redirect_html + "results/spatial-recall/"
             jsPsych.data.get().localSave("csv", file_name);
-        }
+        };
 
         // We add the task to the URL
         redirect_html += "experiment-go-no-go.html";
@@ -45,14 +47,8 @@ var jsPsych = initJsPsych({
 });
 
 function saveData(save_url, data_dir, file_name) {
-    jQuery.ajax({
-        type: 'post',
-        cache: false,
-        url: save_url,
-        data: {
-            data_dir: data_dir,
-            file_name: file_name, // the file type should be added
-            exp_data: jsPsych.data.get().csv()
-        }
-    });
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', save_url); // 'write_data_new.php' is the path to the php file described above.
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({file_name: file_name, data_dir: data_dir, data: jsPsych.data.get().csv()}));
 }
