@@ -47,7 +47,7 @@ var jsPsych = initJsPsych({
 
         };
 
-        if(last_trial_data["chain"] != 1){
+        if(last_trial_data["chain"] != "false"){
             // We redirect to the next task
             window.location = redirect_html;
         };

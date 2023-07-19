@@ -17,9 +17,9 @@ $extension = $output['extension'];
 $actual_name = $file_name;
 
 $i = 1;
-while(file_exists($data_dir.$actual_name.".".$extension))
+while(file_exists($data_dir.$actual_name.$extension))
 {           
-    $actual_name = (string)$file_name.'_'.$i;
+    $actual_name = $file_name.'_'.(string)$i;
     $i++;
 }
 

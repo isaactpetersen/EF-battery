@@ -8,6 +8,13 @@ var fullscreen_on = {
              "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br>",
     button_label: 'Continue',
     fullscreen_mode: true,
+    on_finish: function() {
+      const time = Date.now();
+      const now = new Date(time);
+      jsPsych.data.addDataToLastTrial({
+        date_start: now.toLocaleString('en-US', { timeZone: 'America/Chicago' }),
+      })
+    }
 };
 
 // GET BROWSER INFO AND URL VALUES
@@ -200,4 +207,11 @@ var fullscreen_off = {
              "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br>",
     button_label: 'Continue',
     fullscreen_mode: false,
+    on_finish: function() {
+      const time = Date.now();
+      const now = new Date(time);
+      jsPsych.data.addDataToLastTrial({
+        date_finish: now.toLocaleString('en-US', { timeZone: 'America/Chicago' }),
+      })
+    }
 };
