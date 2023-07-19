@@ -11,15 +11,13 @@ var time_instructions = 10;
 
 //We initialize jsPsych
 var jsPsych = initJsPsych({
-    override_safe_mode: true, //We keep this here for test purposes, as we're running the code locally for now. If we remove it, we get a warning that some jsPsych functions only work online.
     on_finish: function() {
         last_trial_data = jsPsych.data.getLastTrialData().trials[0];
-        console.log(last_trial_data);
         file_name = "go-no-go";
         if ("subid" in last_trial_data){
             file_name += "-" + last_trial_data["subid"];
         };
-        file_name += ".csv";
+        extension = ".csv";
 
         current_html = window.location.href.split("/"); //We get the current URL, and separate all the elements by the "/" symbol
         redirect_html = ""
@@ -31,12 +29,12 @@ var jsPsych = initJsPsych({
         if (current_html[0].startsWith("http")) {
             save_url = "write_data_new.php"
             data_dir = "results/go-no-go/"
-            saveData(save_url, data_dir, file_name);
+            saveData(save_url, data_dir, file_name, extension);
 
         } else if (current_html[0].startsWith("file")) {
             save_url = redirect_html + "write_data_new.php"
             data_dir = redirect_html + "results/go-no-go/"
-            jsPsych.data.get().localSave("csv", file_name);
+            jsPsych.data.get().localSave("csv", file_name+extension);
         };
 
         redirect_html += "experiment-hearts-flowers.html";
@@ -49,14 +47,16 @@ var jsPsych = initJsPsych({
 
         };
 
-        // We redirect to the next task
-        window.location = redirect_html;
+        if(last_trial_data["chain"] != 1){
+            // We redirect to the next task
+            window.location = redirect_html;
+        };
     }
 });
 
-function saveData(save_url, data_dir, file_name) {
+function saveData(save_url, data_dir, file_name, extension) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', save_url); // 'write_data_new.php' is the path to the php file described above.
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({file_name: file_name, data_dir: data_dir, data: jsPsych.data.get().csv()}));
+    xhr.send(JSON.stringify({file_name: file_name, extension: extension, data_dir: data_dir, data: jsPsych.data.get().csv()}));
 }

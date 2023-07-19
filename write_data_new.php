@@ -12,9 +12,19 @@ $output = json_decode(file_get_contents('php://input'), true);
 $data_array = $output['data'];
 $data_dir = $output['data_dir'];
 $file_name = $output['file_name'];
+$extension = $output['extension'];
+
+$actual_name = $file_name;
+
+$i = 1;
+while(file_exists($data_dir.$actual_name.".".$extension))
+{           
+    $actual_name = (string)$file_name.'_'.$i;
+    $i++;
+}
 
 // Create the file path
-$path = $data_dir.$file_name;
+$path = $data_dir.$actual_name.$extension;
 
 // Ensure the directory exists or create it if necessary
 //if (!is_dir($data_dir)) {
