@@ -46,8 +46,8 @@ const jsPsych = initJsPsych({
             sonaid = last_trial_data["sonaid"];
 
             if (sonaid != "0") {
-                experiment_id = "579";
-                credit_token = "0a0055b5997d4eaea38f2ad1aeaa0c60";
+                experiment_id = "INSERT_HERE";
+                credit_token = "INSERT_HERE";
                 survey_code = sonaid;
 
                 window.location = "https://uiowa-psych.sona-systems.com/webstudy_credit.aspx?experiment_id=" + experiment_id + "&credit_token=" + credit_token + "&survey_code=" + survey_code;
