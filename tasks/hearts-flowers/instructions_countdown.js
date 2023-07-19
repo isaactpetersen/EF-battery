@@ -58,7 +58,7 @@ timeline_heart_instructions = [];
 
 const heart_instructions_1 = {
   type: jsPsychHtmlKeyboardResponseCustom,
-  stimulus: "<div class='instructions'>Welcome to this task. It will take around 5 minutes.</p>"+
+  stimulus: "<div class='instructions'>Welcome to the final task. It will take around 5 minutes.</p>"+
   "Press <strong>Enter</strong> to begin.</div>",
   choices: ["Enter"],
 };

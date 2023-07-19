@@ -63,7 +63,7 @@ var instructionsWelcome = {
 	type: jsPsychHtmlKeyboardResponseCustom,
 
 	//What will be shown on screen
-	stimulus: "Welcome to this task. It will take around 10 minutes.</p>"+
+	stimulus: "Welcome to the second task (of three tasks). This task will take around 10 minutes.</p>"+
 	          "Press <strong>Enter</strong> to begin.",
 
 	choices: ["Enter"] //Enter key, we will only move forwards on the timeline if the user presses it
