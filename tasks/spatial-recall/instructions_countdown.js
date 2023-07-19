@@ -1,7 +1,6 @@
 const welcome = {
   type: jsPsychHtmlKeyboardResponseCustom,
-  stimulus: "<p>Welcome to this experiment.</p>" +
-  "<p>This experiment is made of three consecutive tasks.</p>" +
+  stimulus: "<p>Now, you will complete three cognitive tasks.</p>" +
   "<p>All together, these three tasks will last approximately 20 minutes.</p>" +
   "<p style='color:#ff0000'><b>Press Enter to continue</b></p><p>&nbsp;</p></div>",
   choices: ["Enter"]
