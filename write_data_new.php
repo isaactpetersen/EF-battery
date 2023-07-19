@@ -1,6 +1,9 @@
 
 <?php
 
+// Ensure error reporting is enabled to catch any potential issues
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 $output = json_decode(file_get_contents('php://input'), true);
 
 $data_array = $output['data'];

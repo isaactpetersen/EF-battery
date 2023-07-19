@@ -54,13 +54,14 @@ function saveData(save_url, data_dir, file_name) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     console.log("Sending to the PHP function...");
     xhr.onload = function() {
+        console.log("Response from PHP:");
         console.log(xhr.responseText);
         if(xhr.status == 200){
             var response = JSON.parse(xhr.responseText);
-            console.log(response.success);
+            console.log("Success:", response.success);
         }
     };
+    console.log("Sending data to PHP...");
     console.log(JSON.stringify({file_name: file_name, data_dir: data_dir, data: jsPsych.data.get().csv()}));
     xhr.send(JSON.stringify({file_name: file_name, data_dir: data_dir, data: jsPsych.data.get().csv()}));
 }
-
