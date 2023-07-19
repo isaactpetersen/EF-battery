@@ -72,6 +72,50 @@ I'm not sure what the "filter" is for, and we are using a different task.
     }
 ```
 
+# Run the Tasks
+
+## Main Task Link
+
+The tasks can be run from the following link:
+
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-spatial-recall.html?src=sona&subid=9999&sonaid=99999
+
+Or, alternatively:
+
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-spatial-recall?src=sona&subid=9999&sonaid=99999
+
+## Individual Tasks
+
+Here are the links to the individual tasks:
+
+### Spatial Recall
+
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-spatial-recall.html?src=sona&subid=9999&sonaid=99999
+
+### Go/No-Go
+
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-go-no-go.html?src=sona&subid=9999&sonaid=99999
+
+### Hearts and Flowers
+
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-hearts-flowers.html?src=sona&subid=9999&sonaid=99999
+
+## Test Versions
+
+For briefer, test versions of the tasks (for troubleshooting), you can run these versions:
+
+### Spatial Recall
+
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-spatial-recall-test.html?src=sona&subid=9999&sonaid=99999
+
+### Go/No-Go
+
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-go-no-go-test.html?src=sona&subid=9999&sonaid=99999
+
+### Hearts and Flowers
+
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-hearts-flowers-test.html?src=sona&subid=9999&sonaid=99999
+
 # Post-Processing
 
 ## Spatial Recall
