@@ -52,7 +52,6 @@ function saveData(save_url, data_dir, file_name, extension, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', save_url); // 'write_data_new.php' is the path to the php file described above.
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({file_name: file_name, extension: extension, data_dir: data_dir, data: jsPsych.data.get().csv()}));
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
@@ -64,6 +63,7 @@ function saveData(save_url, data_dir, file_name, extension, callback) {
             }
         }
     };
+    xhr.send(JSON.stringify({file_name: file_name, extension: extension, data_dir: data_dir, data: jsPsych.data.get().csv()}));
 }
 
 function redirectToNextPage() {
