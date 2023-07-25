@@ -2,6 +2,9 @@ const welcome = {
   type: jsPsychHtmlKeyboardResponseCustom,
   stimulus: "<p>Now, you will complete three cognitive tasks.</p>" +
   "<p>All together, these three tasks will last approximately 20 minutes.</p>" +
+  "<p>The tasks require a keyboard.</p>" +
+  "<p><b><u>Please complete the tasks using a computer with a keyboard!</u></b></p>" +
+  "<p>Please do not use a smartphone, tablet, or other mobile device.</p>" +
   "<p style='color:#ff0000'><b>Press Enter to continue</b></p><p>&nbsp;</p></div>",
   choices: ["Enter"]
 };
