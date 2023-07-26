@@ -60,7 +60,7 @@ var get_browser_and_url_info = {
 
 // Function to get IP address using ipinfo.io
 function getUserIP(callback) {
-  $.getJSON('http://ip.jsontest.com/', function (data) {
+  $.getJSON('https://api.ipify.org?format=json', function (data) {
     callback(data.ip);
   });
 }
