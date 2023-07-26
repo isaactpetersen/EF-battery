@@ -87,14 +87,18 @@ function saveData(save_url, data_dir, file_name, extension, callback) {
 
 function redirectToNextPage() {
 
-    if((window.location.href).indexOf('?') != -1) {
-        var variables = window.location.href.split('?')[1]; 
-        redirect_html += "?" + variables;
-    };
-
     last_trial_data = jsPsych.data.getLastTrialData().trials[0];
     if(last_trial_data["chain"] != "false"){
-        window.location = redirect_html;
-    };  
+        if ("sonaid" in last_trial_data){
+            sonaid = last_trial_data["sonaid"];
 
+            if (sonaid != "0") {
+                experiment_id = "INSERT_HERE";
+                credit_token = "INSERT_HERE";
+                survey_code = sonaid;
+
+                window.location = "https://uiowa-psych.sona-systems.com/webstudy_credit.aspx?experiment_id=" + experiment_id + "&credit_token=" + credit_token + "&survey_code=" + survey_code;
+            };
+        };
+    };  
 }

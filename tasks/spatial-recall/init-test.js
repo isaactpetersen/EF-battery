@@ -18,6 +18,9 @@ var jsPsych = initJsPsych({
             redirect_html += current_html[i] + "/"
         };
 
+        // We add the task to the URL
+        redirect_html += "experiment-go-no-go-test.html";
+
         if (current_html[0].startsWith("http")) {
             save_url = "write_data_new.php"
             data_dir = "results/spatial-recall/"
@@ -27,9 +30,6 @@ var jsPsych = initJsPsych({
             save_url = redirect_html + "write_data_new.php"
             data_dir = redirect_html + "results/spatial-recall/"
             jsPsych.data.get().localSave("csv", file_name+extension);
-
-            // We add the task to the URL
-            redirect_html += "experiment-go-no-go-test.html";
 
             // We add the variables that we have in the URL
             if((window.location.href).indexOf('?') != -1) {
