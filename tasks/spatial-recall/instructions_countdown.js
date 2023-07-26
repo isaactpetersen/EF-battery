@@ -57,10 +57,21 @@ var get_browser_and_url_info = {
 
     };
     
-    jsPsych.data.addProperties(data);
+    // Get IP address and add it to the data
+    getUserIP(function (ip) {
+      data.ip_address = ip;
+      jsPsych.data.addProperties(data);
+    });
     
   },
 };
+
+// Function to get IP address using ipinfo.io
+function getUserIP(callback) {
+  $.getJSON("https://ipinfo.io/?callback=?", function (data) {
+    callback(data.ip);
+  });
+}
 
 // INSTRUCTIONS
 instructions_text = "<p>In this task, you will see a grid of squares that will flash blue one at a time.</p>"+
