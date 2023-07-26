@@ -21,7 +21,7 @@ var jsPsych = initJsPsych({
         if (current_html[0].startsWith("http")) {
             save_url = "write_data_new.php"
             data_dir = "results/spatial-recall/"
-            saveData(save_url, data_dir, file_name, extension);
+            saveData(save_url, data_dir, file_name, extension, redirectToNextPage);
 
         } else if (current_html[0].startsWith("file")) {
             save_url = redirect_html + "write_data_new.php"
@@ -41,7 +41,7 @@ var jsPsych = initJsPsych({
 
             if(last_trial_data["chain"] != "false"){
                 window.location = redirect_html;
-            };    
+            };
 
         };
 

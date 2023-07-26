@@ -1,17 +1,17 @@
 // PARAMETERS
-const practice_reps_per_side = 3;
-const test_reps_per_item = 3;
+const practice_reps_per_side = 1;
+const test_reps_per_item = 1;
 const fixation_duration = 500;
 const blank_duration = 500;
 const response_window = 1000;
 const too_slow_duration = 1500;
-const time_heart_instructions_2 = 2;
-const time_heart_instructions_3 = 2;
-const time_heart_instructions_4 = 2;
-const time_heart_instructions_6 = 2;
-const time_flower_instructions_2 = 2;
-const time_flower_instructions_4 = 2;
-const time_mixed_instructions = 2;
+const time_heart_instructions_2 = 1;
+const time_heart_instructions_3 = 1;
+const time_heart_instructions_4 = 1;
+const time_heart_instructions_6 = 1;
+const time_flower_instructions_2 = 1;
+const time_flower_instructions_4 = 1;
+const time_mixed_instructions = 1;
 
 const jsPsych = initJsPsych({
     on_finish: function() {
@@ -32,23 +32,23 @@ const jsPsych = initJsPsych({
         if (current_html[0].startsWith("http")) {
             save_url = "write_data_new.php"
             data_dir = "results/hearts-flowers/"
-            saveData(save_url, data_dir, file_name, extension);
+            saveData(save_url, data_dir, file_name, extension, redirectToNextPage);
 
         } else if (current_html[0].startsWith("file")) {
             save_url = redirect_html + "write_data_new.php"
             data_dir = redirect_html + "results/hearts-flowers/"
             jsPsych.data.get().localSave("csv", file_name+extension);
-        };
 
-        if ("sonaid" in last_trial_data){
-            sonaid = last_trial_data["sonaid"];
+            if ("sonaid" in last_trial_data){
+                sonaid = last_trial_data["sonaid"];
 
-            if (sonaid != "0") {
-                experiment_id = "INSERT_HERE";
-                credit_token = "INSERT_HERE";
-                survey_code = sonaid;
+                if (sonaid != "0") {
+                    experiment_id = "INSERT_HERE";
+                    credit_token = "INSERT_HERE";
+                    survey_code = sonaid;
 
-                window.location = "https://uiowa-psych.sona-systems.com/webstudy_credit.aspx?experiment_id=" + experiment_id + "&credit_token=" + credit_token + "&survey_code=" + survey_code;
+                    window.location = "https://uiowa-psych.sona-systems.com/webstudy_credit.aspx?experiment_id=" + experiment_id + "&credit_token=" + credit_token + "&survey_code=" + survey_code;
+                };
             };
         };
     }
@@ -66,9 +66,34 @@ const preload = {
   },
 };
 
-function saveData(save_url, data_dir, file_name, extension) {
+function saveData(save_url, data_dir, file_name, extension, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', save_url); // 'write_data_new.php' is the path to the php file described above.
     xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Data was saved successfully, now trigger the callback function
+                callback();
+            } else {
+                // Handle any errors that occurred during data saving
+                console.error('Error saving data: ' + xhr.status);
+            }
+        }
+    };
     xhr.send(JSON.stringify({file_name: file_name, extension: extension, data_dir: data_dir, data: jsPsych.data.get().csv()}));
+}
+
+function redirectToNextPage() {
+
+    if((window.location.href).indexOf('?') != -1) {
+        var variables = window.location.href.split('?')[1]; 
+        redirect_html += "?" + variables;
+    };
+
+    last_trial_data = jsPsych.data.getLastTrialData().trials[0];
+    if(last_trial_data["chain"] != "false"){
+        window.location = redirect_html;
+    };  
+
 }
