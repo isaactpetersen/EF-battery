@@ -37,7 +37,7 @@ const jsPsych = initJsPsych({
         } else if (current_html[0].startsWith("file")) {
             save_url = redirect_html + "write_data_new.php"
             data_dir = redirect_html + "results/hearts-flowers/"
-            jsPsych.data.get().localSave("csv", file_name+extension);
+            jsPsych.data.get().localSave("csv", file_name + extension);
             redirectToNextPage();
         };
     }

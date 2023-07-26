@@ -32,19 +32,19 @@ var jsPsych = initJsPsych({
         if (current_html[0].startsWith("http")) {
             save_url = "write_data_new.php"
             data_dir = "results/go-no-go/"
-            saveData(save_url, data_dir, file_name, extension, redirectToNextPage);
+            saveData(save_url, data_dir, file_name, extension, redirect_html, redirectToNextPage);
 
         } else if (current_html[0].startsWith("file")) {
             save_url = redirect_html + "write_data_new.php"
             data_dir = redirect_html + "results/go-no-go/"
-            jsPsych.data.get().localSave("csv", file_name+extension);
+            jsPsych.data.get().localSave("csv", file_name + extension);
             redirectToNextPage(redirect_html);
         };
     }
 });
 
 
-function saveData(save_url, data_dir, file_name, extension, callback) {
+function saveData(save_url, data_dir, file_name, extension, redirect_html, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', save_url); // 'write_data_new.php' is the path to the php file described above.
     xhr.setRequestHeader('Content-Type', 'application/json');
