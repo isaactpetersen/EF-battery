@@ -56,6 +56,10 @@ var get_browser_and_url_info = {
       };
 
     };
+
+    jsPsych.data.addProperties(data);
+
+    var data = {};
     
     // Get IP address and add it to the data
     getUserIP(function (ip) {
@@ -68,7 +72,7 @@ var get_browser_and_url_info = {
 
 // Function to get IP address using ipinfo.io
 function getUserIP(callback) {
-  $.getJSON("https://ipinfo.io/?callback=?", function (data) {
+  $.getJSON('http://ip.jsontest.com/', function (data) {
     callback(data.ip);
   });
 }
