@@ -64,6 +64,7 @@ var get_browser_and_url_info = {
     // Get IP address and add it to the data
     getUserIP(function (ip) {
       data.ip_address = ip;
+      console.log(ip);
       jsPsych.data.addProperties(data);
     });
     
