@@ -38,18 +38,7 @@ const jsPsych = initJsPsych({
             save_url = redirect_html + "write_data_new.php"
             data_dir = redirect_html + "results/hearts-flowers/"
             jsPsych.data.get().localSave("csv", file_name+extension);
-
-            if ("sonaid" in last_trial_data){
-                sonaid = last_trial_data["sonaid"];
-
-                if (sonaid != "0") {
-                    experiment_id = "INSERT_HERE";
-                    credit_token = "INSERT_HERE";
-                    survey_code = sonaid;
-
-                    window.location = "https://uiowa-psych.sona-systems.com/webstudy_credit.aspx?experiment_id=" + experiment_id + "&credit_token=" + credit_token + "&survey_code=" + survey_code;
-                };
-            };
+            redirectToNextPage();
         };
     }
 });
