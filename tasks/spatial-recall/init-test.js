@@ -43,7 +43,7 @@ function saveData(save_url, data_dir, file_name, extension, redirect_html, callb
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 // Data was saved successfully, now trigger the callback function
-                callback(redirect_html);
+                setTimeout(callback(redirect_html), 1000);
             } else {
                 // Handle any errors that occurred during data saving
                 console.error('Error saving data: ' + xhr.status);

@@ -43,7 +43,6 @@ var jsPsych = initJsPsych({
     }
 });
 
-
 function saveData(save_url, data_dir, file_name, extension, redirect_html, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', save_url); // 'write_data_new.php' is the path to the php file described above.
