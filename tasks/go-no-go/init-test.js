@@ -32,7 +32,7 @@ var jsPsych = initJsPsych({
         if (current_html[0].startsWith("http")) {
             save_url = "write_data_new.php"
             data_dir = "results/go-no-go/"
-            saveData(save_url, data_dir, file_name, extension, redirect_html, redirectToNextPage);
+            saveAndRedirect(save_url, data_dir, file_name, extension, redirect_html);
 
         } else if (current_html[0].startsWith("file")) {
             save_url = redirect_html + "write_data_new.php"
@@ -43,22 +43,31 @@ var jsPsych = initJsPsych({
     }
 });
 
-function saveData(save_url, data_dir, file_name, extension, redirect_html, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', save_url); // 'write_data_new.php' is the path to the php file described above.
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                // Data was saved successfully, now trigger the callback function
-                callback(redirect_html);
-            } else {
-                // Handle any errors that occurred during data saving
-                console.error('Error saving data: ' + xhr.status);
+function saveData(save_url, data_dir, file_name, extension) {
+    return new Promise((resolve, reject) => {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', save_url);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    resolve();
+                } else {
+                    reject(new Error('Error saving data: ' + xhr.status));
+                }
             }
-        }
-    };
+        };
     xhr.send(JSON.stringify({file_name: file_name, extension: extension, data_dir: data_dir, data: jsPsych.data.get().csv()}));
+    });
+}
+
+async function saveAndRedirect(save_url, data_dir, file_name, extension, redirect_html) {
+    try {
+        await saveData(save_url, data_dir, file_name, extension);
+        redirectToNextPage(redirect_html);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function redirectToNextPage(redirect_html) {
