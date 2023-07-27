@@ -43,7 +43,7 @@ function saveData(save_url, data_dir, file_name, extension, redirect_html, callb
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 // Data was saved successfully, now trigger the callback function
-                setTimeout(callback(redirect_html), 1000);
+                callback(redirect_html);
             } else {
                 // Handle any errors that occurred during data saving
                 console.error('Error saving data: ' + xhr.status);
@@ -62,7 +62,9 @@ function redirectToNextPage(redirect_html) {
 
     last_trial_data = jsPsych.data.getLastTrialData().trials[0];
     if(last_trial_data["chain"] != "false"){
-        window.location = redirect_html;
+        setTimeout(function() {
+            window.location = redirect_html;
+        }, 500);
     };  
 
 }
