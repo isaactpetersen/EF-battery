@@ -5,7 +5,7 @@ var upload_data = {
         last_trial_data = jsPsych.data.getLastTrialData().trials[0];
         file_name = "go-no-go";
         if ("subid" in last_trial_data){
-            file_name += "-" + last_trial_data["subid"] + append_to_datafile;
+            file_name += "_" + last_trial_data["subid"] + append_to_datafile;
         };
         extension = ".csv";
 
