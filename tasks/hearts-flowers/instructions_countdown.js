@@ -353,7 +353,7 @@ const mixed_instructions = {
 const end_screen = {
   type: jsPsychHtmlKeyboardResponseCustom,
   stimulus: "<div class='instructions'>"+
-  "<p>This task is complete.</p>"+
+  "<p>You have completed the final task.</p>"+
   "<p>Press Enter to end the experiment.</p></div>",
   choices: ["Enter"],
   save_trial_parameters: {
