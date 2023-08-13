@@ -15,31 +15,9 @@ const time_mixed_instructions = 10;
 
 const jsPsych = initJsPsych({
     on_finish: function() {
-        last_trial_data = jsPsych.data.getLastTrialData().trials[0];
-        file_name = "hearts-flowers";
-        if ("subid" in last_trial_data){
-            file_name += "-" + last_trial_data["subid"];
-        };
-        extension = ".csv";
+        
+        redirectToNextPage();
 
-        current_html = window.location.href.split("/"); //We get the current URL, and separate all the elements by the "/" symbol
-        redirect_html = ""
-        // We create a new URL by adding all the elements from the current URL apart from the last one (the task)
-        for (i = 0; i < current_html.length - 1; i++) {
-            redirect_html += current_html[i] + "/"
-        };
-
-        if (current_html[0].startsWith("http")) {
-            save_url = "write_data_new.php"
-            data_dir = "results/hearts-flowers/"
-            saveAndRedirect(save_url, data_dir, file_name, extension);
-
-        } else if (current_html[0].startsWith("file")) {
-            save_url = redirect_html + "write_data_new.php"
-            data_dir = redirect_html + "results/hearts-flowers/"
-            jsPsych.data.get().localSave("csv", file_name + extension);
-            redirectToNextPage();
-        };
     }
 });
 
@@ -54,33 +32,6 @@ const preload = {
     failed_audio: false,
   },
 };
-
-function saveData(save_url, data_dir, file_name, extension) {
-    return new Promise((resolve, reject) => {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', save_url);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    resolve();
-                } else {
-                    reject(new Error('Error saving data: ' + xhr.status));
-                }
-            }
-        };
-    xhr.send(JSON.stringify({file_name: file_name, extension: extension, data_dir: data_dir, data: jsPsych.data.get().csv()}));
-    });
-}
-
-async function saveAndRedirect(save_url, data_dir, file_name, extension) {
-    try {
-        await saveData(save_url, data_dir, file_name, extension);
-        redirectToNextPage();
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 function redirectToNextPage() {
 

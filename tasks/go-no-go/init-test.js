@@ -12,12 +12,6 @@ var time_instructions = 1;
 //We initialize jsPsych
 var jsPsych = initJsPsych({
     on_finish: function() {
-        last_trial_data = jsPsych.data.getLastTrialData().trials[0];
-        file_name = "go-no-go";
-        if ("subid" in last_trial_data){
-            file_name += "-" + last_trial_data["subid"] + "_test";
-        };
-        extension = ".csv";
 
         current_html = window.location.href.split("/"); //We get the current URL, and separate all the elements by the "/" symbol
         address = ""
