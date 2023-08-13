@@ -1,6 +1,8 @@
 limit_error_to_end_task = 2;
 time_instructions = 10;
 
+const append_to_datafile = "";
+
 //We initialize jsPsych
 var jsPsych = initJsPsych({
     on_finish: function() {

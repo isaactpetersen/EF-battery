@@ -9,6 +9,8 @@ var blocks_main = 1; //number of times the test trial blocks are shown
 
 var time_instructions = 1;
 
+const append_to_datafile = "_test";
+
 //We initialize jsPsych
 var jsPsych = initJsPsych({
     on_finish: function() {

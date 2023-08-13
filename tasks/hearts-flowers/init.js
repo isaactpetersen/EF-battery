@@ -13,6 +13,8 @@ const time_flower_instructions_2 = 5;
 const time_flower_instructions_4 = 5;
 const time_mixed_instructions = 10;
 
+const append_to_datafile = "";
+
 const jsPsych = initJsPsych({
     on_finish: function() {
         

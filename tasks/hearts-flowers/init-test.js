@@ -12,6 +12,7 @@ const time_heart_instructions_6 = 1;
 const time_flower_instructions_2 = 1;
 const time_flower_instructions_4 = 1;
 const time_mixed_instructions = 1;
+const append_to_datafile = "_test";
 
 const jsPsych = initJsPsych({
     on_finish: function() {
