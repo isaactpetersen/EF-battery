@@ -3,7 +3,7 @@ var upload_data = {
     async: true,
     func: function(done) {
         last_trial_data = jsPsych.data.getLastTrialData().trials[0];
-        file_name = "go-no-go";
+        file_name = "hearts-flowers";
         if ("subid" in last_trial_data){
             file_name += "-" + last_trial_data["subid"] + "_test";
         };
@@ -13,7 +13,7 @@ var upload_data = {
 
         if (current_html[0].startsWith("http")) {
             save_url = "write_data_new.php"
-            data_dir = "results/go-no-go/"
+            data_dir = "results/hearts-flowers/"
             try {
                 var response_data = saveData(save_url, data_dir, file_name, extension);
             } catch (error) {
