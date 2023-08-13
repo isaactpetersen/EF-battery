@@ -25,6 +25,9 @@ timeline.push(instructionsBeforeMainTask);
 //We add the main task
 timeline.push(main_task_loop);
 
+//We upload the data
+timeline.push(upload_data);
+
 //Cursor on
 timeline.push(cursor_on);
 
