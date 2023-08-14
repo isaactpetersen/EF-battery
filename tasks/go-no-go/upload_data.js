@@ -16,15 +16,15 @@ var upload_data = {
             data_dir = "results/go-no-go/"
             try {
                 var response_data = saveData(save_url, data_dir, file_name, extension);
+                done(response_data);
             } catch (error) {
                 console.error(error);
             }
         } else if (current_html[0].startsWith("file")) {
             jsPsych.data.get().localSave("csv", file_name + extension);
-            response_data = true;
+            done(true);
         };
 
-        done(response_data);
     }
 }
 

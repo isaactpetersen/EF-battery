@@ -14,7 +14,7 @@ timeline.push(mixed_instructions);
 timeline.push(heart_flower_timeline);
 timeline.push(upload_data);
 timeline.push(cursor_on);
-timeline.push(fullscreen_off);
 timeline.push(end_screen);
+timeline.push(fullscreen_off);
 
 jsPsych.run(timeline);
