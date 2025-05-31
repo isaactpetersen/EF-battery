@@ -1,4 +1,8 @@
-html, body { 
+:root {
+  color-scheme: only light;
+}
+
+html, body {
   background-color: white;
   color: black;
 }
