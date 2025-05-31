@@ -1,34 +1,34 @@
-var getLastTrialKeyPressed = function() {
+let getLastTrialKeyPressed = function () {
     //return jsPsych.data.getLastTrialData().select('response').values[0];
     return jsPsych.data.getLastTrialData().select('data');
 }
 
 // PRACTICE TRIALS
 
-var current_trial = 1
+let current_trial = 1
 
-var reset_block = {
-  type: jsPsychCallFunction,
-  func: function() {
-    current_trial = 1
-  },
+let reset_block = {
+    type: jsPsychCallFunction,
+    func: function () {
+        current_trial = 1
+    },
 }
 
-var appendData = function(data) {
-  //var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY)
-  var isAtMaxWidth = (screen.width - window.innerWidth) === 0;
-  var isAtMaxHeight = (screen.height - window.innerHeight) === 0;
-  var isFullScreen = (isAtMaxWidth && isAtMaxHeight);
+let appendData = function (data) {
+    //var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY)
+    let isAtMaxWidth = (screen.width - window.innerWidth) === 0;
+    let isAtMaxHeight = (screen.height - window.innerHeight) === 0;
+    let isFullScreen = (isAtMaxWidth && isAtMaxHeight);
 
-  jsPsych.data.addDataToLastTrial({
-    trial_num: current_trial,
-    full_screen: isFullScreen,
-  })
-  current_trial = current_trial + 1
+    jsPsych.data.addDataToLastTrial({
+        trial_num: current_trial,
+        full_screen: isFullScreen,
+    })
+    current_trial = current_trial + 1
 }
 
 //Trial
-var practice_trial = {
+let practice_trial = {
     type: jsPsychCategorizeHtmlCustom, // Plugin to use
     stimulus: jsPsych.timelineVariable("stimulus"), // Stimulus to use: the attribute "stimulus" from the trial
     stimulus_after_key_press: jsPsych.timelineVariable("stimulus_after_key_press"), // Stimulus to use after there is a key press to have visual feedback
@@ -45,16 +45,16 @@ var practice_trial = {
 }
 
 //Practice loop
-var practice_loop = {
-	timeline: [practice_trial], //The timeline of one trial
-	timeline_variables: practice_trials, // The trials to apply
-	randomize_order: false
+let practice_loop = {
+    timeline: [practice_trial], //The timeline of one trial
+    timeline_variables: practice_trials, // The trials to apply
+    randomize_order: false
 };
 
 // MAIN TASK TRIALS
 
 //Trial
-var main_task_trial = {
+let main_task_trial = {
     type: jsPsychCategorizeHtmlCustom,
     stimulus: jsPsych.timelineVariable("stimulus"),
     stimulus_after_key_press: jsPsych.timelineVariable("stimulus_after_key_press"),
@@ -70,8 +70,8 @@ var main_task_trial = {
 }
 
 //Experiment loop
-var main_task_loop = {
-	timeline: [main_task_trial], //The timeline of one trial
-	timeline_variables: main_trials,
-	randomize_order: false
+let main_task_loop = {
+    timeline: [main_task_trial], //The timeline of one trial
+    timeline_variables: main_trials,
+    randomize_order: false
 };
