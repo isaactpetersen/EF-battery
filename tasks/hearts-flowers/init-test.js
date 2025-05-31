@@ -15,39 +15,19 @@ const time_mixed_instructions = 1;
 const append_to_datafile = "_test";
 
 const jsPsych = initJsPsych({
-    on_finish: function() {
-        
+    on_finish: function () {
         redirectToNextPage();
-
     }
 });
 
 const preload = {
-  type: jsPsychPreload,
-  images: ["tasks/hearts-flowers/heart.png", "tasks/hearts-flowers/flower.png", "tasks/hearts-flowers/keyboard.png"],
-  save_trial_parameters: {
-    success: false,
-    timeout: false,
-    failed_images: false,
-    failed_video: false,
-    failed_audio: false,
-  },
+    type: jsPsychPreload,
+    images: ["tasks/hearts-flowers/heart.png", "tasks/hearts-flowers/flower.png", "tasks/hearts-flowers/keyboard.png"],
+    save_trial_parameters: {
+        success: false,
+        timeout: false,
+        failed_images: false,
+        failed_video: false,
+        failed_audio: false,
+    },
 };
-
-function redirectToNextPage() {
-
-    last_trial_data = jsPsych.data.getLastTrialData().trials[0];
-    if(last_trial_data["chain"] != "false"){
-        if ("sonaid" in last_trial_data){
-            sonaid = last_trial_data["sonaid"];
-
-            if (sonaid != "0") {
-                experiment_id = "INSERT_HERE";
-                credit_token = "INSERT_HERE";
-                survey_code = sonaid;
-
-                window.location = "https://uiowa-psych.sona-systems.com/webstudy_credit.aspx?experiment_id=" + experiment_id + "&credit_token=" + credit_token + "&survey_code=" + survey_code;
-            };
-        };
-    };  
-}

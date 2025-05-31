@@ -12,7 +12,7 @@ const time_instructions = 10;
 const append_to_datafile = "";
 
 //We initialize jsPsych
-let jsPsych = initJsPsych({
+const jsPsych = initJsPsych({
     on_finish: function() {
 
         let current_html = window.location.href.split("/"); //We get the current URL, and separate all the elements by the "/" symbol
