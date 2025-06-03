@@ -7,6 +7,7 @@ jsPsych code for executive functioning battery
     1. [Spatial Recall](https://github.com/isaactpetersen/spatial-recall)
     1. [Go/No-Go](https://github.com/isaactpetersen/go-nogo)
     1. [Hearts and Flowers](https://github.com/isaactpetersen/jspsych-hearts-flowers)
+    1. [Simple Reaction Time](https://github.com/isaactpetersen/simple-reaction-time)
 - Expected variables from the URL:
     - subject ID: `subid`
     - SONA ID: `sonaid`
@@ -30,6 +31,10 @@ jsPsych code for executive functioning battery
 
 - set anticipatory responses (RT < 200 ms) to missing for both accuracy and RT
 - examine RT in correct trials only
+
+## Simple Reaction Time
+
+- set anticipatory responses (RT < 200 ms) to missing for RT
 
 # Run the Tasks
 
@@ -59,6 +64,10 @@ https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-go-no-go.html
 
 https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-hearts-flowers.html?src=sona&subid=9999&sonaid=99999&chain=false
 
+### Simple Reaction Time
+
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-simple-reaction-time.html?src=sona&subid=9999&sonaid=99999&chain=false
+
 ## Test Versions
 
 For briefer, test versions of the tasks (for troubleshooting), you can run these versions:
@@ -74,3 +83,7 @@ https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-go-no-go-test
 ### Hearts and Flowers
 
 https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-hearts-flowers-test.html?src=sona&subid=9999&sonaid=99999
+
+### Simple Reaction Time
+
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-simple-reaction-time-test.html?src=sona&subid=9999&sonaid=99999&chain=false
