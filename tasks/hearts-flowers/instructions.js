@@ -1,150 +1,80 @@
-// FULLSCREEN ON
-
-let fullscreen_on = {
-    type: jsPsychFullscreen,
-    message: "This task must be completed in fullscreen mode.</br>" +
-        "Please, do not press the ESC key during the task, and avoid all distractions.</br></br>" +
-        "If you quit the fullscreen mode during the task, please press <b>F11</b> on Windows </br>" +
-        "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br>",
-    button_label: 'Continue',
-    fullscreen_mode: true,
-    on_finish: function () {
-        const time = Date.now();
-        const now = new Date(time);
-        jsPsych.data.addDataToLastTrial({
-            date_start: now.toLocaleString('en-US', {timeZone: 'America/Chicago'}),
-        })
-    }
-};
-
-// GET BROWSER INFO AND URL VALUES
-let get_browser_and_url_info = {
-    type: jsPsychCallFunction,
-
-    func: function () {
-
-        let data = {browser_info: navigator.userAgent};
-
-        //If the URL has a question mark in it
-        if ((window.location.href).indexOf('?') !== -1) {
-
-            // We get the part of the URL containing the variables (everything after the question mark)
-            let queryString = window.location.href.split('?')[1];
-
-            // We split this string by ampersand "&" symbol
-            let variables = queryString.split("&");
-
-            // For every variable
-            for (let i = 0; i < variables.length; i++) {
-
-                let key = variables[i].split("=")[0]; // We get what is before the "=" symbol
-                let value = variables[i].split("=")[1]; // We get what is after the "=" symbol
-                value = decodeURIComponent(value); // We remove special characters if there are
-                eval("data." + key + " = value"); // We assign it to data
-            }
-
-        }
-
-        jsPsych.data.addProperties(data);
-        data = {};
-
-        // Get IP address and add it to the data
-        getUserIP(function (ip) {
-            data.ip_address = ip;
-            jsPsych.data.addProperties(data);
-        });
-
-    },
-};
-
-// Function to get IP address using ipinfo.io
-function getUserIP(callback) {
-    $.getJSON('https://api.ipify.org?format=json', function (data) {
-        callback(data.ip);
-    });
-}
-
-// CURSOR OFF
-
-let cursor_off = {
-    type: jsPsychCallFunction,
-    func: function () {
-        document.body.style.cursor = "none";
-    }
-}
-
-// HEART INSTRUCTIONS
-
-timeline_heart_instructions = [];
-
-const heart_instructions_1 = {
+// WELCOME SCREEN ------------------------------------------------------------------------------------------------------
+const welcomeScreen = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: "<div class='instructions'>Welcome to the final task. It will take around 5 minutes.</p>" +
         "Press <strong>Enter</strong> to begin.</div>",
     choices: ["Enter"],
+    save_trial_parameters: {
+        stimulus: false,
+    },
+    data: {
+        phase: "welcome-screen",
+    },
 };
-timeline_heart_instructions.push(heart_instructions_1);
 
-instructions_text = "<div class='instructions'>" +
+// HEART INSTRUCTIONS --------------------------------------------------------------------------------------------------
+let timelineHeartInstructions = [];
+
+const instructionsHeartText1 = "<div class='instructions'>" +
     "<p>In this task, you will use the <b>A</b> and <b>L</b> keys on your keyboard.</p>" +
     "<p>Please rest your <b>left index finger</b> on the A key and your <b>right index finger</b> on the " +
     "L key.</p>" +
-    "<img src='tasks/hearts-flowers/keyboard.png' width='50%'/>" +
+    "<img src='tasks/hearts-flowers/keyboard.png' alt='keyboard image' width='50%'/>" +
     "<p></p></div>";
 
-for (let i = time_heart_instructions_2; i > 0; i--) {
-    const heart_instructions_2 = {
+for (let i = timeHeartInstructions1; i > 0; i--) {
+    const heartInstructions1 = {
         type: jsPsychHtmlKeyboardResponseCustom,
-        stimulus: instructions_text +
+        stimulus: instructionsHeartText1 +
             "<p style='color:#888888'>Press either key to continue.</p>" +
             "<p><b>" + i.toString() + "</b></p>",
         choices: "NO_KEYS",
         trial_duration: 1000,
     };
-    timeline_heart_instructions.push(heart_instructions_2);
+    timelineHeartInstructions.push(heartInstructions1);
 }
 
-const heart_instructions_2 = {
+const heartInstructions1 = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: instructions_text +
+    stimulus: instructionsHeartText1 +
         "<p style='color:#ff0000'><b>Press either key to continue.</b></p><p>&nbsp;</p>",
     choices: ["a", "l"]
 };
-timeline_heart_instructions.push(heart_instructions_2);
+timelineHeartInstructions.push(heartInstructions1);
 
-instructions_text = "<div class='instructions'><div class='instructions-float'>" +
+const instructionsHeartText2 = "<div class='instructions'><div class='instructions-float'>" +
     "<p>In this task, you're going to see a number of <b>hearts</b> and <b>flowers</b> in the box " +
     "below.</p>";
 
-for (let i = time_heart_instructions_3; i > 0; i--) {
-    const heart_instructions_3 = {
+for (let i = timeHeartInstructions2; i > 0; i--) {
+    const heartInstructions2 = {
         type: jsPsychHtmlKeyboardResponseCustom,
-        stimulus: instructions_text +
+        stimulus: instructionsHeartText2 +
             "<p style='color:#888888'>Press Enter to continue</p>" +
             "<p><b>" + i.toString() + "</b></p></div>" +
             "<div class='heart-flower-stim'></div></div>",
         choices: "NO_KEYS",
         trial_duration: 1000,
     };
-    timeline_heart_instructions.push(heart_instructions_3);
+    timelineHeartInstructions.push(heartInstructions2);
 }
 
-const heart_instructions_3 = {
+const heartInstructions2 = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: instructions_text +
+    stimulus: instructionsHeartText2 +
         "<p style='color:#ff0000'><b>Press Enter to continue</b></p><p>&nbsp;</p></div>" +
         "<div class='heart-flower-stim'></div></div>",
     choices: ["Enter"]
 };
-timeline_heart_instructions.push(heart_instructions_3);
+timelineHeartInstructions.push(heartInstructions2);
 
-instructions_text = "<div class='instructions'><div class='instructions-float'>" +
+const instructionsHeartText3 = "<div class='instructions'><div class='instructions-float'>" +
     "<p>When you see a <b>heart</b>, press the key that is on the <b>same</b> side as the heart.</p>";
 
-for (let i = time_heart_instructions_4; i > 0; i--) {
-    const heart_instructions_4 = {
+for (let i = timeHeartInstructions3; i > 0; i--) {
+    const heartInstructions3 = {
         type: jsPsychHtmlKeyboardResponseCustom,
-        stimulus: instructions_text +
+        stimulus: instructionsHeartText3 +
             "<p style='color:#888888'>Here, you should press the <b>A</b> key.</p>" +
             "<p><b>" + i.toString() + "</b></p></div>" +
             "<div class='heart-flower-stim heart-flower-left'><img src='tasks/hearts-flowers/heart.png'/>" +
@@ -152,20 +82,20 @@ for (let i = time_heart_instructions_4; i > 0; i--) {
         choices: "NO_KEYS",
         trial_duration: 1000,
     };
-    timeline_heart_instructions.push(heart_instructions_4);
+    timelineHeartInstructions.push(heartInstructions3);
 }
 
-const heart_instructions_4 = {
+const heartInstructions3 = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: instructions_text +
+    stimulus: instructionsHeartText3 +
         "<p><b>Here, you should press the <b>A</b> key.</b></p><p>&nbsp;</p></div>" +
         "<div class='heart-flower-stim heart-flower-left'><img src='tasks/hearts-flowers/heart.png'/>" +
         "</div></div>",
     choices: ["a"]
 };
-timeline_heart_instructions.push(heart_instructions_4);
+timelineHeartInstructions.push(heartInstructions3);
 
-const heart_instructions_5 = {
+const heartInstructions4 = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: "<div class='instructions'><div class='instructions-float'>" +
         "<p>Now, you should press the <b>L</b> key.</p></div>" +
@@ -173,49 +103,48 @@ const heart_instructions_5 = {
         "</div></div>",
     choices: ["l"],
 };
-timeline_heart_instructions.push(heart_instructions_5);
+timelineHeartInstructions.push(heartInstructions4);
 
-instructions_text = "<div class='instructions'><div class='instructions-float'>" +
+const instructionsHeartText5 = "<div class='instructions'><div class='instructions-float'>" +
     "<p>Very good. Try it a few more times—it goes pretty quickly.</p>" +
     "<p><b>Please go as fast as you can!</b></p>";
 
-for (let i = time_heart_instructions_6; i > 0; i--) {
-    const heart_instructions_6 = {
+for (let i = timeHeartInstructions5; i > 0; i--) {
+    const heartInstructions5 = {
         type: jsPsychHtmlKeyboardResponseCustom,
-        stimulus: instructions_text +
+        stimulus: instructionsHeartText5 +
             "<p style='color:#888888'>Press Enter to continue.</p>" +
             "<p><b>" + i.toString() + "</b></p></div>" +
             "<div class='heart-flower-stim'></div></div>",
         choices: "NO_KEYS",
         trial_duration: 1000,
     };
-    timeline_heart_instructions.push(heart_instructions_6);
+    timelineHeartInstructions.push(heartInstructions5);
 }
 
-const heart_instructions_6 = {
+const heartInstructions5 = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: instructions_text +
+    stimulus: instructionsHeartText5 +
         "<p style='color:#ff0000'><b>Press Enter to continue</b></p><p>&nbsp;</p></div>" +
         "<div class='heart-flower-stim'></div></div>",
     choices: ["Enter"]
 };
-timeline_heart_instructions.push(heart_instructions_6);
+timelineHeartInstructions.push(heartInstructions5);
 
-const heart_instructions = {
-    timeline: timeline_heart_instructions,
+const heartInstructions = {
+    timeline: timelineHeartInstructions,
     save_trial_parameters: {
         stimulus: false,
     },
     data: {
-        phase: "heart-instructions",
+        phase: "instructions-heart",
     },
 };
 
-// FLOWER INSTRUCTIONS
+// FLOWER INSTRUCTIONS -------------------------------------------------------------------------------------------------
+timelineFlowerInstructions = [];
 
-timeline_flower_instructions = [];
-
-const flower_instructions_1 = {
+const flowerInstructions1 = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: "<div class='instructions'><div class='instructions-float'>" +
         "<p>Great!</p>" +
@@ -223,15 +152,15 @@ const flower_instructions_1 = {
         "<div class='heart-flower-stim'></div></div>",
     choices: ["Enter"],
 };
-timeline_flower_instructions.push(flower_instructions_1);
+timelineFlowerInstructions.push(flowerInstructions1);
 
-instructions_text = "<div class='instructions'><div class='instructions-float'>" +
+const instructionsFlowerText2 = "<div class='instructions'><div class='instructions-float'>" +
     "<p>When you see a <b>flower</b>, press the key that is on the <b>opposite</b> side of the flower.</p>";
 
-for (let i = time_flower_instructions_2; i > 0; i--) {
-    const flower_instructions_2 = {
+for (let i = timeFlowerInstructions2; i > 0; i--) {
+    const flowerInstructions2 = {
         type: jsPsychHtmlKeyboardResponseCustom,
-        stimulus: instructions_text +
+        stimulus: instructionsFlowerText2 +
             "<p style='color:#888888'>Here, you should press the <b>L</b> key.</p>" +
             "<p><b>" + i.toString() + "</b></p></div>" +
             "<div class='heart-flower-stim heart-flower-left'><img src='tasks/hearts-flowers/flower.png'/>" +
@@ -239,20 +168,20 @@ for (let i = time_flower_instructions_2; i > 0; i--) {
         choices: "NO_KEYS",
         trial_duration: 1000,
     };
-    timeline_flower_instructions.push(flower_instructions_2);
+    timelineFlowerInstructions.push(flowerInstructions2);
 }
 
-const flower_instructions_2 = {
+const flowerInstructions2 = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: instructions_text +
+    stimulus: instructionsFlowerText2 +
         "<p><b>Here, you should press the <b>L</b> key.</b></p><p>&nbsp;</p></div>" +
         "<div class='heart-flower-stim heart-flower-left'><img src='tasks/hearts-flowers/flower.png'/>" +
         "</div></div>",
     choices: ["l"]
 };
-timeline_flower_instructions.push(flower_instructions_2);
+timelineFlowerInstructions.push(flowerInstructions2);
 
-const flower_instructions_3 = {
+const flowerInstructions3 = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: "<div class='instructions'><div class='instructions-float'>" +
         "<p>And here, you should press the <b>A</b> key.</p></div>" +
@@ -260,89 +189,87 @@ const flower_instructions_3 = {
         "</div></div>",
     choices: ["a"],
 };
-timeline_flower_instructions.push(flower_instructions_3);
+timelineFlowerInstructions.push(flowerInstructions3);
 
-instructions_text = "<div class='instructions'><div class='instructions-float'>" +
+const instructionsFlowerText4 = "<div class='instructions'><div class='instructions-float'>" +
     "<p>Very good. Try it a few more times. This can be tricky to get the hang of.</p>" +
     "<p><b>Please go as fast as you can!</b></p>";
 
-for (let i = time_flower_instructions_4; i > 0; i--) {
-    const flower_instructions_4 = {
+for (let i = timeFlowerInstructions4; i > 0; i--) {
+    const flowerInstructions4 = {
         type: jsPsychHtmlKeyboardResponseCustom,
-        stimulus: instructions_text +
+        stimulus: instructionsFlowerText4 +
             "<p style='color:#888888'>Press Enter to continue</p>" +
             "<p><b>" + i.toString() + "</b></p></div>" +
             "<div class='heart-flower-stim'></div></div>",
         choices: "NO_KEYS",
         trial_duration: 1000,
     };
-    timeline_flower_instructions.push(flower_instructions_4);
+    timelineFlowerInstructions.push(flowerInstructions4);
 }
 
-const flower_instructions_4 = {
+const flowerInstructions4 = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: instructions_text +
+    stimulus: instructionsFlowerText4 +
         "<p style='color:#ff0000'><b>Press Enter to continue</b></p><p>&nbsp;</p></div>" +
         "<div class='heart-flower-stim'></div></div>",
     choices: ["Enter"]
 };
-timeline_flower_instructions.push(flower_instructions_4);
+timelineFlowerInstructions.push(flowerInstructions4);
 
 
-const flower_instructions = {
-    timeline: timeline_flower_instructions,
+const flowerInstructions = {
+    timeline: timelineFlowerInstructions,
     save_trial_parameters: {
         stimulus: false,
     },
     data: {
-        phase: "heart-instructions",
+        phase: "instructions-flower",
     },
 };
 
-// MIXED INSTRUCTIONS
-
-instructions_text = "<div class='instructions'>" +
+// MIXED INSTRUCTIONS --------------------------------------------------------------------------------------------------
+const instructionsMixedText = "<div class='instructions'>" +
     "<p>Great! Now the real activity begins. Both <b>hearts</b> and <b>flowers</b> will pop up.</p>" +
     "<p>When you see a <b>heart</b>, press the key that is on the <b>same</b> side as the heart.</p>" +
     "<p>When you see a <b>flower</b>, press the key that is on the <b>opposite</b> side of the flower.</p>" +
     "<p><b>Please respond as accurately and as quickly as you can!</b></p>" +
     "<p>This will take about three minutes to complete.</p>";
 
-timeline_mixed_instructions = [];
+timelineMixedInstructions = [];
 
-for (let i = time_mixed_instructions; i > 0; i--) {
-    const mixed_instructions_1 = {
+for (let i = timeMixedInstructions; i > 0; i--) {
+    const mixedInstructions1 = {
         type: jsPsychHtmlKeyboardResponseCustom,
-        stimulus: instructions_text +
+        stimulus: instructionsMixedText +
             "<p style='color:#888888'>Press Enter to begin. Good luck!</p>" +
             "<p><b>" + i.toString() + "</b></p></div>",
         choices: "NO_KEYS",
         trial_duration: 1000,
     };
-    timeline_mixed_instructions.push(mixed_instructions_1);
+    timelineMixedInstructions.push(mixedInstructions1);
 }
 
-const mixed_instructions_1 = {
+const mixedInstructions1 = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: instructions_text +
+    stimulus: instructionsMixedText +
         "<p style='color:#ff0000'><b>Press Enter to begin. Good luck!</b></p><p>&nbsp;</p></div>",
     choices: ["Enter"]
 };
-timeline_mixed_instructions.push(mixed_instructions_1);
+timelineMixedInstructions.push(mixedInstructions1);
 
-const mixed_instructions = {
-    timeline: timeline_mixed_instructions,
+const mixedInstructions = {
+    timeline: timelineMixedInstructions,
     save_trial_parameters: {
         stimulus: false,
     },
     data: {
-        phase: "test-instructions",
+        phase: "instructions-mixed",
     },
 };
 
-// END SCREEN
-
-const end_screen = {
+// END SCREEN ----------------------------------------------------------------------------------------------------------
+const endScreen = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: "<div class='instructions'>" +
         "<p>You have completed the final task.</p>" +
@@ -351,32 +278,7 @@ const end_screen = {
     save_trial_parameters: {
         stimulus: false,
     },
-};
-
-// CURSOR ON
-
-let cursor_on = {
-    type: jsPsychCallFunction,
-    func: function () {
-        document.body.style.cursor = "auto";
-    }
-}
-
-// FULLSCREEN OFF
-
-let fullscreen_off = {
-    type: jsPsychFullscreen,
-    message: "This task must be completed in fullscreen mode.</br>" +
-        "Please, do not press the ESC key during the task, and avoid all distractions.</br></br>" +
-        "If you quit the fullscreen mode during the task, please press <b>F11</b> on Windows </br>" +
-        "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br>",
-    button_label: 'Continue',
-    fullscreen_mode: false,
-    on_finish: function () {
-        const time = Date.now();
-        const now = new Date(time);
-        jsPsych.data.addDataToLastTrial({
-            date_finish: now.toLocaleString('en-US', {timeZone: 'America/Chicago'}),
-        })
-    }
+    data: {
+        phase: "end-screen",
+    },
 };

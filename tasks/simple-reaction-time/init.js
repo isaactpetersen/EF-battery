@@ -1,6 +1,6 @@
 // Instructions time
-const time_instructions_practice_1 = 5;
-const time_instructions_practice_2 = 5;
+const timeInstructionsPractice1 = 5;
+const timeInstructionsPractice2 = 5;
 const time_instructions_test = 5;
 const time_instructions_rest = 5;
 
@@ -23,6 +23,6 @@ const append_to_datafile = "";
 
 const jsPsych = initJsPsych({
     on_finish: function () {
-        redirectToNextPage();
+        redirectToSona();
     }
 });

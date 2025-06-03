@@ -5,19 +5,21 @@ const fixation_duration = 500;
 const blank_duration = 500;
 const response_window = 1000;
 const too_slow_duration = 1500;
-const time_heart_instructions_2 = 5;
-const time_heart_instructions_3 = 5;
-const time_heart_instructions_4 = 3;
-const time_heart_instructions_6 = 5;
-const time_flower_instructions_2 = 5;
-const time_flower_instructions_4 = 5;
-const time_mixed_instructions = 10;
+const timeHeartInstructions1 = 5;
+const timeHeartInstructions2 = 5;
+const timeHeartInstructions3 = 3;
+const timeHeartInstructions5 = 5;
+const timeFlowerInstructions2 = 5;
+const timeFlowerInstructions4 = 5;
+const timeMixedInstructions = 10;
 
 const append_to_datafile = "";
 
 const jsPsych = initJsPsych({
     on_finish: function () {
-        redirectToNextPage();
+        let address = getCurrentURLHead();
+        address += "experiment-simple-reaction-time.html";
+        redirectToNextTask(address);
     }
 });
 

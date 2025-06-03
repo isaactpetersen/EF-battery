@@ -99,10 +99,6 @@ let appendData = function(data) {
 }
 
 /* ************************************ */
-/* Define experimental variables */
-/* ************************************ */
-
-/* ************************************ */
 /* Set up jsPsych blocks */
 /* ************************************ */
 //Set up post task questionnaire

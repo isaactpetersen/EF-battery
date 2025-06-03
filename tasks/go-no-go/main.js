@@ -1,41 +1,44 @@
-//We define the global timeline for this experiment
+// We define the global timeline for this experiment
 let timeline = [];
 
-//Fullscreen on
-timeline.push(fullscreen_on);
+// Fullscreen on
+timeline.push(fullscreenOn);
 
-//Get browser and URL info
-timeline.push(get_browser_and_url_info);
+// Get browser and URL info
+timeline.push(getBrowserAndURLInfo);
 
-//Cursor off
-timeline.push(cursor_off);
+// Cursor off
+timeline.push(cursorOff);
 
-//We add the instructions sub-timeline
+// Welcome screen
+timeline.push(welcomeScreen);
+
+// We add the instructions sub-timeline
 timeline.push(instructionsBeforePractice);
 
-//We add the practice sub-timeline
+// We add the practice sub-timeline
 timeline.push(practice_loop);
 
-//We reset the trial counter
+// We reset the trial counter
 timeline.push(reset_block);
 
-//We add the instructions before the main test
-timeline.push(instructionsBeforeMainTask);
+// We add the instructions before the main test
+timeline.push(instructionsBeforeTest);
 
-//We add the main task
+// We add the main task
 timeline.push(main_task_loop);
 
-//We upload the data
-timeline.push(upload_data);
+// We upload the data
+timeline.push(uploadData);
 
-//Cursor on
-timeline.push(cursor_on);
+// Cursor on
+timeline.push(cursorOn);
 
-//We add the goodbye message
-timeline.push(goodbye);
+// We add the goodbye message
+timeline.push(endScreen);
 
-//Fullscreen off
-timeline.push(fullscreen_off);
+// Fullscreen off
+timeline.push(fullscreenOff);
 
-//We run the experiment
+// We run the experiment
 jsPsych.run(timeline);

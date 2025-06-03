@@ -3,7 +3,7 @@ jsPsych code for executive functioning battery
 
 # Structure
 
- - Combination of three executive functioning tasks:
+ - Combination of four executive functioning tasks:
     1. [Spatial Recall](https://github.com/isaactpetersen/spatial-recall)
     1. [Go/No-Go](https://github.com/isaactpetersen/go-nogo)
     1. [Hearts and Flowers](https://github.com/isaactpetersen/jspsych-hearts-flowers)

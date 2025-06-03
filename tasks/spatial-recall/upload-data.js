@@ -1,9 +1,9 @@
-let upload_data = {
+let uploadData = {
     type: jsPsychCallFunction,
     async: true,
     func: function (done) {
         let last_trial_data = jsPsych.data.getLastTrialData().trials[0];
-        let file_name = "go-no-go";
+        let file_name = "spatial-recall";
         if ("subid" in last_trial_data) {
             file_name += "_" + last_trial_data["subid"] + append_to_datafile;
         }
@@ -13,7 +13,7 @@ let upload_data = {
 
         if (current_html[0].startsWith("http")) {
             let save_url = "write_data_new.php"
-            let data_dir = "results/go-no-go/"
+            let data_dir = "results/spatial-recall/"
             try {
                 let response_data = saveData(save_url, data_dir, file_name, extension);
                 done(response_data);
@@ -25,27 +25,4 @@ let upload_data = {
             done(true);
         }
     }
-}
-
-function saveData(save_url, data_dir, file_name, extension) {
-    return new Promise((resolve, reject) => {
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', save_url);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    resolve();
-                } else {
-                    reject(new Error('Error saving data: ' + xhr.status));
-                }
-            }
-        };
-        xhr.send(JSON.stringify({
-            file_name: file_name,
-            extension: extension,
-            data_dir: data_dir,
-            data: jsPsych.data.get().csv()
-        }));
-    });
 }
