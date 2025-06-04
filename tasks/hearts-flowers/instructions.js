@@ -272,8 +272,8 @@ const mixedInstructions = {
 const endScreen = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: "<div class='instructions'>" +
-        "<p>You have completed the final task.</p>" +
-        "<p>Press Enter to end the experiment.</p></div>",
+        "<p>You have completed the third task.</p>" +
+        "<p>Press <b>Enter</b> to access the <b>fourth and final task</b>.</p>",
     choices: ["Enter"],
     save_trial_parameters: {
         stimulus: false,

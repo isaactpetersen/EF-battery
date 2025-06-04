@@ -1,8 +1,8 @@
 // WELCOME SCREEN ------------------------------------------------------------------------------------------------------
 const welcomeScreen = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: "<p>Now, you will complete three cognitive tasks.</p>" +
-        "<p>All together, these three tasks will last approximately 20 minutes.</p>" +
+    stimulus: "<p>Now, you will complete four cognitive tasks.</p>" +
+        "<p>All together, these four tasks will last approximately 30 minutes.</p>" +
         "<p>The tasks require a keyboard.</p>" +
         "<p><b><u>Please complete the tasks using a computer with a keyboard!</u></b></p>" +
         "<p>Please do not use a smartphone, tablet, or other mobile device.</p>" +

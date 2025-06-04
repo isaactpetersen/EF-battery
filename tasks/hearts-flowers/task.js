@@ -1,4 +1,28 @@
-const heart_practice_trial = {
+// FUNCTIONS -----------------------------------------------------------------------------------------------------------
+function createHeartFlowerStim(icon, side) {
+    return `<div class="heart-flower-stim heart-flower-${side}">
+    <img alt=${icon} src="tasks/hearts-flowers/${icon}.png" />
+  </div>`;
+}
+
+function getCorrectResponse(icon, side) {
+    if (icon === "heart") {
+        if (side === "left") {
+            return "a";
+        } else {
+            return "l";
+        }
+    } else {
+        if (side === "left") {
+            return "l";
+        } else {
+            return "a";
+        }
+    }
+}
+
+// PRACTICE TRIAL ------------------------------------------------------------------------------------------------------
+const heartPracticeTrial = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: () => {
         return createHeartFlowerStim(
@@ -33,7 +57,7 @@ const heart_practice_trial = {
     on_finish: appendData,
 };
 
-const flower_practice_trial = {
+const flowerPracticeTrial = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: () => {
         return createHeartFlowerStim(
@@ -68,7 +92,8 @@ const flower_practice_trial = {
     on_finish: appendData,
 };
 
-const heart_flower_trial = {
+// TEST TRIAL ----------------------------------------------------------------------------------------------------------
+const heartFlowerTrial = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: () => {
         return createHeartFlowerStim(
@@ -116,7 +141,8 @@ const heart_flower_trial = {
     },
 };
 
-const heart_flower_gap = {
+// COMMON TRIALS -------------------------------------------------------------------------------------------------------
+const heartFlowerGap = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: `<div class="heart-flower-stim"></div>`,
     choices: "NO_KEYS",
@@ -129,7 +155,7 @@ const heart_flower_gap = {
     },
 };
 
-const heart_flower_fixation = {
+const heartFlowerFixation = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: `<div class="heart-flower-stim heart-flower-fixation">
     <p>+</p>
@@ -145,7 +171,7 @@ const heart_flower_fixation = {
     },
 };
 
-const too_slow = {
+const tooSlow = {
     timeline: [
         {
             type: jsPsychHtmlKeyboardResponseCustom,
@@ -173,8 +199,9 @@ const too_slow = {
     },
 };
 
-const heart_practice_timeline = {
-    timeline: [heart_flower_fixation, heart_flower_gap, heart_practice_trial],
+// TIMELINES -----------------------------------------------------------------------------------------------------------
+const heartPracticeTimeline = {
+    timeline: [heartFlowerFixation, heartFlowerGap, heartPracticeTrial],
     timeline_variables: heart_practice_trials,
     sample: {
         type: "fixed-repetitions",
@@ -185,8 +212,8 @@ const heart_practice_timeline = {
     },
 };
 
-const flower_practice_timeline = {
-    timeline: [heart_flower_fixation, heart_flower_gap, flower_practice_trial],
+const flowerPracticeTimeline = {
+    timeline: [heartFlowerFixation, heartFlowerGap, flowerPracticeTrial],
     timeline_variables: flower_practice_trials,
     sample: {
         type: "fixed-repetitions",
@@ -197,12 +224,12 @@ const flower_practice_timeline = {
     },
 };
 
-const heart_flower_timeline = {
+const heartFlowerTimeline = {
     timeline: [
-        heart_flower_fixation,
-        heart_flower_gap,
-        heart_flower_trial,
-        too_slow,
+        heartFlowerFixation,
+        heartFlowerGap,
+        heartFlowerTrial,
+        tooSlow,
     ],
     timeline_variables: trials,
     sample: {
@@ -214,24 +241,9 @@ const heart_flower_timeline = {
     },
 };
 
-function createHeartFlowerStim(icon, side) {
-    return `<div class="heart-flower-stim heart-flower-${side}">
-    <img src="tasks/hearts-flowers/${icon}.png" />
-  </div>`;
-}
-
-function getCorrectResponse(icon, side) {
-    if (icon === "heart") {
-        if (side === "left") {
-            return "a";
-        } else {
-            return "l";
-        }
-    } else {
-        if (side === "left") {
-            return "l";
-        } else {
-            return "a";
-        }
-    }
+// UPLOAD DATA ---------------------------------------------------------------------------------------------------------
+let uploadDataNode = {
+    type: jsPsychCallFunction,
+    async: true,
+    func: uploadData,
 }

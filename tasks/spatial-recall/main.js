@@ -4,8 +4,8 @@ timeline.push(welcomeScreen);
 timeline.push(fullscreenOn);
 timeline.push(getBrowserAndURLInfo);
 timeline.push(instructions);
-timeline.push(recall_forwards);
-timeline.push(uploadData);
+timeline.push(recallForwards);
+timeline.push(uploadDataNode);
 timeline.push(endScreen);
 timeline.push(fullscreenOff);
 

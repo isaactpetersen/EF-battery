@@ -1,33 +1,14 @@
-let false_in_a_row = 0;
+timelineRecall = [];
 
-let appendDataSpatialRecall = function (data) {
-    //var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY)
-    let isAtMaxWidth = (screen.width - window.innerWidth) === 0;
-    let isAtMaxHeight = (screen.height - window.innerHeight) === 0;
-    let isFullScreen = (isAtMaxWidth && isAtMaxHeight);
-    jsPsych.data.addDataToLastTrial({
-        full_screen: isFullScreen,
-    });
-    if ("sequence" in jsPsych.data.getLastTrialData().trials[0]) {
-        jsPsych.data.addDataToLastTrial({
-            trial_num: current_trial,
-        })
-        current_trial = current_trial + 1
-    }
-
-}
-
-timeline_recall = [];
-
-let fixation_cross = {
+let fixationCross = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: '<p style="font-size: 48px;">+</p>',
     choices: 'NO_KEYS',
     trial_duration: 1200,
 };
-timeline_recall.push(fixation_cross);
+timelineRecall.push(fixationCross);
 
-let spatial_recall = {
+let spatialRecall = {
     type: jsPsychSpatialRecall,
     grid_size: 4,
     sequence: jsPsych.timelineVariable('sequence'),
@@ -36,26 +17,33 @@ let spatial_recall = {
         exp_id: "spatial-recall",
         exp_stage: "test",
     },
+    on_finish: appendData,
 };
-timeline_recall.push(spatial_recall);
+timelineRecall.push(spatialRecall);
 
-let stopping_function = {
+let stoppingFunction = {
     type: jsPsychCallFunction,
     func: function () {
-        if (!jsPsych.data.getLastTrialData().values()[0].correct) { //We check if the last trial was correct
-            false_in_a_row += 1; // If it wasn't, we add 1 to "false_in_a_row"
+        if (!jsPsych.data.getLastTrialData().values()[0].correct) {  //We check if the last trial was correct
+            false_in_a_row += 1;  // If it wasn't, we add 1 to "false_in_a_row"
         } else {
-            false_in_a_row = 0; // If it was, we reset "false_in_a_row"
+            false_in_a_row = 0;  // If it was, we reset "false_in_a_row"
         }
-        if (false_in_a_row === limit_error_to_end_task) { // If we reach the limit (2 false in a row), we end the timeline
+        if (false_in_a_row === limit_error_to_end_task) {  // If we reach the limit (2 false in a row), we end the timeline
             jsPsych.endCurrentTimeline();
         }
     },
 };
-timeline_recall.push(stopping_function);
+timelineRecall.push(stoppingFunction);
 
-let recall_forwards = {
-    timeline: timeline_recall,
+let recallForwards = {
+    timeline: timelineRecall,
     timeline_variables: stimuli,
-    on_finish: appendDataSpatialRecall,
 };
+
+// UPLOAD DATA ---------------------------------------------------------------------------------------------------------
+let uploadDataNode = {
+    type: jsPsychCallFunction,
+    async: true,
+    func: uploadData,
+}

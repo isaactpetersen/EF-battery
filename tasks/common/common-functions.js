@@ -216,10 +216,10 @@ let resetBlock = {
 }
 
 /**
- * Appends fullscreen info to the data of the current trial.
+ * Appends fullscreen info and current trial number to the data of the current trial.
+ * In the case of the Spatial Recall task, updates the trial only on Sequence trials.
  */
 let appendData = function() {
-    //var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY)
     let isAtMaxWidth = (screen.width - window.innerWidth) === 0;
     let isAtMaxHeight = (screen.height - window.innerHeight) === 0;
     let isFullScreen = (isAtMaxWidth && isAtMaxHeight);
@@ -228,5 +228,34 @@ let appendData = function() {
         trial_num: current_trial,
         full_screen: isFullScreen,
     })
-    current_trial = current_trial + 1
+    current_trial = current_trial + 1;
+}
+
+/**
+ * Calls the function saveData with the appropriate parameters, or save the data locally, depending on the parameters.
+ * @param done
+ */
+let uploadData = function(done) {
+    let last_trial_data = jsPsych.data.getLastTrialData().trials[0];
+    let file_name = task;
+    if ("subid" in last_trial_data) {
+        file_name += task + "_" + last_trial_data["subid"] + append_to_datafile;
+    }
+    let extension = ".csv";
+
+    let current_html = window.location.href.split("/"); // We get the current URL, and separate all the elements by the "/" symbol
+
+    if (current_html[0].startsWith("http") && !current_html[2].startsWith("localhost")) {
+        let save_url = "write_data_new.php";
+        let data_dir = "results/" + task + "/";
+        try {
+            let response_data = saveData(save_url, data_dir, file_name, extension);
+            done(response_data);
+        } catch (error) {
+            console.error(error);
+        }
+    } else if (current_html[0].startsWith("file") || current_html[2].startsWith("localhost")) {
+        jsPsych.data.get().localSave("csv", file_name + extension);
+        done(true);
+    }
 }

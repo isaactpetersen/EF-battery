@@ -19,9 +19,7 @@ const firstBlankTrial = {
         exp_stage: "practice"
     },
     choices: [" "],
-    on_finish: function() {
-        appendData();
-    }
+    on_finish: appendData
 }
 
 const practiceTrial = {
@@ -35,9 +33,7 @@ const practiceTrial = {
         exp_stage: "practice"
     },
     choices: [" "],
-    on_finish: function() {
-        appendData();
-    }
+    on_finish: appendData
 };
 
 let timelinePracticeBlock = [];
@@ -70,9 +66,7 @@ const testTrial = {
         exp_stage: "test"
     },
     choices: [" "],
-    on_finish: function() {
-        appendData();
-    }
+    on_finish: appendData
 }
 
 const shortRTMessage = {
@@ -128,3 +122,10 @@ const testBlocks = {
         phase: "test",
     },
 };
+
+// UPLOAD DATA ---------------------------------------------------------------------------------------------------------
+let uploadDataNode = {
+    type: jsPsychCallFunction,
+    async: true,
+    func: uploadData,
+}

@@ -14,6 +14,7 @@ const timeFlowerInstructions4 = 1;
 const timeMixedInstructions = 1;
 
 const append_to_datafile = "_test";
+const task = "hearts-flowers";
 
 const jsPsych = initJsPsych({
     on_finish: function () {

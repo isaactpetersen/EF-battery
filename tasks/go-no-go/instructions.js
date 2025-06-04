@@ -130,7 +130,7 @@ const endScreen = {
 
     // What will be shown on screen
     stimulus: "<p>This second task is complete.</p>" +
-              "<p>Press <b>Enter</b> to access the <b>third and final task</b>.</p>",
+              "<p>Press <b>Enter</b> to access the <b>third task</b>.</p>",
 
     choices: ["Enter"],  // Enter key, we will only move forwards on the timeline if the user presses it
     save_trial_parameters: {

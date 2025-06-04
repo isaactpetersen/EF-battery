@@ -8,7 +8,7 @@ timeline.push(instructionsPractice);
 timeline.push(practiceBlock);
 timeline.push(instructionsTest);
 timeline.push(testBlocks);
-timeline.push(uploadData);
+timeline.push(uploadDataNode);
 timeline.push(cursorOn);
 timeline.push(endScreen);
 timeline.push(fullscreenOff);

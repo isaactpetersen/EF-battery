@@ -9,9 +9,10 @@ const numberOfBlocksTest = 3;
 const numberOfTrialsPerBlockTest = 50;
 const minAcceptableTimeRT = 125;
 const thresholdTrialsBelowRT = 5;
-const stim = '<div class = shapebox><div id = cross></div></div>'
+const stim = '<div class = shape-box><div id = cross></div></div>'
 
 const append_to_datafile = "";
+const task = "simple-reaction-time";
 
 const jsPsych = initJsPsych({
     on_finish: function () {

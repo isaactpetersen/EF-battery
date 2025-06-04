@@ -17,7 +17,7 @@ timeline.push(welcomeScreen);
 timeline.push(instructionsBeforePractice);
 
 // We add the practice sub-timeline
-timeline.push(practice_loop);
+timeline.push(practiceLoop);
 
 // We reset the trial counter
 timeline.push(resetBlock);
@@ -26,10 +26,10 @@ timeline.push(resetBlock);
 timeline.push(instructionsBeforeTest);
 
 // We add the main task
-timeline.push(main_task_loop);
+timeline.push(mainTaskLoop);
 
 // We upload the data
-timeline.push(uploadData);
+timeline.push(uploadDataNode);
 
 // Cursor on
 timeline.push(cursorOn);

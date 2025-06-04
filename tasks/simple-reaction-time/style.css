@@ -1,4 +1,8 @@
-.shapebox {
+:root {
+    color-scheme: only light;
+}
+
+.shape-box {
     width: 20vw;
     height: 20vw;
     position: absolute;

@@ -10,6 +10,7 @@ const blocks_main = 50; // Number of times the test trial blocks are shown
 const timeInstructions = 10;
 
 const append_to_datafile = "";
+const task = "go-no-go";
 
 //We initialize jsPsych
 const jsPsych = initJsPsych({
