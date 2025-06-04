@@ -16,7 +16,9 @@ jsPsych code for executive functioning battery
 
 # To-Do
 
-- Update the SONA `experiment_id` and `credit_token` in the `init.js` and `init-test.js` files in the following folder: `/hearts-flowers/`
+# For Deployment
+
+- Update the SONA `experiment_id` and `credit_token` in the [`common-functions.js`](https://github.com/isaactpetersen/EF-battery/blob/main/tasks/common/common-functions.js) file in the following folder: `/tasks/common/`
 
 # Post-Processing
 
