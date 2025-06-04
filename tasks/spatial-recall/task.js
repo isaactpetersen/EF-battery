@@ -1,7 +1,6 @@
-let current_trial = 1;
 let false_in_a_row = 0;
 
-let appendData = function (data) {
+let appendDataSpatialRecall = function (data) {
     //var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY)
     let isAtMaxWidth = (screen.width - window.innerWidth) === 0;
     let isAtMaxHeight = (screen.height - window.innerHeight) === 0;
@@ -19,13 +18,6 @@ let appendData = function (data) {
 }
 
 timeline_recall = [];
-
-// var screen_check = {
-//     type: jsPsychScreenCheck,
-//     min_width: 258,
-//     min_height: 364
-//   };
-// timeline_recall.push(screen_check);
 
 let fixation_cross = {
     type: jsPsychHtmlKeyboardResponseCustom,
@@ -65,5 +57,5 @@ timeline_recall.push(stopping_function);
 let recall_forwards = {
     timeline: timeline_recall,
     timeline_variables: stimuli,
-    on_finish: appendData,
+    on_finish: appendDataSpatialRecall,
 };

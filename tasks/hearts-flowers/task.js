@@ -1,24 +1,3 @@
-let current_trial = 1;
-
-let reset_block = {
-    type: jsPsychCallFunction,
-    func: function () {
-        current_trial = 1
-    },
-}
-
-let appendData = function (data) {
-    //var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY)
-    let isAtMaxWidth = (screen.width - window.innerWidth) === 0;
-    let isAtMaxHeight = (screen.height - window.innerHeight) === 0;
-    let isFullScreen = (isAtMaxWidth && isAtMaxHeight);
-    jsPsych.data.addDataToLastTrial({
-        trial_num: current_trial,
-        full_screen: isFullScreen,
-    })
-    current_trial = current_trial + 1
-}
-
 const heart_practice_trial = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: () => {
@@ -120,7 +99,7 @@ const heart_flower_trial = {
         }
     },
     on_finish: (data) => {
-        appendData(data);
+        appendData();
         data.correct = data.response === data.correct_response;
         if (data.phase === "test") {
             const test_data = jsPsych.data

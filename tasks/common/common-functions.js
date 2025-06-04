@@ -201,3 +201,32 @@ function saveData(save_url, data_dir, file_name, extension) {
         }));
     });
 }
+
+let current_trial = 1;
+
+/**
+ * Resets the current trial counter to 1.
+ * @type {{func: resetBlock.func, type}}
+ */
+let resetBlock = {
+    type: jsPsychCallFunction,
+    func: function () {
+        current_trial = 1
+    },
+}
+
+/**
+ * Appends fullscreen info to the data of the current trial.
+ */
+let appendData = function() {
+    //var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY)
+    let isAtMaxWidth = (screen.width - window.innerWidth) === 0;
+    let isAtMaxHeight = (screen.height - window.innerHeight) === 0;
+    let isFullScreen = (isAtMaxWidth && isAtMaxHeight);
+
+    jsPsych.data.addDataToLastTrial({
+        trial_num: current_trial,
+        full_screen: isFullScreen,
+    })
+    current_trial = current_trial + 1
+}

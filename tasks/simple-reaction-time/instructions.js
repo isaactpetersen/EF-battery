@@ -77,7 +77,7 @@ const instructionsTestText = "<div class='instructions'><p>We will now start the
     "Respond to the \"X\" as quickly as possible by pressing the space bar.</p>" +
     "There will be two breaks.</p></div>";
 
-for (let i = time_instructions_test; i > 0; i--) {
+for (let i = timeInstructionsTest; i > 0; i--) {
     const instructionsTest1 = {
         type: jsPsychHtmlKeyboardResponseCustom,
         stimulus: instructionsTestText +
@@ -107,11 +107,9 @@ const instructionsTest = {
 };
 
 // INSTRUCTIONS REST ---------------------------------------------------------------------------------------------------
-let timelineInstructionsRest = [];
-
 const instructionsRest = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: "<p>Take a break!</p><br><p><b>Press Enter when you are ready to continue.</b></p><p>&nbsp;</p>",
+    stimulus: "<p>Take a break!</p><p><b>Press Enter when you are ready to continue.</b></p><p>&nbsp;</p>",
     choices: ["Enter"],
     save_trial_parameters: {
         stimulus: false,
@@ -120,7 +118,6 @@ const instructionsRest = {
         phase: "instructions-rest",
     },
 };
-timelineInstructionsRest.push(instructionsRest);
 
 // END SCREEN ----------------------------------------------------------------------------------------------------------
 const endScreen = {

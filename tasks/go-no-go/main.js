@@ -20,7 +20,7 @@ timeline.push(instructionsBeforePractice);
 timeline.push(practice_loop);
 
 // We reset the trial counter
-timeline.push(reset_block);
+timeline.push(resetBlock);
 
 // We add the instructions before the main test
 timeline.push(instructionsBeforeTest);

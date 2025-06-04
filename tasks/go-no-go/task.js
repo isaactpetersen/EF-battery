@@ -3,31 +3,7 @@ let getLastTrialKeyPressed = function () {
     return jsPsych.data.getLastTrialData().select('data');
 }
 
-// PRACTICE TRIALS
-
-let current_trial = 1
-
-let reset_block = {
-    type: jsPsychCallFunction,
-    func: function () {
-        current_trial = 1
-    },
-}
-
-let appendData = function (data) {
-    //var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY)
-    let isAtMaxWidth = (screen.width - window.innerWidth) === 0;
-    let isAtMaxHeight = (screen.height - window.innerHeight) === 0;
-    let isFullScreen = (isAtMaxWidth && isAtMaxHeight);
-
-    jsPsych.data.addDataToLastTrial({
-        trial_num: current_trial,
-        full_screen: isFullScreen,
-    })
-    current_trial = current_trial + 1
-}
-
-//Trial
+// Trial
 let practice_trial = {
     type: jsPsychCategorizeHtmlCustom, // Plugin to use
     stimulus: jsPsych.timelineVariable("stimulus"), // Stimulus to use: the attribute "stimulus" from the trial
@@ -44,7 +20,7 @@ let practice_trial = {
     on_finish: appendData
 }
 
-//Practice loop
+// Practice loop
 let practice_loop = {
     timeline: [practice_trial], //The timeline of one trial
     timeline_variables: practice_trials, // The trials to apply
@@ -53,7 +29,7 @@ let practice_loop = {
 
 // MAIN TASK TRIALS
 
-//Trial
+// Trial
 let main_task_trial = {
     type: jsPsychCategorizeHtmlCustom,
     stimulus: jsPsych.timelineVariable("stimulus"),
@@ -69,7 +45,7 @@ let main_task_trial = {
     on_finish: appendData
 }
 
-//Experiment loop
+// Experiment loop
 let main_task_loop = {
     timeline: [main_task_trial], //The timeline of one trial
     timeline_variables: main_trials,
