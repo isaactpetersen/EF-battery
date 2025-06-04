@@ -9,6 +9,7 @@ const numberOfBlocksTest = 3;
 const numberOfTrialsPerBlockTest = 50;
 const minAcceptableTimeRT = 125;
 const thresholdTrialsBelowRT = 5;
+let trialsBelowRT = 0;
 const stim = '<div class = shape-box><div id = cross></div></div>'
 
 const minTimeBeforeStimulus = 2000;
