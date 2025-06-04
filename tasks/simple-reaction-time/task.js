@@ -4,7 +4,7 @@
  * @returns {number} A random number from an exponential distribution.
  */
 function getTrialTime(delay = 0) {
-    return Math.min(-Math.log(Math.random()) * 1000, 4500) + delay
+    return Math.min(-Math.log(Math.random()) * 1000 + delay, maxTimeBeforeStimulus)
 }
 
 // PRACTICE TRIAL ------------------------------------------------------------------------------------------------------
@@ -12,7 +12,7 @@ const firstBlankTrial = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: "",
     stimulus_duration: 0,  // Placeholder
-    trial_duration: 2000,  // Placeholder
+    trial_duration: minTimeBeforeStimulus,  // Placeholder
     response_ends_trial: false,
     data: {
         trial_id: "stim-0",
@@ -25,8 +25,8 @@ const firstBlankTrial = {
 const practiceTrial = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: stim,
-    stimulus_duration: 2000,
-    trial_duration: 6500,  // Placeholder
+    stimulus_duration: minTimeBeforeStimulus,
+    trial_duration: maxTimeBeforeStimulus,  // Placeholder
     response_ends_trial: false,
     data: {
         trial_id: "stim",
@@ -37,10 +37,10 @@ const practiceTrial = {
 };
 
 let timelinePracticeBlock = [];
-getTrialTime(2000);
+getTrialTime(minTimeBeforeStimulus);
 timelinePracticeBlock.push(firstBlankTrial);
 for (let i = 0; i < numberOfTrialsPractice; i++) {
-    practiceTrial.trial_duration = getTrialTime(2000);
+    practiceTrial.trial_duration = getTrialTime(minTimeBeforeStimulus);
     timelinePracticeBlock.push(practiceTrial);
 }
 
@@ -58,8 +58,8 @@ const practiceBlock = {
 const testTrial = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: stim,
-    stimulus_duration: 2000,
-    trial_duration: 4500,  // Placeholder
+    stimulus_duration: minTimeBeforeStimulus,
+    trial_duration: maxTimeBeforeStimulus,  // Placeholder
     response_ends_trial: false,
     data: {
         trial_id: "stim",
@@ -74,8 +74,8 @@ const shortRTMessage = {
     stimulus: "<p>We have detected a number of trials where the reaction time was implausibly fast.</p>" +
               "<p>Please make sure that you hit the space bar <strong>once</strong>, as " +
               "quickly as possible <strong>only after the large X appears</strong>.</p></div>",
-    stimulus_duration: 9000,
-    trial_duration: 9000,
+    stimulus_duration: timeInstructionsTooFast,
+    trial_duration: timeInstructionsTooFast,
     response_ends_trial: false,
     choices: 'none',
     data: {
@@ -101,10 +101,10 @@ const conditionalMessageShortRT = {
 
 let timelineTestBlocks = [];
 for (let i = 0; i < numberOfBlocksTest; i++){
-    getTrialTime(0);
+    getTrialTime(minTimeBeforeStimulus);
     timelineTestBlocks.push(firstBlankTrial);
     for (let j = 0; j < numberOfTrialsPerBlockTest; j++){
-        testTrial.trial_duration = getTrialTime(0);
+        testTrial.trial_duration = getTrialTime(minTimeBeforeStimulus);
         timelineTestBlocks.push(testTrial);
         timelineTestBlocks.push(conditionalMessageShortRT);
     }
