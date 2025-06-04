@@ -7,6 +7,9 @@ const timeInstructionsTest = 1;
 const numberOfTrialsPractice = 3;
 const numberOfBlocksTest = 2;
 const numberOfTrialsPerBlockTest = 3;
+const minAcceptableTimeRT = 125;
+const thresholdTrialsBelowRT = 1;
+let trialsBelowRT = 0;
 const stim = '<div class = shapebox><div id = cross></div></div>'
 
 const append_to_datafile = "";

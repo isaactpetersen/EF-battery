@@ -10,7 +10,7 @@ function getTrialTime(delay = 0) {
 // PRACTICE TRIAL ------------------------------------------------------------------------------------------------------
 const firstBlankTrial = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: stim,
+    stimulus: "",
     stimulus_duration: 0,  // Placeholder
     trial_duration: 2000,  // Placeholder
     response_ends_trial: false,
@@ -77,12 +77,11 @@ const testTrial = {
 
 const shortRTMessage = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: "<div class = centerbox><p class = block-text>We have detected a number of trials where the reaction " +
-              "time was implausibly fast.  Please make sure that you hit the space bar <strong>once</strong>, as " +
+    stimulus: "<p>We have detected a number of trials where the reaction time was implausibly fast.</p>" +
+              "<p>Please make sure that you hit the space bar <strong>once</strong>, as " +
               "quickly as possible <strong>only after the large X appears</strong>.</p></div>",
-    timing_stim: 9000,
-    timing_response: 0,
-    timing_post_trial: 0,
+    stimulus_duration: 9000,
+    trial_duration: 9000,
     response_ends_trial: false,
     choices: 'none',
     data: {
@@ -95,7 +94,13 @@ const conditionalMessageShortRT = {
     timeline: [shortRTMessage],
     conditional_function: () => {
         let data = jsPsych.data.get().last(1).values()[0];
-        console.log(data);
+        if (data.rt < minAcceptableTimeRT) {
+            trialsBelowRT += 1;
+        }
+        if (trialsBelowRT === thresholdTrialsBelowRT) {
+            trialsBelowRT = 0;
+            return true;
+        }
         return false;
     }
 }

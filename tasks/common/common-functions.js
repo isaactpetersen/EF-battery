@@ -36,7 +36,7 @@ let fullscreenOn = {
     message: "This task must be completed in fullscreen mode.</br>" +
         "Please avoid all distractions, and do not press the ESC key during the task.</br></br>" +
         "If you quit the fullscreen mode during the task, please press <b>F11</b> on Windows </br>" +
-        "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br>",
+        "or the combination <b>Control-⌘-F</b> on Mac to come back to fullscreen.</br></br>",
     button_label: 'Continue',
     fullscreen_mode: true,
     on_finish: function () {

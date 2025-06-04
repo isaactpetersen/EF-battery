@@ -1,5 +1,5 @@
 // We define the global timeline for this experiment
-let timeline = [];
+const timeline = [];
 
 // Fullscreen on
 timeline.push(fullscreenOn);
