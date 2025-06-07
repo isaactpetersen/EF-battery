@@ -39,7 +39,7 @@ const instructionsPractice1 = {
 };
 timelineInstructionsPractice.push(instructionsPractice1);
 
-const instructionsPracticeText2 = "<div class='instructions'><p>We will now start with 5 practice trials.</p></div>";
+const instructionsPracticeText2 = "<div class='instructions'><p>We will now start with " + numberOfTrialsPractice + " practice trials.</p></div>";
 
 for (let i = timeInstructionsPractice2; i > 0; i--) {
     const instructionsPractice2 = {
@@ -73,9 +73,13 @@ const instructionsPractice = {
 // INSTRUCTIONS TEST ---------------------------------------------------------------------------------------------------
 let timelineInstructionsTest = [];
 
-const instructionsTestText = "<div class='instructions'><p>We will now start the test.</p>" +
-    "Respond to the \"X\" as quickly as possible by pressing the space bar.</p>" +
-    "There will be two breaks.</p></div>";
+let instructionsTestText = "<div class='instructions'><p>We will now start the test.</p>" +
+    "Respond to the \"X\" as quickly as possible by pressing the space bar.</p>"
+if (numberOfBlocksTest === 2) {
+    instructionsTestText += "There will be 1 break.</p></div>";
+} else if (numberOfBlocksTest > 2) {
+    instructionsTestText += "There will be " + numberOfBlocksTest + " breaks.</p></div>";
+}
 
 for (let i = timeInstructionsTest; i > 0; i--) {
     const instructionsTest1 = {

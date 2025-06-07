@@ -16,7 +16,7 @@ const firstBlankTrial = {
     response_ends_trial: false,
     data: {
         trial_id: "stim-0",
-        exp_stage: "practice"
+        exp_stage: "time-before-first-stim"
     },
     choices: [" "],
     on_finish: appendData
@@ -33,8 +33,14 @@ const practiceTrial = {
         exp_stage: "practice"
     },
     choices: [" "],
-    on_finish: appendData
+    on_finish: addTrialVariables
 };
+
+function addTrialVariables() {
+    let data = jsPsych.data.get().last(1).values()[0];
+    data["answered"] = data["response"] === " ";
+    appendData();
+}
 
 let timelinePracticeBlock = [];
 getTrialTime(minTimeBeforeStimulus);
@@ -66,7 +72,7 @@ const testTrial = {
         exp_stage: "test"
     },
     choices: [" "],
-    on_finish: appendData
+    on_finish: addTrialVariables
 }
 
 const shortRTMessage = {

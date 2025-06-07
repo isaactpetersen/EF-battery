@@ -1,7 +1,7 @@
 // WELCOME SCREEN ------------------------------------------------------------------------------------------------------
 const welcomeScreen = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: "<div class='instructions'>Welcome to the final task. It will take around 5 minutes.</p>" +
+    stimulus: "<div class='instructions'>Welcome to the third task. It will take around 5 minutes.</p>" +
         "Press <strong>Enter</strong> to begin.</div>",
     choices: ["Enter"],
     save_trial_parameters: {
