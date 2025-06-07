@@ -39,6 +39,10 @@ const practiceTrial = {
 function addTrialVariables() {
     let data = jsPsych.data.get().last(1).values()[0];
     data["answered"] = data["response"] === " ";
+    if (data.rt < minAcceptableTimeRT && data.phase !== "practice") {
+        trialsBelowRT += 1;
+    }
+    data["trialsBelowRT"] = trialsBelowRT;
     appendData();
 }
 
@@ -93,10 +97,6 @@ const shortRTMessage = {
 const conditionalMessageShortRT = {
     timeline: [shortRTMessage],
     conditional_function: () => {
-        let data = jsPsych.data.get().last(1).values()[0];
-        if (data.rt < minAcceptableTimeRT) {
-            trialsBelowRT += 1;
-        }
         if (trialsBelowRT === thresholdTrialsBelowRT) {
             trialsBelowRT = 0;
             return true;
