@@ -7,14 +7,24 @@ const timeInstructionsTest = 5;
 const numberOfTrialsPractice = 5;
 const numberOfBlocksTest = 3;
 const numberOfTrialsPerBlockTest = 50;
+
+// Stimulus
+const stim = '<div class = shape-box><div id = cross></div></div>'
+const minTimeBeforeStimulus = 2000; // ms
+const maxTimeBeforeStimulus = 6500; // ms
+const durationStimulus = 2000; // ms
+
+// Trials too fast
+const timeInstructionsTooFastPractice = 5;
+let trialsBelowRT = 0;
 const minAcceptableTimeRT = 125;
 const thresholdTrialsBelowRT = 5;
-let trialsBelowRT = 0;
-const stim = '<div class = shape-box><div id = cross></div></div>'
+const timeInstructionsNoResponse = 5;
 
-const minTimeBeforeStimulus = 2000;
-const maxTimeBeforeStimulus = 6500;
-const timeInstructionsTooFast = 9000;
+// Trials without response
+let trialsNoResponse = 0;
+const thresholdTrialsNoResponse = 5;
+const timeInstructionsTooFast = 10;
 
 const append_to_datafile = "";
 const task = "simple-reaction-time";

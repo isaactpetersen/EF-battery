@@ -29,6 +29,14 @@ var jsPsychHtmlKeyboardResponseCustom = (function (jspsych) {
               default: null,
           },
           /**
+           * How long to display a blank screen before showing the stimulus.
+           */
+          time_before_stimulus: {
+              type: jspsych.ParameterType.INT,
+              pretty_name: "Time before stimulus",
+              default: null,
+          },
+          /**
            * How long to show the stimulus.
            */
           stimulus_duration: {
@@ -125,11 +133,18 @@ var jsPsychHtmlKeyboardResponseCustom = (function (jspsych) {
                   allow_held_key: false,
               });
           }
+
+          if (trial.time_before_stimulus !== null) {
+              display_element.querySelector("#jspsych-html-keyboard-response-custom-stimulus").style.visibility = "hidden";
+              this.jsPsych.pluginAPI.setTimeout(() => {
+                  display_element.querySelector("#jspsych-html-keyboard-response-custom-stimulus").style.visibility = "visible";
+              }, trial.time_before_stimulus);
+          }
           // hide stimulus if stimulus_duration is set
           if (trial.stimulus_duration !== null) {
               this.jsPsych.pluginAPI.setTimeout(() => {
                   display_element.querySelector("#jspsych-html-keyboard-response-custom-stimulus").style.visibility = "hidden";
-              }, trial.stimulus_duration);
+              }, trial.stimulus_duration + trial.time_before_stimulus);
           }
           // end trial if trial_duration is set
           if (trial.trial_duration !== null) {

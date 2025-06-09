@@ -70,6 +70,31 @@ const instructionsPractice = {
     },
 };
 
+// WARNING TRIAL TOO FAST PRACTICE -------------------------------------------------------------------------------------
+let timelineTooFastPractice = [];
+
+const instructionsTooFastPractice = "<p>Please wait until the cross appears to press the space bar.</b>";
+
+for (let i = timeInstructionsTooFastPractice; i > 0; i--) {
+    const instructionsTooFastPractice1 = {
+        type: jsPsychHtmlKeyboardResponseCustom,
+        stimulus: instructionsTooFastPractice +
+            "<p style='color:#888888'>Press the space bar to continue.</p>" +
+            "<p><b>" + i.toString() + "</b></p>",
+        choices: "NO_KEYS",
+        trial_duration: 1000,
+    };
+    timelineTooFastPractice.push(instructionsTooFastPractice1);
+}
+
+const instructionsTooFastPractice1 = {
+    type: jsPsychHtmlKeyboardResponseCustom,
+    stimulus: instructionsTooFastPractice + "<p style='color:#ff0000'><b>Press the space bar to " +
+        "continue.</b></p><p>&nbsp;</p>",
+    choices: [" "],
+};
+timelineTooFastPractice.push(instructionsTooFastPractice1);
+
 // INSTRUCTIONS TEST ---------------------------------------------------------------------------------------------------
 let timelineInstructionsTest = [];
 
@@ -122,6 +147,62 @@ const instructionsRest = {
         phase: "instructions-rest",
     },
 };
+
+// INSTRUCTIONS NO RESPONSE --------------------------------------------------------------------------------------------
+let timelineNoResponse = [];
+
+const instructionsNoResponse = "<div class='instructions'>" +
+    "<p>We have detected a number of a trials where <b>you did not press the space bar</b> in time.</p>" +
+    "<p>On each trial, press the <b>space bar</b> as quickly as possible <b>after</b> you see the " +
+    "large <b>\"X\"</b>.</p></div>";
+
+for (let i = timeInstructionsNoResponse; i > 0; i--) {
+    const instructionsNoResponse1 = {
+        type: jsPsychHtmlKeyboardResponseCustom,
+        stimulus: instructionsNoResponse +
+            "<p style='color:#888888'>Press the space bar to continue.</p>" +
+            "<p><b>" + i.toString() + "</b></p>",
+        choices: "NO_KEYS",
+        trial_duration: 1000,
+    };
+    timelineNoResponse.push(instructionsNoResponse1);
+}
+
+const instructionsNoResponse1 = {
+    type: jsPsychHtmlKeyboardResponseCustom,
+    stimulus: instructionsNoResponse + "<p style='color:#ff0000'><b>Press the space bar to " +
+        "continue.</b></p><p>&nbsp;</p>",
+    choices: [" "],
+};
+timelineNoResponse.push(instructionsNoResponse1);
+
+// INSTRUCTIONS TOO FAST -----------------------------------------------------------------------------------------------
+let timelineTooFast = [];
+
+const instructionsTooFast =
+    "<p>We have detected a number of a trials where the reaction time was <b>implausibly fast.</b></p>" +
+    "<p>Please make sure that you hit the space bar <b>once</b>, as " +
+    "quickly as possible <b>only after the large X appears</b>.</p>";
+
+for (let i = timeInstructionsTooFast; i > 0; i--) {
+    const instructionsTooFast1 = {
+        type: jsPsychHtmlKeyboardResponseCustom,
+        stimulus: instructionsTooFast +
+            "<p style='color:#888888'>Press the space bar to continue.</p>" +
+            "<p><b>" + i.toString() + "</b></p>",
+        choices: "NO_KEYS",
+        trial_duration: 1000,
+    };
+    timelineTooFast.push(instructionsTooFast1);
+}
+
+const instructionsTooFast1 = {
+    type: jsPsychHtmlKeyboardResponseCustom,
+    stimulus: instructionsTooFast + "<p style='color:#ff0000'><b>Press the space bar to " +
+        "continue.</b></p><p>&nbsp;</p>",
+    choices: [" "],
+};
+timelineTooFast.push(instructionsTooFast1);
 
 // END SCREEN ----------------------------------------------------------------------------------------------------------
 const endScreen = {
