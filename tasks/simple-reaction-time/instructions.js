@@ -18,7 +18,7 @@ let timelineInstructionsPractice = [];
 const instructionsPracticeText1 = "<div class='instructions'>" +
     "<p>In this experiment, we are testing how fast you can respond.</p>" +
     "<p>On each trial, press the <b>space bar</b> as quickly as possible <strong>after</strong> you see the " +
-    "large <b>\"X\"</b>.</p></div>";
+    "large <b>X</b>.</p></div>";
 
 for (let i = timeInstructionsPractice1; i > 0; i--) {
     const instructionsPractice1 = {
@@ -70,10 +70,36 @@ const instructionsPractice = {
     },
 };
 
+// WARNING TRIAL NO RESPONSE PRACTICE ----------------------------------------------------------------------------------
+let timelineNoResponsePractice = [];
+
+const instructionsNoResponsePractice = "<p>Please press the <b>space bar</b> as soon as you see the large " +
+    "<b>X</b> appear.";
+
+for (let i = timeInstructionsTooFastPractice; i > 0; i--) {
+    const instructionsNoResponsePractice1 = {
+        type: jsPsychHtmlKeyboardResponseCustom,
+        stimulus: instructionsNoResponsePractice +
+            "<p style='color:#888888'>Press the space bar to continue.</p>" +
+            "<p><b>" + i.toString() + "</b></p>",
+        choices: "NO_KEYS",
+        trial_duration: 1000,
+    };
+    timelineNoResponsePractice.push(instructionsNoResponsePractice1);
+}
+
+const instructionsNoResponsePractice1 = {
+    type: jsPsychHtmlKeyboardResponseCustom,
+    stimulus: instructionsNoResponsePractice + "<p style='color:#ff0000'><b>Press the space bar to " +
+        "continue.</b></p><p>&nbsp;</p>",
+    choices: [" "],
+};
+timelineNoResponsePractice.push(instructionsNoResponsePractice1);
+
 // WARNING TRIAL TOO FAST PRACTICE -------------------------------------------------------------------------------------
 let timelineTooFastPractice = [];
 
-const instructionsTooFastPractice = "<p>Please wait until the cross appears to press the space bar.</b>";
+const instructionsTooFastPractice = "<p>Please wait until the large <b>X</b> appears to press the space bar.</b>";
 
 for (let i = timeInstructionsTooFastPractice; i > 0; i--) {
     const instructionsTooFastPractice1 = {
@@ -99,7 +125,7 @@ timelineTooFastPractice.push(instructionsTooFastPractice1);
 let timelineInstructionsTest = [];
 
 let instructionsTestText = "<div class='instructions'><p>We will now start the test.</p>" +
-    "Respond to the \"X\" as quickly as possible by pressing the space bar.</p>"
+    "Respond to the large <b>X</b> as quickly as possible by pressing the space bar.</p>"
 if (numberOfBlocksTest === 2) {
     instructionsTestText += "There will be 1 break.</p></div>";
 } else if (numberOfBlocksTest > 2) {
@@ -154,7 +180,7 @@ let timelineNoResponse = [];
 const instructionsNoResponse = "<div class='instructions'>" +
     "<p>We have detected a number of a trials where <b>you did not press the space bar</b> in time.</p>" +
     "<p>On each trial, press the <b>space bar</b> as quickly as possible <b>after</b> you see the " +
-    "large <b>\"X\"</b>.</p></div>";
+    "large <b>X</b>.</p></div>";
 
 for (let i = timeInstructionsNoResponse; i > 0; i--) {
     const instructionsNoResponse1 = {
@@ -182,7 +208,7 @@ let timelineTooFast = [];
 const instructionsTooFast =
     "<p>We have detected a number of a trials where the reaction time was <b>implausibly fast.</b></p>" +
     "<p>Please make sure that you hit the space bar <b>once</b>, as " +
-    "quickly as possible <b>only after the large X appears</b>.</p>";
+    "quickly as possible <b>only after the large <b>X</b> appears</b>.</p>";
 
 for (let i = timeInstructionsTooFast; i > 0; i--) {
     const instructionsTooFast1 = {

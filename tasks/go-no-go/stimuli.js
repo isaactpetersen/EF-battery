@@ -1,12 +1,12 @@
-//We randomly define if the user should focus on orange or blue squares, to counterbalance
+// We randomly define if the user should focus on orange or blue squares, to counterbalance
 let stims = jsPsych.randomization.shuffle([["orange", "stim1"], ["blue", "stim2"]]);
 let message_correct = "<b><div style='color:green; font-size:30px'>Correct!</div></b>";
 let message_incorrect = "<b><div style='color:red; font-size:30px''>Incorrect</div></b>";
 
-//We define the practice stimuli
+// We define the practice stimuli
 let practice_stimuli_block = [];
 
-//Go condition
+// Go condition
 for (let i = 0; i < go_stimuli_block_practice; i++){
     practice_stimuli_block.push({
         stimulus: "<div class = centerbox><div id=" + stims[0][1] + "></div></div>",
@@ -24,7 +24,7 @@ for (let i = 0; i < go_stimuli_block_practice; i++){
     });
 }
 
-//No-go condition
+// No-go condition
 for (let i = 0; i < go_stimuli_block_practice; i++){
     practice_stimuli_block.push({
         stimulus: "<div class = centerbox><div id=" + stims[1][1] + "></div></div>",
@@ -46,7 +46,7 @@ let practice_trials = jsPsych.randomization.repeat(practice_stimuli_block, block
 
 let main_stimuli_block = [];
 
-//Go stimuli
+// Go stimuli
 for (let i = 0; i < go_stimuli_block_main; i++){
     main_stimuli_block.push({
         stimulus: "<div class = centerbox><div id=" + stims[0][1] + "></div></div>",
@@ -63,7 +63,7 @@ for (let i = 0; i < go_stimuli_block_main; i++){
     });
 }
 
-//No-go stimuli
+// No-go stimuli
 for (let i = 0; i < no_go_stimuli_block_main; i++){
     main_stimuli_block.push({
         stimulus: "<div class = centerbox><div id=" + stims[1][1] + "></div></div>",
