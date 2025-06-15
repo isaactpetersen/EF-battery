@@ -22,6 +22,7 @@ const thresholdTrialsBelowRT = 5;
 const timeInstructionsNoResponse = 5;
 
 // Trials without response
+const timeInstructionsNoResponsePractice = 5;
 let trialsNoResponse = 0;
 const thresholdTrialsNoResponse = 5;
 const timeInstructionsTooFast = 10;

@@ -14,7 +14,6 @@ for (let i = 0; i < numberOfTrialsPractice; i++) {
         time_before_stimulus: trial_time,
         trial_duration: trial_time + durationStimulus,
         data: {
-            trial_id: "stim",
             phase: "practice",
             timeBeforeStimulus: trial_time
         },
@@ -30,7 +29,6 @@ for (let i = 0; i < numberOfBlocksTest; i++) {
             time_before_stimulus: trial_time,
             trial_duration: trial_time + durationStimulus,
             data: {
-                trial_id: "stim",
                 phase: "test",
                 timeBeforeStimulus: trial_time
             },

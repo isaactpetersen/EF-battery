@@ -15,13 +15,14 @@ const maxTimeBeforeStimulus = 6500; // ms
 const durationStimulus = 2000; // ms
 
 // Trials too fast
-const timeInstructionsTooFastPractice = 5;
+const timeInstructionsTooFastPractice = 1;
 let trialsBelowRT = 0;
 const minAcceptableTimeRT = 125;
 const thresholdTrialsBelowRT = 1;
 const timeInstructionsNoResponse = 1;
 
 // Trials without response
+const timeInstructionsNoResponsePractice = 5;
 let trialsNoResponse = 0;
 const thresholdTrialsNoResponse = 1;
 const timeInstructionsTooFast = 1;

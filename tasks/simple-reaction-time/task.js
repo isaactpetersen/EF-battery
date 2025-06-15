@@ -1,30 +1,28 @@
-
-
 // PRACTICE TRIAL ------------------------------------------------------------------------------------------------------
-// const firstBlankTrial = {
-//     type: jsPsychHtmlKeyboardResponseCustom,
-//     stimulus: "",
-//     stimulus_duration: 0,  // Placeholder
-//     trial_duration: minTimeBeforeStimulus,  // Placeholder
-//     response_ends_trial: false,
-//     data: {
-//         trial_id: "stim-0",
-//         exp_stage: "time-before-first-stim"
-//     },
-//     choices: [" "],
-//     on_finish: appendData
-// }
+const practiceTrialBlank = {
+    type: jsPsychHtmlKeyboardResponseCustom,
+    stimulus: "",
+    stimulus_duration: jsPsych.timelineVariable("time_before_stimulus"),
+    trial_duration: jsPsych.timelineVariable("time_before_stimulus"),
+    data: jsPsych.timelineVariable("data"),
+    response_ends_trial: false,
+    choices: [" "],
+};
 
-const practiceTrial = {
+const practiceTrialStim = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: stim,
-    time_before_stimulus: jsPsych.timelineVariable("time_before_stimulus"),  // Placeholder
     stimulus_duration: durationStimulus,
-    trial_duration: jsPsych.timelineVariable("trial_duration"),  // Placeholder
+    trial_duration: durationStimulus,
     data: jsPsych.timelineVariable("data"),
+    response_ends_trial: true,
     choices: [" "],
     on_finish: addTrialVariables
 };
+
+const practiceTrial = {
+    timeline: [practiceTrialBlank, practiceTrialStim],
+}
 
 const conditionalMessageNoResponsePractice = {
     timeline: timelineNoResponsePractice,
@@ -38,29 +36,61 @@ const conditionalMessageShortRTPractice = {
     timeline: timelineTooFastPractice,
     conditional_function: () => {
         let data = jsPsych.data.get().last(1).values()[0];
-        return data.rt < minAcceptableTimeRT;
+        return (data["respTooEarly"] && data["answered"]);
     }
 }
 
 function addTrialVariables() {
-    let data = jsPsych.data.get().last(1).values()[0];
-    data["rt"] -= data["timeBeforeStimulus"];
-    data["answered"] = data["response"] === " ";
-    if (!data["answered"]) {
-        data.rt = null;
-        if (data.phase !== "practice") {
-            trialsNoResponse += 1;
+    let data_trial = jsPsych.data.get().last(2)
+    let data_blank = data_trial.values()[0];
+    let data_stim = data_trial.values()[1];
+
+    data_blank["trialPhase"] = "blank";
+    data_stim["trialPhase"] = "stim";
+
+    data_stim["respTooEarly"] = false;
+    data_stim["respBeforeStim"] = false;
+    data_stim["answered"] = false;
+    data_stim["trialOK"] = false;
+
+    data_stim["phaseAnswered"] = "none";
+
+    if (data_blank["rt"] === -1) {
+        data_blank["rt"] = null;
+        if (data_stim["rt"] === -1) {
+            data_stim["rt"] = null;
+            if (data_stim.phase !== "practice") {
+                trialsNoResponse += 1;
+            }
+            data_stim["phaseAnswered"] = "none";
         }
-    }
-    else if (data.rt !== null && data.rt < minAcceptableTimeRT && data.phase !== "practice") {
-        console.log("Too fast!");
-        trialsBelowRT += 1;
+        else if (data_stim["rt"] <= minAcceptableTimeRT && data_stim.phase !== "practice") {
+            trialsBelowRT += 1;
+            data_stim["answered"] = true;
+            data_stim["phaseAnswered"] = "stim, too early";
+            data_stim["respTooEarly"] = true;
+        } else {
+            data_stim["answered"] = true;
+            data_stim["phaseAnswered"] = "stim, OK";
+            data_stim["trialOK"] = true;
+        }
+    } else {
+        if (data_stim.phase !== "practice") {
+            trialsBelowRT += 1;
+        }
+        data_stim["respBeforeStim"] = true;
+        data_stim["respTooEarly"] = true;
+        data_stim["phaseAnswered"] = "blank";
+        data_stim["answered"] = true;
     }
 
-    data["respBeforeStim"] = data["rt"] !== null && data["rt"] < 0;
+    // console.log(data_stim);
+    // console.log(data_stim.phase);
+    // console.log(trialsNoResponse);
+    // console.log(trialsBelowRT);
 
-    data["trialsBelowRT"] = trialsBelowRT;
-    data["trialsNoResponse"] = trialsNoResponse;
+    data_stim["trialsBelowRT"] = trialsBelowRT;
+    data_stim["trialsNoResponse"] = trialsNoResponse;
     appendData();
 }
 
@@ -81,26 +111,29 @@ const practiceBlock = {
 };
 
 // TEST TRIAL ----------------------------------------------------------------------------------------------------------
-const testTrial = {
+const testTrialBlank = {
+    type: jsPsychHtmlKeyboardResponseCustom,
+    stimulus: "", // Placeholder
+    stimulus_duration: jsPsych.timelineVariable("time_before_stimulus"),
+    trial_duration: jsPsych.timelineVariable("time_before_stimulus"),
+    data: jsPsych.timelineVariable("data"),
+    response_ends_trial: false,
+    choices: [" "],
+}
+
+const testTrialStim = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: stim,
-    time_before_stimulus: jsPsych.timelineVariable("time_before_stimulus"),  // Placeholder
     stimulus_duration: durationStimulus,
-    trial_duration: jsPsych.timelineVariable("trial_duration"),  // Placeholder
+    trial_duration: durationStimulus,
     data: jsPsych.timelineVariable("data"),
+    response_ends_trial: true,
     choices: [" "],
     on_finish: addTrialVariables
 }
 
-const conditionalMessageShortRT = {
-    timeline: timelineTooFast,
-    conditional_function: () => {
-        if (trialsBelowRT === thresholdTrialsBelowRT) {
-            trialsBelowRT = 0;
-            return true;
-        }
-        return false;
-    }
+const testTrial = {
+    timeline: [testTrialBlank, testTrialStim],
 }
 
 const conditionMessageNoResponse = {
@@ -114,10 +147,21 @@ const conditionMessageNoResponse = {
     }
 }
 
+const conditionalMessageShortRT = {
+    timeline: timelineTooFast,
+    conditional_function: () => {
+        if (trialsBelowRT === thresholdTrialsBelowRT) {
+            trialsBelowRT = 0;
+            return true;
+        }
+        return false;
+    }
+}
+
 let timelineTestBlock = [];
 timelineTestBlock.push(testTrial);
-timelineTestBlock.push(conditionalMessageShortRT);
 timelineTestBlock.push(conditionMessageNoResponse);
+timelineTestBlock.push(conditionalMessageShortRT);
 
 let timelineTestBlocks = [];
 for (let i = 0; i < numberOfBlocksTest; i++) {

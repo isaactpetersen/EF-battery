@@ -76,7 +76,7 @@ let timelineNoResponsePractice = [];
 const instructionsNoResponsePractice = "<p>Please press the <b>space bar</b> as soon as you see the large " +
     "<b>X</b> appear.";
 
-for (let i = timeInstructionsTooFastPractice; i > 0; i--) {
+for (let i = timeInstructionsNoResponsePractice; i > 0; i--) {
     const instructionsNoResponsePractice1 = {
         type: jsPsychHtmlKeyboardResponseCustom,
         stimulus: instructionsNoResponsePractice +
