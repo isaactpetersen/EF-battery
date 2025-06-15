@@ -82,6 +82,7 @@ function addTrialVariables() {
         data_stim["respTooEarly"] = true;
         data_stim["phaseAnswered"] = "blank";
         data_stim["answered"] = true;
+        data_stim["rt"] = null;
     }
 
     // console.log(data_stim);
