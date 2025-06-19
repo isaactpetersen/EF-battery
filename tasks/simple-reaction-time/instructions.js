@@ -206,9 +206,9 @@ timelineNoResponse.push(instructionsNoResponse1);
 let timelineTooFast = [];
 
 const instructionsTooFast =
-    "<p>We have detected a number of trials where the reaction time was <b>implausibly fast.</b></p>" +
-    "<p>Please make sure that you hit the space bar <b>once</b>, as " +
-    "quickly as possible <b>only after the large <b>X</b> appears</b>.</p>";
+    "<p>We have detected a number of trials where you pressed the space bar before the <b>X</b> appeared.</p>" +
+    "<p>Please make sure that you hit the space bar <b>once</b>, as quickly as possible <b>only after the large " +
+    "<b>X</b> appears</b>.</p>";
 
 for (let i = timeInstructionsTooFast; i > 0; i--) {
     const instructionsTooFast1 = {
