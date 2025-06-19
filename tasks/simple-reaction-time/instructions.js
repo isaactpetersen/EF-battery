@@ -2,8 +2,8 @@
 const welcomeScreen = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: "<div class='instructions'>Welcome to the final task. It will take around 5 minutes.</p>" +
-        "Press <strong>Enter</strong> to begin.</div>",
-    choices: ["Enter"],
+        "Press <strong>the space bar</strong> to begin.</div>",
+    choices: [" "],
     save_trial_parameters: {
         stimulus: false,
     },
@@ -24,7 +24,7 @@ for (let i = timeInstructionsPractice1; i > 0; i--) {
     const instructionsPractice1 = {
         type: jsPsychHtmlKeyboardResponseCustom,
         stimulus: instructionsPracticeText1 +
-            "<p style='color:#888888'>Press Enter to continue.</p>" +
+            "<p style='color:#888888'>Press the space bar to continue.</p>" +
             "<p><b>" + i.toString() + "</b></p>",
         choices: "NO_KEYS",
         trial_duration: 1000,
@@ -34,8 +34,8 @@ for (let i = timeInstructionsPractice1; i > 0; i--) {
 
 const instructionsPractice1 = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: instructionsPracticeText1 + "<p style='color:#ff0000'><b>Press Enter to continue.</b></p><p>&nbsp;</p>",
-    choices: ["Enter"],
+    stimulus: instructionsPracticeText1 + "<p style='color:#ff0000'><b>Press the space bar to continue.</b></p><p>&nbsp;</p>",
+    choices: [" "],
 };
 timelineInstructionsPractice.push(instructionsPractice1);
 
@@ -45,7 +45,7 @@ for (let i = timeInstructionsPractice2; i > 0; i--) {
     const instructionsPractice2 = {
         type: jsPsychHtmlKeyboardResponseCustom,
         stimulus: instructionsPracticeText2 +
-            "<p style='color:#888888'>Press Enter to continue.</p>" +
+            "<p style='color:#888888'>Press the space bar to continue.</p>" +
             "<p><b>" + i.toString() + "</b></p>",
         choices: "NO_KEYS",
         trial_duration: 1000,
@@ -55,8 +55,8 @@ for (let i = timeInstructionsPractice2; i > 0; i--) {
 
 const instructionsPractice2 = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: instructionsPracticeText2 + "<p style='color:#ff0000'><b>Press Enter to continue.</b></p><p>&nbsp;</p>",
-    choices: ["Enter"],
+    stimulus: instructionsPracticeText2 + "<p style='color:#ff0000'><b>Press the space bar to continue.</b></p><p>&nbsp;</p>",
+    choices: [" "],
 };
 timelineInstructionsPractice.push(instructionsPractice2);
 
@@ -136,7 +136,7 @@ for (let i = timeInstructionsTest; i > 0; i--) {
     const instructionsTest1 = {
         type: jsPsychHtmlKeyboardResponseCustom,
         stimulus: instructionsTestText +
-            "<p style='color:#888888'>Press Enter to continue.</p>" +
+            "<p style='color:#888888'>Press the space bar to continue.</p>" +
             "<p><b>" + i.toString() + "</b></p>",
         choices: "NO_KEYS",
         trial_duration: 1000,
@@ -146,8 +146,8 @@ for (let i = timeInstructionsTest; i > 0; i--) {
 
 const instructionsTest1 = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: instructionsTestText + "<p style='color:#ff0000'><b>Press Enter to continue.</b></p><p>&nbsp;</p>",
-    choices: ["Enter"],
+    stimulus: instructionsTestText + "<p style='color:#ff0000'><b>Press the space bar to continue.</b></p><p>&nbsp;</p>",
+    choices: [" "],
 };
 timelineInstructionsTest.push(instructionsTest1);
 
@@ -164,8 +164,8 @@ const instructionsTest = {
 // INSTRUCTIONS REST ---------------------------------------------------------------------------------------------------
 const instructionsRest = {
     type: jsPsychHtmlKeyboardResponseCustom,
-    stimulus: "<p>Take a break!</p><p><b>Press Enter when you are ready to continue.</b></p><p>&nbsp;</p>",
-    choices: ["Enter"],
+    stimulus: "<p>Take a break!</p><p><b>Press the space bar when you are ready to continue.</b></p><p>&nbsp;</p>",
+    choices: [" "],
     save_trial_parameters: {
         stimulus: false,
     },
@@ -206,7 +206,7 @@ timelineNoResponse.push(instructionsNoResponse1);
 let timelineTooFast = [];
 
 const instructionsTooFast =
-    "<p>We have detected a number of a trials where the reaction time was <b>implausibly fast.</b></p>" +
+    "<p>We have detected a number of trials where the reaction time was <b>implausibly fast.</b></p>" +
     "<p>Please make sure that you hit the space bar <b>once</b>, as " +
     "quickly as possible <b>only after the large <b>X</b> appears</b>.</p>";
 
