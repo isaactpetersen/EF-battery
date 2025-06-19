@@ -30,7 +30,7 @@ let stoppingFunction = {
             false_in_a_row = 0;  // If it was, we reset "false_in_a_row"
         }
         if (false_in_a_row === limit_error_to_end_task) {  // If we reach the limit (2 false in a row), we end the timeline
-            jsPsych.endCurrentTimeline();
+            jsPsych.abortCurrentTimeline();
         }
     },
 };

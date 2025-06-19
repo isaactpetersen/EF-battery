@@ -8,15 +8,15 @@ function createHeartFlowerStim(icon, side) {
 function getCorrectResponse(icon, side) {
     if (icon === "heart") {
         if (side === "left") {
-            return "a";
+            return "A";
         } else {
-            return "l";
+            return "L";
         }
     } else {
         if (side === "left") {
-            return "l";
+            return "L";
         } else {
-            return "a";
+            return "A";
         }
     }
 }
@@ -26,28 +26,28 @@ const heartPracticeTrial = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: () => {
         return createHeartFlowerStim(
-            jsPsych.timelineVariable("icon"),
-            jsPsych.timelineVariable("side")
+            jsPsych.evaluateTimelineVariable("icon"),
+            jsPsych.evaluateTimelineVariable("side")
         );
     },
     choices: () => {
-        if (jsPsych.timelineVariable("side") === "left") {
-            return ["a"]
+        if (jsPsych.evaluateTimelineVariable("side") === "left") {
+            return ["A"]
         }
-        if (jsPsych.timelineVariable("side") === "right") {
-            return ["l"]
+        if (jsPsych.evaluateTimelineVariable("side") === "right") {
+            return ["L"]
         }
     },
     data: {
         task: "response",
         exp_stage: "practice_hearts",
         exp_id: "hearts-flowers",
-        icon: jsPsych.timelineVariable("icon"),
-        side: jsPsych.timelineVariable("side"),
+        icon: jsPsych.evaluateTimelineVariable("icon"),
+        side: jsPsych.evaluateTimelineVariable("side"),
         correct_response: () => {
             return getCorrectResponse(
-                jsPsych.timelineVariable("icon"),
-                jsPsych.timelineVariable("side")
+                jsPsych.evaluateTimelineVariable("icon"),
+                jsPsych.evaluateTimelineVariable("side")
             );
         },
     },
@@ -61,28 +61,28 @@ const flowerPracticeTrial = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: () => {
         return createHeartFlowerStim(
-            jsPsych.timelineVariable("icon"),
-            jsPsych.timelineVariable("side")
+            jsPsych.evaluateTimelineVariable("icon"),
+            jsPsych.evaluateTimelineVariable("side")
         );
     },
     choices: () => {
-        if (jsPsych.timelineVariable("side") === "right") {
-            return ["a"]
+        if (jsPsych.evaluateTimelineVariable("side") === "right") {
+            return ["A"]
         }
-        if (jsPsych.timelineVariable("side") === "left") {
-            return ["l"]
+        if (jsPsych.evaluateTimelineVariable("side") === "left") {
+            return ["L"]
         }
     },
     data: {
         task: "response",
         exp_stage: "practice_flowers",
         exp_id: "hearts-flowers",
-        icon: jsPsych.timelineVariable("icon"),
-        side: jsPsych.timelineVariable("side"),
+        icon: jsPsych.evaluateTimelineVariable("icon"),
+        side: jsPsych.evaluateTimelineVariable("side"),
         correct_response: () => {
             return getCorrectResponse(
-                jsPsych.timelineVariable("icon"),
-                jsPsych.timelineVariable("side")
+                jsPsych.evaluateTimelineVariable("icon"),
+                jsPsych.evaluateTimelineVariable("side")
             );
         },
     },
@@ -97,21 +97,21 @@ const heartFlowerTrial = {
     type: jsPsychHtmlKeyboardResponseCustom,
     stimulus: () => {
         return createHeartFlowerStim(
-            jsPsych.timelineVariable("icon"),
-            jsPsych.timelineVariable("side")
+            jsPsych.evaluateTimelineVariable("icon"),
+            jsPsych.evaluateTimelineVariable("side")
         );
     },
-    choices: ["a", "l"],
+    choices: ["A", "L"],
     data: {
         task: "response",
         exp_stage: "test",
         exp_id: "hearts-flowers",
-        icon: jsPsych.timelineVariable("icon"),
-        side: jsPsych.timelineVariable("side"),
+        icon: jsPsych.evaluateTimelineVariable("icon"),
+        side: jsPsych.evaluateTimelineVariable("side"),
         correct_response: () => {
             return getCorrectResponse(
-                jsPsych.timelineVariable("icon"),
-                jsPsych.timelineVariable("side")
+                jsPsych.evaluateTimelineVariable("icon"),
+                jsPsych.evaluateTimelineVariable("side")
             );
         },
     },

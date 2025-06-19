@@ -55,9 +55,9 @@ function addTrialVariables() {
 
     data_stim["phaseAnswered"] = "none";
 
-    if (data_blank["rt"] === -1) {
+    if (data_blank["rt"] === -1 || data_blank["rt"] === null) {
         data_blank["rt"] = null;
-        if (data_stim["rt"] === -1) {
+        if (data_stim["rt"] === -1|| data_stim["rt"] === null) {
             data_stim["rt"] = null;
             if (data_stim.phase !== "practice") {
                 trialsNoResponse += 1;

@@ -1,88 +1,122 @@
 var jsPsychSpatialRecall = (function (jspsych) {
-  'use strict';
+    'use strict';
 
-  const info = {
-    name: 'spatial-recall',
-    description: '',
-    parameters: {
-      sequence: {
-        type: jspsych.ParameterType.INT,
-        pretty_name: 'Sequence',
-        array: true,
-        description: 'The sequence for the participant to learn (0-indexed).'
-      },
-      backwards: {
-        type: jspsych.ParameterType.BOOL,
-        pretty_name: 'Backwards',
-        default: false,
-        description: 'If participant should report sequence in backwards order.'
-      },
-      grid_size: {
-        type: jspsych.ParameterType.INT,
-        pretty_name: 'Grid size',
-        default: 4,
-        description: 'The number of tiles in each grid row/column.'
-      },
-      tile_size: {
-        type: jspsych.ParameterType.INT,
-        pretty_name: 'Tile size',
-        default: 64,
-        description: 'The size of each grid tile (in pixels).'
-      },
-      tile_duration: {
-        type: jspsych.ParameterType.INT,
-        pretty_name: 'Tile duration',
-        default: 750,
-        description: 'How long to show a tile.'
-      },
-      iti_duration: {
-        type: jspsych.ParameterType.INT,
-        pretty_name: 'ITI duration',
-        default: 250,
-        description: 'How long between tile presentations.'
-      },
-      stimulus_duration: {
-        type: jspsych.ParameterType.INT,
-        pretty_name: 'Stimulus duration',
-        default: 500,
-        description: 'How long to hide the stimulus.'
-      },
-      response_duration: {
-        type: jspsych.ParameterType.INT,
-        pretty_name: 'Response duration',
-        default: null,
-        description: 'How long to collect responses.'
-      },
+    var version = "2.1.0";
+
+    const info = {
+        name: 'spatial-recall',
+        version,
+        description: '',
+        parameters: {
+            sequence: {
+                type: jspsych.ParameterType.INT,
+                pretty_name: 'Sequence',
+                array: true,
+                description: 'The sequence for the participant to learn (0-indexed).'
+            },
+            backwards: {
+                type: jspsych.ParameterType.BOOL,
+                pretty_name: 'Backwards',
+                default: false,
+                description: 'If participant should report sequence in backwards order.'
+            },
+            grid_size: {
+                type: jspsych.ParameterType.INT,
+                pretty_name: 'Grid size',
+                default: 4,
+                description: 'The number of tiles in each grid row/column.'
+            },
+            tile_size: {
+                type: jspsych.ParameterType.INT,
+                pretty_name: 'Tile size',
+                default: 64,
+                description: 'The size of each grid tile (in pixels).'
+            },
+            tile_duration: {
+                type: jspsych.ParameterType.INT,
+                pretty_name: 'Tile duration',
+                default: 750,
+                description: 'How long to show a tile.'
+            },
+            iti_duration: {
+                type: jspsych.ParameterType.INT,
+                pretty_name: 'ITI duration',
+                default: 250,
+                description: 'How long between tile presentations.'
+            },
+            stimulus_duration: {
+                type: jspsych.ParameterType.INT,
+                pretty_name: 'Stimulus duration',
+                default: 500,
+                description: 'How long to hide the stimulus.'
+            },
+            response_duration: {
+                type: jspsych.ParameterType.INT,
+                pretty_name: 'Response duration',
+                default: null,
+                description: 'How long to collect responses.'
+            },
+        },
+        data: {
+            sequence: {
+                type: jspsych.ParameterType.INT
+            },
+            responses: {
+                type: jspsych.ParameterType.INT
+            },
+            sequence_length: {
+                type: jspsych.ParameterType.INT
+            },
+            backwards: {
+                type: jspsych.ParameterType.BOOL
+            },
+            correct: {
+              type: jspsych.ParameterType.BOOL
+            },
+            score_an: {
+              type: jspsych.ParameterType.INT
+            },
+            score_pc: {
+              type: jspsych.ParameterType.INT
+            },
+            score_ls: {
+              type: jspsych.ParameterType.INT
+            },
+        },
     }
-  }
 
-  /**
-  * jspsych-spatial-recall
-  * Sam Zorowitz
-  *
-  * plugin for running one trial of a spatial recall task
-  *
-  **/
-  class SpatialRecallPlugin {
-    constructor(jsPsych) {
-      this.jsPsych = jsPsych;
-    }
-    trial(display_element, trial) {
+    /**
+     * jspsych-spatial-recall
+     * Sam Zorowitz
+     *
+     * plugin for running one trial of a spatial recall task
+     *
+     **/
+    class SpatialRecallPlugin {
+        constructor(jsPsych) {
+            this.jsPsych = jsPsych;
+        }
 
-      // Error-catching: assert all elements in sequence are valid
-      if ( Math.min(...trial.sequence) < 0 || Math.max(...trial.sequence) > trial.grid_size**2 ) {
-        throw '"element of `trial.sequence` outside of grid"';
+      static {
+        this.info = info;
       }
 
-      // ---------------------------------- //
-      // Section 1: Define HTML             //
-      // ---------------------------------- //
+        trial(display_element, trial) {
 
-      // Define HTML
-      var new_html = '';
+            // Error-catching: assert all elements in sequence are valid
+            if (Math.min(...trial.sequence) < 0 || Math.max(...trial.sequence) > trial.grid_size ** 2) {
+                throw '"element of `trial.sequence` outside of grid"';
+            }
 
-      // Insert CSS
-      new_html += `<style>
+            // ---------------------------------- //
+            // Section 1: Define HTML             //
+            // ---------------------------------- //
+
+            // Define HTML
+            var new_html = '';
+
+            // Insert CSS
+            new_html += `<style>
       .jspsych-content {
         display: flex;
         flex-direction: column;
@@ -286,244 +320,247 @@ var jsPsychSpatialRecall = (function (jspsych) {
       }
       </style>`;
 
-      // Draw header.
-      new_html += '<div class="spatial-header" id="header">';
-      new_html += '<p>RECALL' + (trial.backwards ? '<small><br>(BACKWARDS)</small>' : '') + '</p>';
-      new_html += '</div>';
+            // Draw header.
+            new_html += '<div class="spatial-header" id="header">';
+            new_html += '<p>RECALL' + (trial.backwards ? '<small><br>(BACKWARDS)</small>' : '') + '</p>';
+            new_html += '</div>';
 
-      // Draw tiles.
-      new_html += '<div class="spatial-grid" id="spatial-grid">';
-      for (let i = 0; i < trial.grid_size**2; i++) {
-        new_html += `<div class="spatial-grid-tile" id="tile-${i}" data-choice=${i}></div>`;
-      }
-      new_html += '</div>';
-
-      // Add spatial recall entry indicators.
-      new_html += '<div class="spatial-entry-bar" id="entry-bar">';
-      for (let i = 0; i < trial.sequence.length; i++) {
-        new_html += `<div class="entry" id="entry-${i}"></div>`;
-      }
-      new_html += '</div>';
-
-      // Add buttons.
-      new_html += '<div class="spatial-button-bar" id="button-bar">';
-      new_html += '<button type="button" id="clear" action="clear">Clear</button>';
-      new_html += '<button type="button" id="submit" action="submit">Submit</button>';
-      new_html += '</div>';
-
-      // Display HTML.
-      display_element.innerHTML = new_html;
-
-      // Add event listeners to tiles
-      for (let i = 0; i < trial.grid_size**2; i++) {
-        display_element.querySelector('#tile-' + i).addEventListener('click', function(e){
-          var choice = e.currentTarget.getAttribute('data-choice');
-          after_response(choice);
-        });
-      };
-
-      // Add event listeners to buttons
-      display_element.querySelector('#clear').addEventListener('click', function(e){
-        clear_responses();
-      });
-      display_element.querySelector('#submit').addEventListener('click', function(e){
-        end_trial();
-      });
-
-      // ---------------------------------- //
-      // Section 2: Sequence presentation   //
-      // ---------------------------------- //
-
-      // function to toggel display elements
-      function toggle_elements(status) {
-
-        // Hide elements
-        display_element.querySelector('#header').setAttribute('status', status);
-        display_element.querySelector('#entry-bar').setAttribute('status', status);
-        display_element.querySelector('#button-bar').setAttribute('status', status);
-
-        // Hide cursor
-        // console.log(document.querySelector('.jspsych-content-wrapper'))
-        document.querySelector('.jspsych-content-wrapper').setAttribute('status', status);
-
-        // Hide mouse events
-        display_element.querySelector('#spatial-grid').setAttribute('status', status);
-
-      }
-
-      // function to display sequence to participant
-      function present_sequence(trial) {
-
-        // hide elements
-        toggle_elements('hide');
-
-        // define epoch time
-        const epoch = trial.tile_duration + trial.iti_duration;
-
-        // define presentation event times
-        trial.sequence.forEach((j, i) => {
-
-          // highlight tile
-          jsPsych.pluginAPI.setTimeout(function() {
-            display_element.querySelector('#tile-' + j).setAttribute('status', 'fill');
-          }, trial.stimulus_duration + epoch * i);
-
-          // clear tile
-          jsPsych.pluginAPI.setTimeout(function() {
-            display_element.querySelector('#tile-' + j).setAttribute('status', '');
-          }, trial.stimulus_duration + epoch * i + trial.tile_duration);
-
-        });
-
-        // start response phase
-        jsPsych.pluginAPI.setTimeout(function() {
-
-          // unhide elements
-          toggle_elements('');
-
-          // record start time
-          start_time = performance.now();
-
-          // end trial if time limit is set
-          if (trial.response_duration !== null) {
-            jsPsych.pluginAPI.setTimeout(function() {
-              end_trial();
-            }, trial.response_duration);
-          }
-
-        }, trial.stimulus_duration + epoch * trial.sequence.length);
-
-      }
-
-      // present sequence
-      var start_time = performance.now();
-      present_sequence(trial);
-
-      // ---------------------------------- //
-      // Section 3: Response handling       //
-      // ---------------------------------- //
-
-      // initialize response
-      var responses = [];
-
-      // function to handle responses by the subject
-      function after_response(choice) {
-
-        // store response
-        responses.push( parseInt(choice) );
-
-        // update entry indicators
-        for (let i = 0; i<Math.min(responses.length, trial.sequence.length); i++) {
-          display_element.querySelector('#entry-' + i).setAttribute('status', 'fill');
-        }
-
-        // update cursor (if maximum number of entries)
-        if (responses.length >= trial.sequence.length) {
-          display_element.querySelector('#spatial-grid').setAttribute('status', 'complete');
-        }
-
-      };
-
-      // function to clear current responses
-      function clear_responses() {
-
-        // update entry indicators
-        for (let i = 0; i<Math.min(responses.length, trial.sequence.length); i++) {
-          display_element.querySelector('#entry-' + i).setAttribute('status', '');
-        }
-
-        // update cursor
-        if (responses.length >= trial.sequence.length) {
-          display_element.querySelector('#spatial-grid').setAttribute('status', '');
-        }
-
-        // clear repsonses
-        responses = [];
-
-      }
-
-      // function to end trial when it is time
-      function end_trial() {
-
-        // kill any remaining setTimeout handlers
-        jsPsych.pluginAPI.clearAllTimeouts();
-
-        // measure response time
-        var end_time = performance.now();
-        var rt = end_time - start_time;
-
-        // copy responses
-        const copy = trial.backwards ? [...responses].reverse() : [...responses];
-
-        // score responses
-        var score_ls = longest_subsequence(copy, trial.sequence);
-        var score_pc = partial_credit(copy, trial.sequence);
-        var score_an = (score_pc == trial.sequence.length) ? 1 : 0;
-
-        var correct = (score_ls == trial.sequence.length);
-
-        // gather the data to store for the trial
-        var trial_data = {
-          sequence: trial.sequence,
-          sequence_length: trial.sequence.length,
-          backwards: trial.backwards,
-          responses: responses,
-          score_an: score_an,
-          score_pc: score_pc,
-          score_ls: score_ls,
-          rt: rt,
-          correct: correct,
-        };
-
-        // clear the display
-        display_element.innerHTML = '';
-
-        // move on to the next trial
-        jsPsych.finishTrial(trial_data);
-      };
-
-      // ---------------------------------- //
-      // Section 4: Scoring functions       //
-      // ---------------------------------- //
-
-      // Partial credit scoring
-      // scores a response as correct if it matches the sequence element
-      // in the same serial position
-      function partial_credit(observed, target) {
-        var score = 0;
-        observed.forEach((obs, i) => { if (obs == target[i]) { score++ } });
-        return score;
-      }
-
-      // Longest subsequence scoring
-      // (https://stackoverflow.com/questions/59925509/javascript-longest-common-subsequence)
-      // identifies the longest common subsequence between the observed
-      // and target sequence
-      function longest_subsequence(observed, target) {
-
-        // define n x m sized array filled with 0's
-        const matrix = Array(observed.length+1).fill().map(() => Array(target.length+1).fill(0))
-
-        // fill the matrix
-        for(let i = 1; i <= observed.length; i++) {
-          for(let j = 1; j <= target.length; j++) {
-            if(observed[i-1] === target[j-1]) { 
-              matrix[i][j] = 1 + matrix[i-1][j-1];
+            // Draw tiles.
+            new_html += '<div class="spatial-grid" id="spatial-grid">';
+            for (let i = 0; i < trial.grid_size ** 2; i++) {
+                new_html += `<div class="spatial-grid-tile" id="tile-${i}" data-choice=${i}></div>`;
             }
-            else {
-              matrix[i][j] = Math.max(matrix[i-1][j], matrix[i][j-1]);
+            new_html += '</div>';
+
+            // Add spatial recall entry indicators.
+            new_html += '<div class="spatial-entry-bar" id="entry-bar">';
+            for (let i = 0; i < trial.sequence.length; i++) {
+                new_html += `<div class="entry" id="entry-${i}"></div>`;
             }
-          }
+            new_html += '</div>';
+
+            // Add buttons.
+            new_html += '<div class="spatial-button-bar" id="button-bar">';
+            new_html += '<button type="button" id="clear" action="clear">Clear</button>';
+            new_html += '<button type="button" id="submit" action="submit">Submit</button>';
+            new_html += '</div>';
+
+            // Display HTML.
+            display_element.innerHTML = new_html;
+
+            // Add event listeners to tiles
+            for (let i = 0; i < trial.grid_size ** 2; i++) {
+                display_element.querySelector('#tile-' + i).addEventListener('click', function (e) {
+                    var choice = e.currentTarget.getAttribute('data-choice');
+                    after_response(choice);
+                });
+            }
+            ;
+
+            // Add event listeners to buttons
+            display_element.querySelector('#clear').addEventListener('click', function (e) {
+                clear_responses();
+            });
+            display_element.querySelector('#submit').addEventListener('click', function (e) {
+                end_trial();
+            });
+
+            // ---------------------------------- //
+            // Section 2: Sequence presentation   //
+            // ---------------------------------- //
+
+            // function to toggel display elements
+            function toggle_elements(status) {
+
+                // Hide elements
+                display_element.querySelector('#header').setAttribute('status', status);
+                display_element.querySelector('#entry-bar').setAttribute('status', status);
+                display_element.querySelector('#button-bar').setAttribute('status', status);
+
+                // Hide cursor
+                // console.log(document.querySelector('.jspsych-content-wrapper'))
+                document.querySelector('.jspsych-content-wrapper').setAttribute('status', status);
+
+                // Hide mouse events
+                display_element.querySelector('#spatial-grid').setAttribute('status', status);
+
+            }
+
+            // function to display sequence to participant
+            function present_sequence(trial) {
+
+                // hide elements
+                toggle_elements('hide');
+
+                // define epoch time
+                const epoch = trial.tile_duration + trial.iti_duration;
+
+                // define presentation event times
+                trial.sequence.forEach((j, i) => {
+
+                    // highlight tile
+                    jsPsych.pluginAPI.setTimeout(function () {
+                        display_element.querySelector('#tile-' + j).setAttribute('status', 'fill');
+                    }, trial.stimulus_duration + epoch * i);
+
+                    // clear tile
+                    jsPsych.pluginAPI.setTimeout(function () {
+                        display_element.querySelector('#tile-' + j).setAttribute('status', '');
+                    }, trial.stimulus_duration + epoch * i + trial.tile_duration);
+
+                });
+
+                // start response phase
+                jsPsych.pluginAPI.setTimeout(function () {
+
+                    // unhide elements
+                    toggle_elements('');
+
+                    // record start time
+                    start_time = performance.now();
+
+                    // end trial if time limit is set
+                    if (trial.response_duration !== null) {
+                        jsPsych.pluginAPI.setTimeout(function () {
+                            end_trial();
+                        }, trial.response_duration);
+                    }
+
+                }, trial.stimulus_duration + epoch * trial.sequence.length);
+
+            }
+
+            // present sequence
+            var start_time = performance.now();
+            present_sequence(trial);
+
+            // ---------------------------------- //
+            // Section 3: Response handling       //
+            // ---------------------------------- //
+
+            // initialize response
+            var responses = [];
+
+            // function to handle responses by the subject
+            function after_response(choice) {
+
+                // store response
+                responses.push(parseInt(choice));
+
+                // update entry indicators
+                for (let i = 0; i < Math.min(responses.length, trial.sequence.length); i++) {
+                    display_element.querySelector('#entry-' + i).setAttribute('status', 'fill');
+                }
+
+                // update cursor (if maximum number of entries)
+                if (responses.length >= trial.sequence.length) {
+                    display_element.querySelector('#spatial-grid').setAttribute('status', 'complete');
+                }
+
+            };
+
+            // function to clear current responses
+            function clear_responses() {
+
+                // update entry indicators
+                for (let i = 0; i < Math.min(responses.length, trial.sequence.length); i++) {
+                    display_element.querySelector('#entry-' + i).setAttribute('status', '');
+                }
+
+                // update cursor
+                if (responses.length >= trial.sequence.length) {
+                    display_element.querySelector('#spatial-grid').setAttribute('status', '');
+                }
+
+                // clear repsonses
+                responses = [];
+
+            }
+
+            // function to end trial when it is time
+            function end_trial() {
+
+                // kill any remaining setTimeout handlers
+                jsPsych.pluginAPI.clearAllTimeouts();
+
+                // measure response time
+                var end_time = performance.now();
+                var rt = end_time - start_time;
+
+                // copy responses
+                const copy = trial.backwards ? [...responses].reverse() : [...responses];
+
+                // score responses
+                var score_ls = longest_subsequence(copy, trial.sequence);
+                var score_pc = partial_credit(copy, trial.sequence);
+                var score_an = (score_pc == trial.sequence.length) ? 1 : 0;
+
+                var correct = (score_ls == trial.sequence.length);
+
+                // gather the data to store for the trial
+                var trial_data = {
+                    sequence: trial.sequence,
+                    sequence_length: trial.sequence.length,
+                    backwards: trial.backwards,
+                    responses: responses,
+                    score_an: score_an,
+                    score_pc: score_pc,
+                    score_ls: score_ls,
+                    rt: rt,
+                    correct: correct,
+                };
+
+                // clear the display
+                display_element.innerHTML = '';
+
+                // move on to the next trial
+                jsPsych.finishTrial(trial_data);
+            };
+
+            // ---------------------------------- //
+            // Section 4: Scoring functions       //
+            // ---------------------------------- //
+
+            // Partial credit scoring
+            // scores a response as correct if it matches the sequence element
+            // in the same serial position
+            function partial_credit(observed, target) {
+                var score = 0;
+                observed.forEach((obs, i) => {
+                    if (obs == target[i]) {
+                        score++
+                    }
+                });
+                return score;
+            }
+
+            // Longest subsequence scoring
+            // (https://stackoverflow.com/questions/59925509/javascript-longest-common-subsequence)
+            // identifies the longest common subsequence between the observed
+            // and target sequence
+            function longest_subsequence(observed, target) {
+
+                // define n x m sized array filled with 0's
+                const matrix = Array(observed.length + 1).fill().map(() => Array(target.length + 1).fill(0))
+
+                // fill the matrix
+                for (let i = 1; i <= observed.length; i++) {
+                    for (let j = 1; j <= target.length; j++) {
+                        if (observed[i - 1] === target[j - 1]) {
+                            matrix[i][j] = 1 + matrix[i - 1][j - 1];
+                        } else {
+                            matrix[i][j] = Math.max(matrix[i - 1][j], matrix[i][j - 1]);
+                        }
+                    }
+                }
+
+                // return the max which is at the right bottom corner of the matrix
+                return matrix[observed.length][target.length]
+            }
+
         }
+    };
 
-        // return the max which is at the right bottom corner of the matrix
-        return matrix[observed.length][target.length]
-      }
-
-    }
-  };
-  SpatialRecallPlugin.info = info;
-
-  return SpatialRecallPlugin;
+    return SpatialRecallPlugin;
 
 })(jsPsychModule);
