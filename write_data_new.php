@@ -27,9 +27,9 @@ while(file_exists($data_dir.$actual_name.$extension))
 $path = $data_dir.$actual_name.$extension;
 
 // Ensure the directory exists or create it if necessary
-//if (!is_dir($data_dir)) {
-//    mkdir($data_dir, 0755, true);
-//}
+if (!is_dir($data_dir)) {
+   mkdir($data_dir, 0755, true);
+}
 
 // Save the data to the file
 file_put_contents($path, $data_array);
