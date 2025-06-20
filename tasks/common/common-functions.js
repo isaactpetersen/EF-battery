@@ -248,6 +248,7 @@ let uploadData = function(done) {
     if (current_html[0].startsWith("http") && !current_html[2].startsWith("localhost")) {
         let save_url = "write_data_new.php";
         let data_dir = "results/" + task + "/";
+        console.log(save_url, data_dir, file_name, extension);
         try {
             let response_data = saveData(save_url, data_dir, file_name, extension);
             done(response_data);
