@@ -88,4 +88,4 @@ https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-hearts-flower
 
 ### Simple Reaction Time
 
-https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-simple-reaction-time-test.html?src=sona&subid=9999&sonaid=99999&chain=false
+https://devpsylab.psychology.uiowa.edu/Tasks/EF-battery/experiment-simple-reaction-time-test.html?src=sona&subid=9999&sonaid=99999
