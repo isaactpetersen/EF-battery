@@ -239,7 +239,7 @@ let uploadData = function(done) {
     let last_trial_data = jsPsych.data.getLastTrialData().trials[0];
     let file_name = task;
     if ("subid" in last_trial_data) {
-        file_name += task + "_" + last_trial_data["subid"] + append_to_datafile;
+        file_name += "_" + last_trial_data["subid"] + append_to_datafile;
     }
     let extension = ".csv";
 
@@ -247,8 +247,11 @@ let uploadData = function(done) {
 
     if (current_html[0].startsWith("http") && !current_html[2].startsWith("localhost")) {
         let save_url = "write_data_new.php";
-        let data_dir = "results/" + task + "/";
-        console.log(save_url, data_dir, file_name, extension);
+        let data_dir = "/data/apache-rw/" + current_html.split("/").slice(2, 5).join("/") + "/" + task + "/";
+        console.log("Save URL:", save_url);
+        console.log("Data dir:", data_dir);
+        console.log("File name:", file_name);
+        console.log("Extension:", extension);
         try {
             let response_data = saveData(save_url, data_dir, file_name, extension);
             done(response_data);
