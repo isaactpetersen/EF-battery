@@ -27,7 +27,7 @@ let trialsNoResponse = 0;
 const thresholdTrialsNoResponse = 1;
 const timeInstructionsTooFast = 1;
 
-const append_to_datafile = "";
+const append_to_datafile = "_test";
 const task = "simple-reaction-time";
 
 const jsPsych = initJsPsych({
