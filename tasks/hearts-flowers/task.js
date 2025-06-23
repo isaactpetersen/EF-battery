@@ -125,6 +125,7 @@ const heartFlowerTrial = {
     },
     on_finish: (data) => {
         appendData();
+        data.response = data.response.toUpperCase();
         data.correct = data.response === data.correct_response;
         if (data.phase === "test") {
             const test_data = jsPsych.data
