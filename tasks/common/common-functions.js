@@ -247,12 +247,7 @@ let uploadData = function(done) {
 
     if (current_html[0].startsWith("http") && !current_html[2].startsWith("localhost")) {
         let save_url = "write_data_new.php";
-        const urlParts = window.location.href.split("/");  // ["https:", "", "devpsylab.psychology.uiowa.edu", "Tasks", "EF-battery", ...]
-        const data_dir =
-            "/data/apache-rw/" +
-            urlParts.slice(2, 5).join("/") +               // devpsylab.psychology.uiowa.edu/Tasks/EF-battery
-            "/results/" +                                  //
-            task + "/";                                    // e.g., simple-reaction-time/
+        const data_dir = "/data/apache-rw/" + current_html.slice(2, 5).join("/") + "/results/" + task + "/";
         console.log("Save URL:", save_url);
         console.log("Data dir:", data_dir);
         console.log("File name:", file_name);
