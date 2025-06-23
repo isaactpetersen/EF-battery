@@ -27,11 +27,4 @@ const jsPsych = initJsPsych({
 const preload = {
     type: jsPsychPreload,
     images: ["tasks/hearts-flowers/heart.png", "tasks/hearts-flowers/flower.png", "tasks/hearts-flowers/keyboard.png"],
-    save_trial_parameters: {
-        success: false,
-        timeout: false,
-        failed_images: false,
-        failed_video: false,
-        failed_audio: false,
-    },
 };
